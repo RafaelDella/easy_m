@@ -9,7 +9,7 @@ CREATE TABLE Usuario (
     senha VARCHAR(255) NOT NULL,  -- Precisa Criptografar
     cpf VARCHAR(14) NOT NULL UNIQUE,
     escolaridade VARCHAR(50) NULL,
-    perfil VARCHAR(15) NULL, -- Perfil de usuário
+    perfil VARCHAR(15) NULL, -- Perfil de usuário (Endividade, Poupador, Doméstico)
     data_nascimento DATE NOT NULL,
     idade INT GENERATED ALWAYS AS (TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE())) STORED -- Calculando idade
 );
@@ -42,25 +42,18 @@ CREATE TABLE Meta (
     descricao TEXT NULL,
     categoria VARCHAR(50) NOT NULL,
     valor_meta DECIMAL(10,2) NOT NULL,
-    previsao_conclusao DATE NOT NULL,
+    previsao_conclusao DATE NOT NULL, -- Calculadora de Juros com Amortização ou Definir pelo usuário as parcelas restantes
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
-CREATE TABLE teto_gasto (
+CREATE TABLE Teto_gasto (
     id_teto INT AUTO_INCREMENT PRIMARY KEY,
     nome_teto VARCHAR(100) NOT NULL,
     descricao TEXT NULL,
     categoria VARCHAR(50) NOT NULL, -- Qual área se aplica
     valor_teto DECIMAL(10,2) NOT NULL, -- Valor limite para os gastos
     valor_atual DECIMAL(10,2) DEFAULT 0.00, -- Soma dos gastos
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
-);
-
-CREATE TABLE categoria_personalizada (
-    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    nome_categoria VARCHAR(50) NOT NULL UNIQUE,
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
