@@ -8,7 +8,7 @@ CREATE TABLE Usuario (
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,  -- Precisa Criptografar
     cpf VARCHAR(14) NOT NULL UNIQUE,
-    escolaridade VARCHAR(50) NULL,
+    escolaridade VARCHAR(50) NOT NULL,
     perfil VARCHAR(15) NULL, -- Perfil de usuário (Endividade, Poupador, Doméstico)
     data_nascimento DATE NOT NULL,
     idade INT GENERATED ALWAYS AS (TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE())) STORED -- Calculando idade
@@ -54,6 +54,16 @@ CREATE TABLE Teto_gasto (
     categoria VARCHAR(50) NOT NULL, -- Qual área se aplica
     valor_teto DECIMAL(10,2) NOT NULL, -- Valor limite para os gastos
     valor_atual DECIMAL(10,2) DEFAULT 0.00, -- Soma dos gastos
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Entrada (
+    id_entrada INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(100) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    categoria VARCHAR(50), --Selector no front
+    data_entrada DATE NOT NULL,
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
