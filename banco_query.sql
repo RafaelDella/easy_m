@@ -6,12 +6,11 @@ CREATE TABLE Usuario (
     nome VARCHAR(100) NOT NULL,
     usuario VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(150) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,  -- Precisa Criptografar
+    senha VARCHAR(255) NOT NULL,  -- Lembrar de aplicar hash na aplicação
     cpf VARCHAR(14) NOT NULL UNIQUE,
     escolaridade VARCHAR(50) NOT NULL,
-    perfil VARCHAR(15) NULL, -- Perfil de usuário (Endividade, Poupador, Doméstico)
-    data_nascimento DATE NOT NULL,
-    idade INT GENERATED ALWAYS AS (TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE())) STORED -- Calculando idade
+    perfil VARCHAR(15), -- Perfil de usuário (Endividado, Poupador, Doméstico)
+    data_nascimento DATE NOT NULL
 );
 
 CREATE TABLE Gasto (
