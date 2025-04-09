@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil Financeiro - easy_m</title>
+  <link rel="stylesheet" href="forms_perfil.css" />
+</head>
+<body>
+  <h1>Perfil Financeiro - easy_m</h1>
+  <form id="formulario" action="BANCO.PHP" method="POST">
+    <div class="form-step active">
+      <p>1.1 Como você descreveria sua situação financeira atualmente?</p>
+      <label><input type="radio" name="situacao_atual" value="dividas" required> Tenho muitas dívidas e dificuldades para pagar as contas.</label>
+      <label><input type="radio" name="situacao_atual" value="sem_economizar"> Consigo pagar as contas, mas não consigo economizar.</label>
+      <label><input type="radio" name="situacao_atual" value="desorganizado"> Pago as contas, mas não consigo me organizar.</label>
+    </div>
+    <div class="form-step">
+      <p>1.2 Qual é a sua principal preocupação financeira no momento?</p>
+      <label><input type="radio" name="preocupacao" value="quitar_dividas" required> Quitar dívidas.</label>
+      <label><input type="radio" name="preocupacao" value="organizar_gastos"> Organizar melhor os gastos do dia a dia.</label>
+      <label><input type="radio" name="preocupacao" value="compreender_gastos"> Compreender onde meu dinheiro é gasto.</label>
+    </div>
+    <div class="form-step">
+      <p>1.3 O que acontece com seu dinheiro no fim do mês?</p>
+      <label><input type="radio" name="fim_do_mes" value="negativo" required> Fico no negativo ou preciso parcelar despesas.</label>
+      <label><input type="radio" name="fim_do_mes" value="sem_sobra"> Consigo pagar tudo, mas não sobra nada.</label>
+      <label><input type="radio" name="fim_do_mes" value="as_vezes_falta"> Às vezes sobra, às vezes falta.</label>
+    </div>
+    <div class="form-step">
+      <p>1.4 Como você costuma lidar com imprevistos financeiros?</p>
+      <label><input type="radio" name="imprevistos" value="emprestimos" required> Preciso pegar empréstimos ou uso o limite do banco.</label>
+      <label><input type="radio" name="imprevistos" value="cobre_apertado"> Consigo cobrir pequenos imprevistos, mas fico apertado.</label>
+      <label><input type="radio" name="imprevistos" value="uso_reserva"> Tenho uma reserva, mas todo mês acabo usando ela.</label>
+    </div>
+    <div class="form-step">
+      <p>1.5 Você faz algum tipo de planejamento financeiro?</p>
+      <label><input type="radio" name="planejamento" value="nao_planejo" required> Não, pago as contas conforme elas chegam.</label>
+      <label><input type="radio" name="planejamento" value="planejo_sobra_pouco"> Sim, mas depois não sobra quase nada.</label>
+      <label><input type="radio" name="planejamento" value="tento_planejar"> Sim, tento organizar, mas nem sempre consigo seguir.</label>
+    </div>
+    <div class="form-step">
+      <p>2.1 Como você costuma pagar suas contas?</p>
+      <label><input type="radio" name="pagamento" value="atraso_contas" required> Atraso algumas contas porque falta dinheiro.</label>
+      <label><input type="radio" name="pagamento" value="em_dia_com_sufoco"> Pago tudo em dia, mas com sufoco.</label>
+      <label><input type="radio" name="pagamento" value="em_dia"> Pago tudo em dia.</label>
+    </div>
+    <div class="form-step">
+      <p>2.2 O que você faz quando sobra dinheiro no fim do mês?</p>
+      <label><input type="radio" name="dinheiro_sobrando" value="pagar_dividas" required> Uso para pagar contas atrasadas ou outras despesas.</label>
+      <label><input type="radio" name="dinheiro_sobrando" value="compartilhar"> Utilizo com alguém que amo.</label>
+      <label><input type="radio" name="dinheiro_sobrando" value="deixo_parado"> Deixo parado na conta.</label>
+    </div>
+    <div class="form-step">
+      <p>2.3 Você tem dívidas atualmente?</p>
+      <label><input type="radio" name="dividas" value="tenho_muitas" required> Sim, e não sei como vou pagar.</label>
+      <label><input type="radio" name="dividas" value="tenho_controladas"> Sim, mas estou conseguindo pagar aos poucos.</label>
+      <label><input type="radio" name="dividas" value="sem_dividas"> Não tenho dívidas.</label>
+    </div>
+    <div class="form-step">
+      <p>2.4 Como você se sente em relação ao seu dinheiro?</p>
+      <label><input type="radio" name="sentimento_dinheiro" value="preocupado" required> Preocupado(a), porque não consigo controlar meus gastos.</label>
+      <label><input type="radio" name="sentimento_dinheiro" value="neutro"> Neutro(a), consigo me virar, mas sem sobras.</label>
+      <label><input type="radio" name="sentimento_dinheiro" value="tranquilo"> Tranquilo(a), pois sei exatamente onde está meu dinheiro.</label>
+    </div>
+    <div class="form-step">
+      <p>2.5 O que você gostaria de melhorar na sua vida financeira?</p>
+      <label><input type="radio" name="melhorar" value="sair_dividas" required> Sair das dívidas.</label>
+      <label><input type="radio" name="melhorar" value="organizar_gastos"> Organizar melhor meus gastos.</label>
+      <label><input type="radio" name="melhorar" value="alcançar_metas"> Utilizar meu dinheiro para alcançar minhas metas.</label>
+    </div>
+    <div class="buttons">
+      <button type="button" id="prevBtn">Voltar</button>
+      <button type="button" id="nextBtn">Próximo</button>
+      <button type="submit" id="submitBtn" style="display: none;">Enviar</button>
+    </div>
+  </form>
+  <script src="forms_perfil.js"></script>
+</body>
+</html>
