@@ -28,6 +28,7 @@ body {
 .sidebar nav ul li {
     margin: 15px 0;
 }
+
 .sidebar nav ul li a {
     color: white;
     text-decoration: none;
@@ -68,21 +69,6 @@ body {
     text-align: center;
 }
 
-.graph {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
-
-.placeholder-grafico {
-    height: 150px;
-    background: #ddd;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
 .tables {
     display: flex;
     gap: 20px;
@@ -105,5 +91,5 @@ body {
 .table-box th, .table-box td {
     padding: 8px;
     border-bottom: 1px solid #ccc;
-    text-align: left;
+    text-align: left;
 }

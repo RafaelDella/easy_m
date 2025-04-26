@@ -11,11 +11,13 @@ $usuario_id = $_SESSION['usuario_id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Extrato EasyM</title>
     <link rel="stylesheet" href="../../assets/extrato_gasto/extrato.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Extrato de Saídas</h1>
@@ -110,6 +112,41 @@ $usuario_id = $_SESSION['usuario_id'];
             <button type="submit">Salvar Entrada</button>
         </form>
 
+        <hr style="margin: 30px 0;">
+        <h2>➖ Novo Gasto</h2>
+
+        <form action="../fomulario_gasto/processa_gasto.php" method="POST" style="margin-top: 20px;">
+            <label for="nome_gasto">Nome do Gasto:</label><br>
+            <input type="text" id="nome_gasto" name="nome_gasto" maxlength="50" required><br><br>
+
+            <label for="desc_gasto">Descrição:</label><br>
+            <textarea id="desc_gasto" name="desc_gasto" maxlength="150" rows="3"></textarea><br><br>
+
+            <label for="categoria_gasto">Categoria:</label><br>
+            <select id="categoria_gasto" name="categoria_gasto" required>
+                <option value="">Selecione...</option>
+                <option value="Alimentação">Alimentação</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Educação">Educação</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Moradia">Moradia</option>
+                <option value="Outros">Outros</option>
+            </select><br><br>
+
+            <label for="valor_gasto">Valor (R$):</label><br>
+            <input type="number" id="valor_gasto" name="valor_gasto" step="0.01" required><br><br>
+
+            <label for="data_gasto">Data do Gasto:</label><br>
+            <input type="date" id="data_gasto" name="data_gasto" required><br><br>
+
+            <input type="checkbox" id="is_imprevisto" name="is_imprevisto">
+            <label for="is_imprevisto">É um imprevisto?</label><br><br>
+
+            <button type="submit">Salvar Gasto</button>
+        </form>
+
+
     </div>
 </body>
+
 </html>
