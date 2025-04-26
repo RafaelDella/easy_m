@@ -4,7 +4,6 @@
     $usuario = 'root';       // Altere se for diferente
     $senha = '';             // Altere se houver senha
     $banco = 'easym';        // Substitua pelo nome real do seu banco
-    
 
     // 2. Conectar ao banco
     $conn = new mysqli($host, $usuario, $senha, $banco);
