@@ -1,30 +1,43 @@
 <?php
-    session_start();
-    require_once '../../../app/db.php';
+session_start();
+require_once '../../../app/db.php';
 
-    $db = new DB();
-    $conn = $db->connect(); // ⚡ agora $conn existe!
+$db = new DB();
+$pdo = $db->connect();
 
-    // Dados recebidos
-    $nome = $_POST['nome'];
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $confirmar_senha = $_POST['confirmar_senha'];
-    $cpf = $_POST['cpf'];
-    $escolaridade = $_POST['escolaridade'];
-    $data_nascimento = $_POST['data_nascimento'];
+// Dados do formulário
+$nome = $_POST['nome'];
+$usuario = $_POST['usuario'];
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+$confirmar_senha = $_POST['confirmar_senha'];
+$cpf = $_POST['cpf'];
+$escolaridade = $_POST['escolaridade'];
+$data_nascimento = $_POST['data_nascimento'];
 
-    if ($senha !== $confirmar_senha) {
-        die("As senhas não coincidem.");
-    }
+if ($senha !== $confirmar_senha) {
+    die("As senhas não coincidem.");
+}
 
-    // Agora usando PDO:
-    $stmt = $conn->prepare("INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$nome, $usuario, $email, $senha, $cpf, $escolaridade, $data_nascimento]);
+// Criptografar a senha
+$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    echo "Usuário cadastrado com sucesso!";
-    header("Location: ../formulario_login/form_login.html "); // Redireciona para a página de login
-    exit;
-?>
+try {
+    $stmt = $pdo->prepare("INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento) VALUES (:nome, :usuario, :email, :senha, :cpf, :escolaridade, :data_nascimento)");
+    $stmt->execute([
+        ':nome' => $nome,
+        ':usuario' => $usuario,
+        ':email' => $email,
+        ':senha' => $senha_hash,
+        ':cpf' => $cpf,
+        ':escolaridade' => $escolaridade,
+        ':data_nascimento' => $data_nascimento
+    ]);
 
+    echo "<script>
+            alert('✅ Usuário cadastrado com sucesso!');
+            window.location.href='../formulario_login/form_login.html';
+        </script>";
+} catch (PDOException $e) {
+    echo "Erro ao cadastrar: " . $e->getMessage();
+}
