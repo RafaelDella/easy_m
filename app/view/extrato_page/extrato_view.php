@@ -10,7 +10,7 @@
         <h1>Extrato de Saídas</h1>
 
         <?php
-        require_once 'conexao.php';
+        require_once '../../db.php';
 
         $usuario_id = 1;
 
