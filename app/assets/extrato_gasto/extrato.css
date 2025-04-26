@@ -1,47 +1,114 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f0f2f5;
+    background-color: #f6f8fa;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    background: #fff;
+.form-container {
+    background-color: #ffffff;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.saldo-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card-financeiro {
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-h1 {
-    margin-top: 40px;
-    font-size: 24px;
-    color: #333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
     text-align: center;
 }
 
-th {
-    background: #007bff;
+.card-financeiro h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.card-financeiro p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.grafico-container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#graficoFinanceiro {
+    width: 100%;
+    height: 400px;
+}
+
+.tabela-extrato {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-extrato th, .tabela-extrato td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.tabela-extrato th {
+    background-color: #007bff;
     color: white;
+    font-weight: bold;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+.tabela-extrato tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-p {
-    color: #555;
-    font-style: italic;
+.tabela-extrato tr:hover {
+    background-color: #e9ecef;
+}
+
+.botoes-container {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.botao-link {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.botao-link:hover {
+    background-color: #0056b3;
 }

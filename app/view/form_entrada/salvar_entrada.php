@@ -37,7 +37,7 @@ try {
     // Sucesso
     echo "<script>
             alert('✅ Entrada registrada com sucesso!');
-            window.location.href='entrada.html';
+            window.location.href='forms_entrada.html'; // Redireciona para o formulário de entrada
         </script>";
 } catch (PDOException $e) {
     echo "Erro ao registrar entrada: " . $e->getMessage();

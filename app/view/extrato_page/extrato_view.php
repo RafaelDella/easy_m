@@ -8,7 +8,68 @@ $pdo = $db->connect();
 
 // ID do usuário logado
 $usuario_id = $_SESSION['usuario_id'];
+
+// Buscar total de Receitas
+$stmtReceitasTotal = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE id_usuario = :usuario_id");
+$stmtReceitasTotal->execute(['usuario_id' => $usuario_id]);
+$totalReceita = $stmtReceitasTotal->fetchColumn() ?? 0;
+
+// Buscar total de Gastos
+$stmtGastosTotal = $pdo->prepare("SELECT SUM(valor_gasto) as total_gasto FROM Gasto WHERE usuario_id = :usuario_id");
+$stmtGastosTotal->execute(['usuario_id' => $usuario_id]);
+$totalGasto = $stmtGastosTotal->fetchColumn() ?? 0;
+
+// Calcular saldo
+$saldoAtual = $totalReceita - $totalGasto;
+
+// Buscar últimas movimentações
+$stmtMovimentacoes = $pdo->prepare("
+        (SELECT descricao, valor, data_entrada AS data, 'Receita' AS tipo FROM Entrada WHERE id_usuario = :usuario_id)
+        UNION ALL
+        (SELECT nome_gasto AS descricao, -valor_gasto AS valor, data_gasto AS data, 'Gasto' AS tipo FROM Gasto WHERE usuario_id = :usuario_id)
+        ORDER BY data DESC
+        LIMIT 10
+    ");
+$stmtMovimentacoes->execute(['usuario_id' => $usuario_id]);
+$movimentacoes = $stmtMovimentacoes->fetchAll(PDO::FETCH_ASSOC);
+
+// Buscar Receitas por mês para o gráfico
+$stmtReceitasMes = $pdo->prepare("
+        SELECT DATE_FORMAT(data_entrada, '%m/%y') AS mes, SUM(valor) AS total_receita
+        FROM Entrada
+        WHERE id_usuario = :usuario_id
+        GROUP BY mes
+        ORDER BY STR_TO_DATE(mes, '%m/%y')
+    ");
+$stmtReceitasMes->execute(['usuario_id' => $usuario_id]);
+$receitasMes = $stmtReceitasMes->fetchAll(PDO::FETCH_KEY_PAIR);
+
+// Buscar Gastos por mês para o gráfico
+$stmtGastosMes = $pdo->prepare("
+        SELECT DATE_FORMAT(data_gasto, '%m/%y') AS mes, SUM(valor_gasto) AS total_gasto
+        FROM Gasto
+        WHERE usuario_id = :usuario_id
+        GROUP BY mes
+        ORDER BY STR_TO_DATE(mes, '%m/%y')
+    ");
+$stmtGastosMes->execute(['usuario_id' => $usuario_id]);
+$gastosMes = $stmtGastosMes->fetchAll(PDO::FETCH_KEY_PAIR);
+
+// Unificar meses
+$meses = array_unique(array_merge(array_keys($receitasMes), array_keys($gastosMes)));
+sort($meses);
+
+// Preparar arrays para o gráfico
+$dadosReceitas = [];
+$dadosGastos = [];
+
+foreach ($meses as $mes) {
+    $dadosReceitas[] = $receitasMes[$mes] ?? 0;
+    $dadosGastos[] = $gastosMes[$mes] ?? 0;
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,137 +77,128 @@ $usuario_id = $_SESSION['usuario_id'];
     <meta charset="UTF-8">
     <title>Extrato EasyM</title>
     <link rel="stylesheet" href="../../assets/extrato_gasto/extrato.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Extrato de Saídas</h1>
+    <div class="form-container">
+        <h2>Extrato Financeiro</h2>
 
-        <?php
-        // Consulta Extrato de Saídas
-        $stmtSaidas = $pdo->prepare("SELECT id_gasto AS id_transacao, nome_gasto AS descricao, valor_gasto AS valor, data_gasto AS data FROM Gasto WHERE usuario_id = :usuario_id ORDER BY data_gasto DESC");
-        $stmtSaidas->execute(['usuario_id' => $usuario_id]);
-        $saidas = $stmtSaidas->fetchAll(PDO::FETCH_ASSOC);
+        <div class="saldo-container">
+            <div class="card-financeiro" id="card-receita">
+                <h3>Total de Receitas</h3>
+                <p>R$ <?= number_format($totalReceita, 2, ',', '.') ?></p>
+            </div>
+            <div class="card-financeiro" id="card-gasto">
+                <h3>Total de Gastos</h3>
+                <p>R$ <?= number_format($totalGasto, 2, ',', '.') ?></p>
+            </div>
+            <div class="card-financeiro" id="card-saldo">
+                <h3>Saldo Atual</h3>
+                <p>R$ <?= number_format($saldoAtual, 2, ',', '.') ?></p>
+            </div>
+        </div>
 
-        if (count($saidas) == 0) {
-            echo "<p>⚠️ Nenhuma saída registrada.</p>";
-        } else {
-            echo "<table>
-                    <thead>
+        <div class="grafico-container">
+            <canvas id="graficoFinanceiro"></canvas>
+        </div>
+
+        <div class="botoes-container">
+            <a href="../dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
+            <a href="../form_entrada/forms_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
+            <a href="../fomulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
+        </div>
+
+
+        <h3>Movimentações Recentes</h3>
+        <table class="tabela-extrato">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($movimentacoes) > 0): ?>
+                    <?php foreach ($movimentacoes as $mov): ?>
                         <tr>
-                            <th>ID</th>
-                            <th>Descrição</th>
-                            <th>Valor (R$)</th>
-                            <th>Data</th>
+                            <td><?= date('d/m/Y', strtotime($mov['data'])) ?></td>
+                            <td><?= htmlspecialchars($mov['descricao']) ?></td>
+                            <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
+                            <td><?= $mov['tipo'] ?></td>
                         </tr>
-                    </thead>
-                    <tbody>";
-            foreach ($saidas as $saida) {
-                echo "<tr>
-                        <td>{$saida['id_transacao']}</td>
-                        <td>{$saida['descricao']}</td>
-                        <td>R$ " . number_format($saida['valor'], 2, ',', '.') . "</td>
-                        <td>" . date('d/m/Y', strtotime($saida['data'])) . "</td>
-                    </tr>";
-            }
-            echo "</tbody></table>";
-        }
-        ?>
-
-        <h1>Extrato de Entradas</h1>
-
-        <?php
-        // Consulta Extrato de Entradas
-        $stmtEntradas = $pdo->prepare("SELECT id_entrada AS id_deposito, descricao, valor, data_entrada AS data FROM Entrada WHERE id_usuario = :usuario_id ORDER BY data_entrada DESC");
-        $stmtEntradas->execute(['usuario_id' => $usuario_id]);
-        $entradas = $stmtEntradas->fetchAll(PDO::FETCH_ASSOC);
-
-        if (count($entradas) == 0) {
-            echo "<p>⚠️ Nenhuma entrada registrada.</p>";
-        } else {
-            echo "<table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Descrição</th>
-                            <th>Valor (R$)</th>
-                            <th>Data</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-            foreach ($entradas as $entrada) {
-                echo "<tr>
-                        <td>{$entrada['id_deposito']}</td>
-                        <td>{$entrada['descricao']}</td>
-                        <td>R$ " . number_format($entrada['valor'], 2, ',', '.') . "</td>
-                        <td>" . date('d/m/Y', strtotime($entrada['data'])) . "</td>
-                    </tr>";
-            }
-            echo "</tbody></table>";
-        }
-        ?>
-
-        <hr style="margin: 30px 0;">
-
-        <h2>➕ Nova Entrada</h2>
-
-        <form action="../form_entrada/salvar_entrada.php" method="POST" style="margin-top: 20px;">
-            <label for="descricao">Descrição:</label><br>
-            <input type="text" id="descricao" name="descricao" required><br><br>
-
-            <label for="valor">Valor:</label><br>
-            <input type="number" id="valor" name="valor" step="0.01" required><br><br>
-
-            <label for="categoria">Categoria:</label><br>
-            <select id="categoria" name="categoria" required>
-                <option value="">Selecione</option>
-                <option value="Salário">Salário</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Presente">Presente</option>
-                <option value="Outro">Outro</option>
-            </select><br><br>
-
-            <label for="data_entrada">Data:</label><br>
-            <input type="date" id="data_entrada" name="data_entrada" required><br><br>
-
-            <button type="submit">Salvar Entrada</button>
-        </form>
-
-        <hr style="margin: 30px 0;">
-        <h2>➖ Novo Gasto</h2>
-
-        <form action="../fomulario_gasto/processa_gasto.php" method="POST" style="margin-top: 20px;">
-            <label for="nome_gasto">Nome do Gasto:</label><br>
-            <input type="text" id="nome_gasto" name="nome_gasto" maxlength="50" required><br><br>
-
-            <label for="desc_gasto">Descrição:</label><br>
-            <textarea id="desc_gasto" name="desc_gasto" maxlength="150" rows="3"></textarea><br><br>
-
-            <label for="categoria_gasto">Categoria:</label><br>
-            <select id="categoria_gasto" name="categoria_gasto" required>
-                <option value="">Selecione...</option>
-                <option value="Alimentação">Alimentação</option>
-                <option value="Transporte">Transporte</option>
-                <option value="Educação">Educação</option>
-                <option value="Lazer">Lazer</option>
-                <option value="Moradia">Moradia</option>
-                <option value="Outros">Outros</option>
-            </select><br><br>
-
-            <label for="valor_gasto">Valor (R$):</label><br>
-            <input type="number" id="valor_gasto" name="valor_gasto" step="0.01" required><br><br>
-
-            <label for="data_gasto">Data do Gasto:</label><br>
-            <input type="date" id="data_gasto" name="data_gasto" required><br><br>
-
-            <input type="checkbox" id="is_imprevisto" name="is_imprevisto">
-            <label for="is_imprevisto">É um imprevisto?</label><br><br>
-
-            <button type="submit">Salvar Gasto</button>
-        </form>
-
-
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4">Nenhuma movimentação encontrada.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        const ctx = document.getElementById('graficoFinanceiro').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($meses) ?>,
+                datasets: [{
+                        label: 'Receitas',
+                        data: <?= json_encode($dadosReceitas) ?>,
+                        backgroundColor: '#4caf50'
+                    },
+                    {
+                        label: 'Gastos',
+                        data: <?= json_encode($dadosGastos) ?>,
+                        backgroundColor: '#f44336'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#fff',
+                        titleColor: '#333',
+                        bodyColor: '#333',
+                        borderColor: '#ccc',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: false,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        stacked: false,
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e0e0e0'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
 </body>
 
 </html>

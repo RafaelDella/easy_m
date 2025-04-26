@@ -6,57 +6,59 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-  }
-  
-  .container {
+}
+
+.container {
     background: #fff;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-  }
-  
-  h2 {
+}
+
+h2 {
     text-align: center;
     color: #333;
-  }
-  
-  label {
+}
+
+label {
     display: block;
     margin: 10px 0 5px;
     font-weight: bold;
-  }
-  
-  input, select, textarea, button {
+}
+
+input,
+select,
+textarea,
+button {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 6px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-  }
-  
-  input[type="checkbox"] {
+}
+
+input[type="checkbox"] {
     width: auto;
     margin-right: 10px;
-  }
-  
-  .checkbox-group {
+}
+
+.checkbox-group {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-  }
-  
-  button {
+}
+
+button {
     background-color: #4CAF50;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #45a049;
-  }
-  
+}
