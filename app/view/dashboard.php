@@ -44,6 +44,7 @@ $nome = $_SESSION['usuario_nome'];
     <meta charset="UTF-8">
     <title>Dashboard - EasyM</title>
     <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -58,7 +59,7 @@ $nome = $_SESSION['usuario_nome'];
                     <li><a href="../view/form_entrada/forms_entrada.html">➕ Nova Entrada</a></li>
                     <li><a href="../view/fomulario_gasto/forms_gasto.html">➖ Novo Gasto</a></li>
                     <li><a href="../view/formulário_perfil/forms_perfil.html">👤 Perfil</a></li>
-                    <li><a href="../view/formulario_login/logout.php">🚪 Logout</a></li>
+                    <li><a href="../view/formulario_login/form_login.html">🚪 Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -82,6 +83,10 @@ $nome = $_SESSION['usuario_nome'];
                     <h3>Gastos</h3>
                     <p>R$<?= number_format($gastos, 2, ',', '.') ?></p>
                 </div>
+            </section>
+
+            <section class="charts">
+                <canvas id="financeChart"></canvas>
             </section>
 
             <section class="tables">
@@ -139,6 +144,61 @@ $nome = $_SESSION['usuario_nome'];
             </section>
         </main>
     </div>
+
+    <script>
+        const ctx = document.getElementById('financeChart').getContext('2d');
+        const financeChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Saldo', 'Receita', 'Gastos'],
+                datasets: [{
+                    label: 'Visão Financeira Atual',
+                    data: [<?= json_encode($saldo) ?>, <?= json_encode($receita) ?>, <?= json_encode($gastos) ?>],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)', // Azul para saldo
+                        'rgba(75, 192, 192, 0.6)', // Verde para receitas
+                        'rgba(255, 99, 132, 0.6)' // Vermelho para gastos
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'R$ ' + value.toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                });
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'R$ ' + context.parsed.y.toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
 
 </body>
 
