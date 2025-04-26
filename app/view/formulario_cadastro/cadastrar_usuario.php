@@ -1,8 +1,13 @@
 <?php
-    require_once '../../db.php';
+    session_start();
+    require_once '../../../app/db.php';
 
+    $db = new DB();
+    $conn = $db->connect(); // ⚡ agora $conn existe!
+
+    // Dados recebidos
     $nome = $_POST['nome'];
-    $usuario_nome = $_POST['usuario'];
+    $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirmar_senha = $_POST['confirmar_senha'];
@@ -11,24 +16,15 @@
     $data_nascimento = $_POST['data_nascimento'];
 
     if ($senha !== $confirmar_senha) {
-        echo "Erro: As senhas não coincidem!";
-        exit;
+        die("As senhas não coincidem.");
     }
 
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+    // Agora usando PDO:
+    $stmt = $conn->prepare("INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$nome, $usuario, $email, $senha, $cpf, $escolaridade, $data_nascimento]);
 
-    $sql = "INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento)
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssss", $nome, $usuario_nome, $email, $senha_hash, $cpf, $escolaridade, $data_nascimento);
-
-    if ($stmt->execute()) {
-        echo "Cadastro realizado com sucesso!";
-    } else {
-        echo "Erro ao cadastrar: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
+    echo "Usuário cadastrado com sucesso!";
+    header("Location: ../formulario_login/form_login.html "); // Redireciona para a página de login
+    exit;
 ?>
+

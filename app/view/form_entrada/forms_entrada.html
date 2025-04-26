@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Entrada</title>
+    <link rel="stylesheet" href="../../assets/form_entrada/forms_estrada.css">
+</head>
+<body>
+
+    <form action="salvar_entrada.php" method="POST" onsubmit="return validarFormulario()">
+        <h2>Nova Entrada</h2>
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao" id="descricao" required>
+
+        <label for="valor">Valor:</label>
+        <input type="number" step="0.01" name="valor" id="valor" required>
+
+        <label for="categoria">Categoria:</label>
+        <select name="categoria" id="categoria" required>
+            <option value="">Selecione</option>
+            <option value="Salário">Salário</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Presente">Presente</option>
+            <option value="Outro">Outro</option>
+        </select>
+
+        <label for="data_entrada">Data:</label>
+        <input type="date" name="data_entrada" id="data_entrada" required>
+
+        <button type="submit">Salvar Entrada</button>
+    </form>
+
+    <script src="../../assets/form_entrada/forms_entrada.js"></script>
+
+</body>
+</html>

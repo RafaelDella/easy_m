@@ -30,7 +30,7 @@ $gastos = 0.00;
                 <li><a href="../view/extrato_page/extrato_view.php">+ Receitas</a></li>
                 <li><a href="../view/extrato_page/extrato_view.php">– Gastos</a></li>
                 <li><a href="#">🎯 Metas</a></li>
-                <li><a href="logout.php">🚪 Sair</a></li>
+                <li><a href="../view/formulario_login/form_login.html">🚪 Sair</a></li>
             </ul>
         </nav>
     </aside>

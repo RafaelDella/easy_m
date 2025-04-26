@@ -1,9 +1,9 @@
 <?php
 class DB {
     private $host = 'localhost'; 
-    private $dbname = 'nome_do_banco'; 
-    private $user = 'usuario'; 
-    private $password = 'senha'; 
+    private $dbname = 'easym'; 
+    private $user = 'root'; 
+    private $password = '1234';
 
     private $conn;
 

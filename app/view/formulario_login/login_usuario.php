@@ -1,36 +1,34 @@
 <?php
     session_start();
+    require_once '../../../app/db.php';
 
-    $conn = new mysqli("localhost", "root", "", "easym");
-    if ($conn->connect_error) {
-        die("Erro na conexão: " . $conn->connect_error);
-    }
+    // Conexão usando a classe DB
+    $db = new DB();
+    $conn = $db->connect();
 
-    $usuarioOuEmail = $_POST['usuario'];
+    // Dados do formulário
+    $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM Usuario WHERE usuario = ? OR email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $usuarioOuEmail, $usuarioOuEmail);
+    // Consulta segura com PDO
+    $stmt = $conn->prepare("SELECT id, nome, senha FROM Usuario WHERE email = :usuario OR usuario = :usuario");
+    $stmt->bindParam(':usuario', $usuario);
     $stmt->execute();
-    $result = $stmt->get_result();
 
-    if ($result->num_rows === 1) {
-        $usuario = $result->fetch_assoc();
+    if ($stmt->rowCount() === 1) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
+        // Verificação da senha (atualmente sem password_hash, comparação direta)
+        if ($senha === $row['senha']) {
+            $_SESSION['usuario_id'] = $row['id'];
+            $_SESSION['usuario_nome'] = $row['nome'];
 
-            header("Location: pagina_principal.php");
+            header("Location: ../dashboard.php"); // Redireciona para a página principal
             exit;
         } else {
-            echo "Senha incorreta!";
+            echo "<script>alert('Senha incorreta'); window.location.href='form_login.html';</script>";
         }
     } else {
-        echo "Usuário ou e-mail não encontrado!";
+        echo "<script>alert('Usuário não encontrado'); window.location.href='form_login.html';</script>";
     }
-
-    $stmt->close();
-    $conn->close();
 ?>
