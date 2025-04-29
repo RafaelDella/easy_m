@@ -34,7 +34,12 @@ $stmtUltimosGastos = $pdo->prepare("SELECT nome_gasto, valor_gasto FROM Gasto WH
 $stmtUltimosGastos->execute([':usuario_id' => $usuario_id]);
 $ultimosGastos = $stmtUltimosGastos->fetchAll(PDO::FETCH_ASSOC);
 
+// Buscar o nome e perfil do usuário
 $nome = $_SESSION['usuario_nome'];
+
+$stmtPerfil = $pdo->prepare("SELECT perfil FROM Usuario WHERE id = :id");
+$stmtPerfil->execute([':id' => $usuario_id]);
+$perfilUsuario = $stmtPerfil->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +63,7 @@ $nome = $_SESSION['usuario_nome'];
                     <li><a href="../view/extrato_page/extrato_view.php">📄 Extrato</a></li>
                     <li><a href="../view/form_entrada/forms_entrada.html">➕ Nova Entrada</a></li>
                     <li><a href="../view/fomulario_gasto/forms_gasto.html">➖ Novo Gasto</a></li>
-                    <li><a href="../view/formulário_perfil/forms_perfil.html">👤 Perfil</a></li>
+                    <li><a href="../view/formulário_perfil/forms_perfil.html">👤 Teste de Perfil</a></li>
                     <li><a href="../view/formulario_login/form_login.html">🚪 Logout</a></li>
                 </ul>
             </nav>
@@ -67,6 +72,9 @@ $nome = $_SESSION['usuario_nome'];
         <main class="content">
             <header class="header">
                 <h1>Bem-vindo, <?= htmlspecialchars($nome) ?>!</h1>
+                <p style="font-size: 1.2em; color: #555;">
+                    Perfil Financeiro: <strong><?= htmlspecialchars($perfilUsuario ?? 'Não definido') ?></strong>
+                </p>
                 <div class="profile-icon">👤</div>
             </header>
 
@@ -157,7 +165,7 @@ $nome = $_SESSION['usuario_nome'];
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.6)', // Azul para saldo
                         'rgba(75, 192, 192, 0.6)', // Verde para receitas
-                        'rgba(255, 99, 132, 0.6)' // Vermelho para gastos
+                        'rgba(255, 99, 132, 0.6)'  // Vermelho para gastos
                     ],
                     borderColor: [
                         'rgba(54, 162, 235, 1)',
@@ -198,7 +206,6 @@ $nome = $_SESSION['usuario_nome'];
             }
         });
     </script>
-
 
 </body>
 
