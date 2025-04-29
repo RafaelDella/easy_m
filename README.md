@@ -15,15 +15,12 @@
 ## 🛠 Funcionalidades Principais
 
 - Cadastro de usuários (nome, e-mail, CPF, escolaridade, data de nascimento)
-- Login de usuário e recuperação de senha
-- Definição de perfil financeiro e objetivos
+- Login de usuário
+- Definição de perfil financeiro
 - Cadastro e análise de dívidas
 - Registro e análise de receitas
 - Histórico e visualização de gastos
-- Estabelecimento de teto de gastos por categoria
-- Estabelecimento de metas de poupança
-- Geração de relatórios e insights financeiros
-- Sugestões de economia personalizadas
+- (mais funcionalidades serão adicionadas ao longo do desenvolvimento)
 
 ---
 
@@ -43,11 +40,9 @@
 ## 📋 User Stories (Principais)
 
 - Como usuário, posso me cadastrar no sistema para acessar funcionalidades financeiras.
-- Como usuário, posso definir meu perfil financeiro e objetivo de vida.
+- Como usuário, posso definir meu perfil financeiro.
 - Como usuário, posso registrar receitas e despesas.
 - Como usuário, posso acompanhar o histórico dos meus gastos.
-- Como usuário, posso definir tetos de gastos e receber alertas.
-- Como usuário, posso gerar relatórios financeiros detalhados em PDF.
 
 ---
 
