@@ -23,7 +23,7 @@ try {
         ':usuario_id' => $usuario_id
     ]);
 
-    echo "<script>alert('✅ Perfil financeiro atualizado com sucesso!'); window.location.href='../view/dashboard.php';</script>";
+    echo "<script>alert('✅ Perfil financeiro atualizado com sucesso!'); window.location.href='../dashboard.php';</script>";
 
 } catch (PDOException $e) {
     echo "Erro ao atualizar perfil: " . $e->getMessage();
