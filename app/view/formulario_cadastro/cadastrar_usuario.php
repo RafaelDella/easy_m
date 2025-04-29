@@ -1,43 +1,73 @@
 <?php
-session_start();
-require_once '../../../app/db.php';
+// cadastrar_usuario.php
 
-$db = new DB();
-$pdo = $db->connect();
+require_once '../../db.php'; // Ajuste aqui para o seu arquivo de conexão
 
-// Dados do formulário
-$nome = $_POST['nome'];
-$usuario = $_POST['usuario'];
-$email = $_POST['email'];
-$senha = $_POST['senha'];
-$confirmar_senha = $_POST['confirmar_senha'];
-$cpf = $_POST['cpf'];
-$escolaridade = $_POST['escolaridade'];
-$data_nascimento = $_POST['data_nascimento'];
-
-if ($senha !== $confirmar_senha) {
-    die("As senhas não coincidem.");
-}
-
-// Criptografar a senha
-$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+header('Content-Type: application/json');
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento) VALUES (:nome, :usuario, :email, :senha, :cpf, :escolaridade, :data_nascimento)");
+    // Recebe o JSON enviado
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    if (!$input) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Dados inválidos.']);
+        exit;
+    }
+
+    $nome = trim($input['nome'] ?? '');
+    $usuario = trim($input['usuario'] ?? '');
+    $email = trim($input['email'] ?? '');
+    $senha = $input['senha'] ?? '';
+    $cpf = trim($input['cpf'] ?? '');
+    $escolaridade = trim($input['escolaridade'] ?? '');
+    $data_nascimento = trim($input['data_nascimento'] ?? '');
+
+    // Validações básicas no servidor também
+    if (empty($nome) || empty($usuario) || empty($email) || empty($senha) || empty($cpf) || empty($escolaridade) || empty($data_nascimento)) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']);
+        exit;
+    }
+
+    if (strlen($senha) < 8) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'A senha deve ter no mínimo 8 caracteres.']);
+        exit;
+    }
+
+    // Conectar ao banco
+    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '1234'); // ajuste aqui
+
+    // Verifica se email, cpf ou usuario já existem - segurança adicional
+    $stmtVerificar = $db->prepare('SELECT id FROM Usuario WHERE email = :email OR cpf = :cpf OR usuario = :usuario');
+    $stmtVerificar->execute([
+        ':email' => $email,
+        ':cpf' => $cpf,
+        ':usuario' => $usuario
+    ]);
+
+    if ($stmtVerificar->rowCount() > 0) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Usuário, e-mail ou CPF já cadastrados.']);
+        exit;
+    }
+
+    // Inserir novo usuário
+    $stmt = $db->prepare('INSERT INTO Usuario (nome, usuario, email, senha, cpf, escolaridade, data_nascimento) 
+                        VALUES (:nome, :usuario, :email, :senha, :cpf, :escolaridade, :data_nascimento)');
+
     $stmt->execute([
         ':nome' => $nome,
         ':usuario' => $usuario,
         ':email' => $email,
-        ':senha' => $senha_hash,
+        ':senha' => password_hash($senha, PASSWORD_DEFAULT),
         ':cpf' => $cpf,
         ':escolaridade' => $escolaridade,
         ':data_nascimento' => $data_nascimento
     ]);
 
-    echo "<script>
-            alert('✅ Usuário cadastrado com sucesso!');
-            window.location.href='../formulario_login/form_login.html';
-        </script>";
+    echo json_encode(['sucesso' => true]);
+
 } catch (PDOException $e) {
-    echo "Erro ao cadastrar: " . $e->getMessage();
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro no banco de dados: ' . $e->getMessage()]);
+} catch (Exception $e) {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro inesperado: ' . $e->getMessage()]);
 }
+?>
