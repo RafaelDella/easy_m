@@ -1,44 +1,67 @@
 <?php
 session_start();
-require_once '../../../app/db.php'; // Corrija o caminho conforme onde está o arquivo
+require_once '../../../app/db.php';
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../../formulario_login/form_login.html');
+    header("Location: ../../formulario_login/form_login.html");
     exit;
 }
 
-// Conectando ao banco
 $db = new DB();
 $pdo = $db->connect();
+$usuario_id = $_SESSION['usuario_id'];
 
-// Recebendo dados do formulário
 $descricao = $_POST['descricao'];
 $valor = $_POST['valor'];
 $categoria = $_POST['categoria'];
 $data_entrada = $_POST['data_entrada'];
 
-// ID do usuário logado
-$id_usuario = $_SESSION['usuario_id'];
+if (!empty($_POST['id'])) {
+    // ATUALIZAÇÃO
+    $id = $_POST['id'];
 
-try {
-    // Preparando a query
-    $stmt = $pdo->prepare("INSERT INTO Entrada (descricao, valor, categoria, data_entrada, id_usuario) VALUES (:descricao, :valor, :categoria, :data_entrada, :id_usuario)");
+    try {
+        $stmt = $pdo->prepare("UPDATE Entrada 
+            SET descricao = :descricao, valor = :valor, categoria = :categoria, data_entrada = :data 
+            WHERE id_entrada = :id AND id_usuario = :usuario_id");
 
-    // Executando
-    $stmt->execute([
-        ':descricao' => $descricao,
-        ':valor' => $valor,
-        ':categoria' => $categoria,
-        ':data_entrada' => $data_entrada,
-        ':id_usuario' => $id_usuario
-    ]);
+        $stmt->execute([
+            'descricao' => $descricao,
+            'valor' => $valor,
+            'categoria' => $categoria,
+            'data' => $data_entrada,
+            'id' => $id,
+            'usuario_id' => $usuario_id
+        ]);
 
-    // Sucesso
-    echo "<script>
-            alert('✅ Entrada registrada com sucesso!');
-            window.location.href='forms_entrada.html'; // Redireciona para o formulário de entrada
+        echo "<script>
+            alert('✅ Entrada atualizada com sucesso!');
+            window.location.href='../extrato_page/extrato_view.php';
         </script>";
-} catch (PDOException $e) {
-    echo "Erro ao registrar entrada: " . $e->getMessage();
+        exit;
+    } catch (PDOException $e) {
+        echo "Erro ao atualizar entrada: " . $e->getMessage();
+    }
+} else {
+    // INSERÇÃO
+    try {
+        $stmt = $pdo->prepare("INSERT INTO Entrada (descricao, valor, categoria, data_entrada, id_usuario) 
+            VALUES (:descricao, :valor, :categoria, :data_entrada, :id_usuario)");
+
+        $stmt->execute([
+            'descricao' => $descricao,
+            'valor' => $valor,
+            'categoria' => $categoria,
+            'data_entrada' => $data_entrada,
+            'id_usuario' => $usuario_id
+        ]);
+
+        echo "<script>
+            alert('✅ Entrada registrada com sucesso!');
+            window.location.href='forms_entrada.html';
+        </script>";
+        exit;
+    } catch (PDOException $e) {
+        echo "Erro ao registrar entrada: " . $e->getMessage();
+    }
 }

@@ -134,7 +134,7 @@ foreach ($meses as $mes) {
                             <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
                             <td><?= $mov['tipo'] ?></td>
                             <td>
-                                <a href="../form_entrada/editar_entrada.php?id=<?= $mov['id_transacao'] ?>&tipo=<?= strtolower($mov['tipo']) ?>">✏️</a>
+                                <a href="../form_entrada/forms_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
                                 <form action="../form_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir?');">
                                     <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
                                     <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">
