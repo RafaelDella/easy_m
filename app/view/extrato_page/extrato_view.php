@@ -111,7 +111,7 @@ foreach ($meses as $mes) {
         <div class="botoes-container">
             <a href="../dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
             <a href="../form_entrada/forms_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
-            <a href="../fomulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
+            <a href="../formulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
         </div>
 
         <h3>Movimentações Recentes</h3>
@@ -134,14 +134,18 @@ foreach ($meses as $mes) {
                             <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
                             <td><?= $mov['tipo'] ?></td>
                             <td>
-                                <a href="../form_entrada/forms_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
-                                <form action="../form_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir?');">
-                                    <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
-                                    <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">
-                                    <button type="submit" style="background:none; border:none; cursor:pointer;">🗑️</button>
-                                </form>
+                                <?php if (strtolower($mov['tipo']) === 'receita'): ?>
+                                    <a href="../form_entrada/forms_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
+                                    <form action="../form_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta entrada?');">
+                                    <?php else: ?>
+                                        <a href="../formulario_gasto/forms_gasto.html?id=<?= $mov['id_transacao'] ?>&tipo=gasto">✏️</a>
+                                        <form action="../formulario_gasto/excluir_gasto.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este gasto?');">
+                                        <?php endif; ?>
+                                        <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
+                                        <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">
+                                        <button type="submit" style="background:none; border:none; cursor:pointer;">🗑️</button>
+                                        </form>
                             </td>
-
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -150,6 +154,7 @@ foreach ($meses as $mes) {
                     </tr>
                 <?php endif; ?>
             </tbody>
+
         </table>
 
     </div>
