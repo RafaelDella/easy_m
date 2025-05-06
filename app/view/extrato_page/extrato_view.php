@@ -24,12 +24,17 @@ $saldoAtual = $totalReceita - $totalGasto;
 
 // Buscar últimas movimentações
 $stmtMovimentacoes = $pdo->prepare("
-        (SELECT descricao, valor, data_entrada AS data, 'Receita' AS tipo FROM Entrada WHERE id_usuario = :usuario_id)
-        UNION ALL
-        (SELECT nome_gasto AS descricao, -valor_gasto AS valor, data_gasto AS data, 'Gasto' AS tipo FROM Gasto WHERE usuario_id = :usuario_id)
-        ORDER BY data DESC
-        LIMIT 10
-    ");
+    (SELECT id_entrada AS id_transacao, descricao, valor, data_entrada AS data, 'Receita' AS tipo
+    FROM Entrada
+    WHERE id_usuario = :usuario_id)
+    UNION ALL
+    (SELECT id_gasto AS id_transacao, nome_gasto AS descricao, -valor_gasto AS valor, data_gasto AS data, 'Gasto' AS tipo
+    FROM Gasto
+    WHERE usuario_id = :usuario_id)
+    ORDER BY data DESC
+    LIMIT 10
+");
+
 $stmtMovimentacoes->execute(['usuario_id' => $usuario_id]);
 $movimentacoes = $stmtMovimentacoes->fetchAll(PDO::FETCH_ASSOC);
 
@@ -109,7 +114,6 @@ foreach ($meses as $mes) {
             <a href="../fomulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
         </div>
 
-
         <h3>Movimentações Recentes</h3>
         <table class="tabela-extrato">
             <thead>
@@ -118,6 +122,7 @@ foreach ($meses as $mes) {
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Tipo</th>
+                    <th>Ações</th> <!-- NOVO -->
                 </tr>
             </thead>
             <tbody>
@@ -128,15 +133,25 @@ foreach ($meses as $mes) {
                             <td><?= htmlspecialchars($mov['descricao']) ?></td>
                             <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
                             <td><?= $mov['tipo'] ?></td>
+                            <td>
+                                <a href="../form_entrada/editar_entrada.php?id=<?= $mov['id_transacao'] ?>&tipo=<?= strtolower($mov['tipo']) ?>">✏️</a>
+                                <form action="../form_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir?');">
+                                    <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
+                                    <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">
+                                    <button type="submit" style="background:none; border:none; cursor:pointer;">🗑️</button>
+                                </form>
+                            </td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4">Nenhuma movimentação encontrada.</td>
+                        <td colspan="5">Nenhuma movimentação encontrada.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
+
     </div>
 
     <script>

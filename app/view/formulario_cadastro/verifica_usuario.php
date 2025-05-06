@@ -24,7 +24,7 @@ try {
     }
 
     // Conectar ao banco
-    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '1234');
+    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '');
 
     // Prepara a verificação de cada campo
     $stmt = $db->prepare('SELECT email, cpf, usuario FROM Usuario WHERE email = :email OR cpf = :cpf OR usuario = :usuario');
