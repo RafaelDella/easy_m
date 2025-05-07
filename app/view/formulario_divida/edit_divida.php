@@ -17,20 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['usuario_id'],
     $_POST['id_divida']
   ]);
-  header("Location: index.php?status=" . urlencode("Dívida atualizada."));
+  header("Location: /easy_m/app/view/formulario_divida/index.php?status=" . urlencode("Dívida atualizada."));  
   exit;
 }
 
-$id = $_GET['id_divida'] ?? null;
+$id = $_GET['id'] ?? ($_POST['id_divida'] ?? null);
 
 if ($id) {
-    $divida = $conn->query("SELECT * FROM Divida WHERE id_divida = 3")->fetch(PDO::FETCH_ASSOC);
+  $stmt = $conn->prepare("SELECT * FROM Divida WHERE id_divida = :id");
+  $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $divida = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
     die("Erro: ID da dívida não fornecido.");
 }
 
 ?>
-<form method="POST" action="edit.php">
+<form method="POST" action="edit_divida.php">
   <input type="hidden" name="id_divida" value="<?= $divida['id_divida'] ?>">
   <input type="text" name="nome_divida" value="<?= $divida['nome_divida'] ?>" required>
   <input type="number" name="taxa_divida" step="0.01" value="<?= $divida['taxa_divida'] ?>" required>
