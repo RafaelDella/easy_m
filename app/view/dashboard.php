@@ -75,7 +75,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                 <p style="font-size: 1.2em; color: #555;">
                     Perfil Financeiro: <strong><?= htmlspecialchars($perfilUsuario ?? 'Não definido') ?></strong>
                 </p>
-                <div class="profile-icon">👤</div>
+                <a href="perfil_usuario/perfil_usuario.html" class="profile-icon" title="Editar Perfil">👤</a>
             </header>
 
             <section class="cards">
@@ -165,7 +165,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.6)', // Azul para saldo
                         'rgba(75, 192, 192, 0.6)', // Verde para receitas
-                        'rgba(255, 99, 132, 0.6)'  // Vermelho para gastos
+                        'rgba(255, 99, 132, 0.6)' // Vermelho para gastos
                     ],
                     borderColor: [
                         'rgba(54, 162, 235, 1)',
