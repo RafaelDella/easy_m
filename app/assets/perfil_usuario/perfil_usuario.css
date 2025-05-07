@@ -71,3 +71,20 @@ button:hover {
 .voltar-link:hover {
     text-decoration: underline;
 }
+
+.btn-excluir-conta {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-excluir-conta:hover {
+    background-color: #a71d2a;
+}

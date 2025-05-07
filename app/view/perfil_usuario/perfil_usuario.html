@@ -33,7 +33,10 @@
             <input type="date" id="data_nascimento" name="data_nascimento" required>
 
             <button type="submit">Salvar Alterações</button>
+
+            <button type="button" class="btn-excluir-conta" onclick="confirmarExclusao()">Excluir Conta</button>
             <a href="../dashboard.php" class="voltar-link">← Voltar para o Painel</a>
+
         </form>
     </div>
 
@@ -59,6 +62,12 @@
                 alert("Erro ao carregar dados do perfil.");
             }
         });
+
+        function confirmarExclusao() {
+            if (confirm("⚠️ Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.")) {
+                window.location.href = "excluir_usuario.php";
+            }
+        }
     </script>
 </body>
 
