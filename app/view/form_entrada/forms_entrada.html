@@ -10,8 +10,8 @@
 <div class="container">
     <h2>Nova Entrada</h2>
 
-    <form action="salvar_entrada.php" method="POST">
-        <input type="hidden" name="id" id="entrada_id"> <!-- usado para edição -->
+    <form action="salvar_entrada.php" method="POST" onsubmit="return validarFormulario()">
+        <input type="hidden" name="id" id="entrada_id">
 
         <label for="descricao">Descrição:</label>
         <input type="text" id="descricao" name="descricao" required>
@@ -37,34 +37,6 @@
     <a href="../extrato_page/extrato_view.php" class="voltar-link">← Voltar para o Extrato</a>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    const tipo = params.get("tipo");
-
-    if (id && tipo === "receita") {
-        try {
-            const resposta = await fetch(`carregar_entrada.php?id=${id}`);
-            const dados = await resposta.json();
-
-            if (dados.sucesso) {
-                document.getElementById("entrada_id").value = dados.entrada.id_entrada;
-                document.getElementById("descricao").value = dados.entrada.descricao;
-                document.getElementById("valor").value = dados.entrada.valor;
-                document.getElementById("categoria").value = dados.entrada.categoria;
-                document.getElementById("data_entrada").value = dados.entrada.data_entrada;
-                document.getElementById("btn-submit").textContent = "Salvar Alterações";
-                document.querySelector("h2").textContent = "Editar Entrada";
-            } else {
-                alert("Erro ao carregar entrada.");
-            }
-        } catch (err) {
-            alert("Erro de comunicação com o servidor.");
-        }
-    }
-});
-</script>
-
+<script src="../../assets/form_entrada/forms_entrada.js"></script>
 </body>
 </html>
