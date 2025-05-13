@@ -1,0 +1,26 @@
+<?php
+session_start();
+require_once '../../db.php';
+
+$db = new DB();
+$conn = $db->connect();
+
+$userId = $_SESSION['user_id'] ?? null;
+$perfil = "Endividado";
+$dicas = [];
+
+/*
+// Obter o perfil do usuário
+if ($userId) {
+    $stmt = $conn->prepare("SELECT perfil FROM usuarios WHERE id = :id");
+    $stmt->execute([':id' => $userId]);
+    $perfil = $stmt->fetchColumn();
+}
+
+// Buscar dicas se o perfil existir
+if ($perfil) {
+    $stmt = $conn->prepare("SELECT titulo, descricao, video_url FROM dicas WHERE tipo = :tipo");
+    $stmt->execute([':tipo' => $perfil]);
+    $dicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+*/

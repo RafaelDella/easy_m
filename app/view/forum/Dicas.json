@@ -1,0 +1,221 @@
+[
+    {
+      "tipo": "Endividado",
+      "titulo": "Como sair do vermelho",
+      "descricao": "Dicas práticas para equilibrar suas contas.",
+      "autor": "Equipe EasyM",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+1",
+      "conteudo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Organize suas dívidas",
+      "descricao": "Priorize e negocie com inteligência.",
+      "autor": "Carlos Silva",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+2",
+      "conteudo": "Suspendisse potenti. Sed dignissim lacinia nunc."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Entenda os juros",
+      "descricao": "Como os juros impactam sua vida financeira.",
+      "autor": "Mariana Rocha",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+3",
+      "conteudo": "Etiam ultricies nisi vel augue."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Controle seus gastos fixos",
+      "descricao": "Descubra onde pode economizar.",
+      "autor": "Roberto Dias",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+4",
+      "conteudo": "Donec quam felis, ultricies nec, pellentesque eu."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Renegociação de dívidas",
+      "descricao": "Como conversar com credores e negociar melhor.",
+      "autor": "Isabela Martins",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+5",
+      "conteudo": "Negocie prazos e reduza juros com comunicação clara."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Use planilhas para controle",
+      "descricao": "Organização é o primeiro passo para sair das dívidas.",
+      "autor": "João Neto",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+6",
+      "conteudo": "Crie planilhas simples para visualizar suas finanças."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Corte supérfluos temporariamente",
+      "descricao": "Momentos críticos exigem foco total.",
+      "autor": "Vanessa Luz",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+7",
+      "conteudo": "Cancele assinaturas não essenciais por enquanto."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Procure ajuda especializada",
+      "descricao": "Consultoria financeira pode fazer diferença.",
+      "autor": "Rafael Dias",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+8",
+      "conteudo": "Um especialista pode mostrar caminhos mais rápidos."
+    },
+    {
+      "tipo": "Endividado",
+      "titulo": "Use o 13º com estratégia",
+      "descricao": "Pague dívidas prioritárias com entradas extras.",
+      "autor": "Equipe EasyM",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Finan%C3%A7as+9",
+      "conteudo": "Evite gastos de fim de ano se ainda está endividado."
+    },
+  
+    {
+      "tipo": "Poupador",
+      "titulo": "Como começar a investir",
+      "descricao": "Dicas para iniciantes no mundo dos investimentos.",
+      "autor": "Ana Souza",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+1",
+      "conteudo": "Investir é essencial para aumentar seu patrimônio."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Metas financeiras 101",
+      "descricao": "Como definir metas de curto e longo prazo.",
+      "autor": "Lucas Alves",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+2",
+      "conteudo": "Definir metas claras ajuda a manter o foco."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Reserva de emergência",
+      "descricao": "Por que e como construir uma.",
+      "autor": "Bruna Lima",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+3",
+      "conteudo": "A reserva é seu escudo contra imprevistos."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Evite armadilhas de consumo",
+      "descricao": "Como manter seu dinheiro seguro.",
+      "autor": "Felipe Dias",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+4",
+      "conteudo": "Conhecer seus gatilhos evita compras por impulso."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Renda fixa para iniciantes",
+      "descricao": "Conheça CDB, LCI e outros investimentos seguros.",
+      "autor": "Carla Moura",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+5",
+      "conteudo": "Comece com investimentos com liquidez diária."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Controle emocional nos investimentos",
+      "descricao": "Não tome decisões baseadas em medo.",
+      "autor": "Eduardo Vieira",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+6",
+      "conteudo": "Mantenha seu plano mesmo em tempos incertos."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Diversificação é chave",
+      "descricao": "Nunca coloque todos os ovos na mesma cesta.",
+      "autor": "Fernanda Azevedo",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+7",
+      "conteudo": "Espalhe seus investimentos entre diferentes produtos."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Entenda seu perfil de investidor",
+      "descricao": "Conheça seu apetite a risco antes de investir.",
+      "autor": "Matheus Teixeira",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+8",
+      "conteudo": "Cada perfil exige estratégias diferentes."
+    },
+    {
+      "tipo": "Poupador",
+      "titulo": "Aproveite os juros compostos",
+      "descricao": "Tempo é o maior aliado do investidor.",
+      "autor": "Amanda Reis",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Investimento+9",
+      "conteudo": "Invista regularmente para multiplicar seus rendimentos."
+    },
+  
+    {
+      "tipo": "Doméstico",
+      "titulo": "Economize na conta de luz",
+      "descricao": "Dicas para reduzir o consumo energético.",
+      "autor": "Juliana Costa",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+1",
+      "conteudo": "Desligue aparelhos que não estão em uso."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Como planejar as compras do mês",
+      "descricao": "Evite desperdício e economize.",
+      "autor": "Ricardo Lopes",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+2",
+      "conteudo": "Compre com lista e prefira atacado."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Receitas econômicas e nutritivas",
+      "descricao": "Alimente-se bem sem gastar muito.",
+      "autor": "Camila Neves",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+3",
+      "conteudo": "Planeje refeições da semana com ingredientes simples."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Produtos de limpeza caseiros",
+      "descricao": "Alternativas baratas e eficientes.",
+      "autor": "Eduarda Melo",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+4",
+      "conteudo": "Use vinagre, bicarbonato e limão no dia a dia."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Dicas para reutilizar água",
+      "descricao": "Reduza o consumo com técnicas simples.",
+      "autor": "Cláudio Martins",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+5",
+      "conteudo": "Use água da máquina para lavar calçada ou carro."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Organização de tarefas domésticas",
+      "descricao": "Divida responsabilidades e otimize tempo.",
+      "autor": "Sandra Ribeiro",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+6",
+      "conteudo": "Crie um cronograma semanal de tarefas."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Faça você mesmo: consertos simples",
+      "descricao": "Aprenda a resolver pequenos problemas.",
+      "autor": "Pedro Henrique",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+7",
+      "conteudo": "Troque lâmpadas, arrume torneiras e economize."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Aproveite alimentos por completo",
+      "descricao": "Use cascas e talos em receitas.",
+      "autor": "Bianca Silva",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+8",
+      "conteudo": "Cascas de banana rendem ótimos bolos."
+    },
+    {
+      "tipo": "Doméstico",
+      "titulo": "Crianças e finanças domésticas",
+      "descricao": "Inclua os pequenos na rotina de economia.",
+      "autor": "Luciana Tavares",
+      "imagem": "https://via.placeholder.com/300x150.png?text=Casa+9",
+      "conteudo": "Ensinar desde cedo promove responsabilidade."
+    }
+  ]
+  
