@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Fórum EasyM</title>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/forum/forum.css">
 
 </head>
+
 <body>
     <h1>Fórum de Dicas</h1>
 
@@ -17,6 +19,7 @@
         <div class="modal-content">
             <h3 id="modal-title"></h3>
             <p id="modal-desc"></p>
+            <p id="modal-content"></p>
             <button class="close-btn" onclick="closeModal()">Fechar</button>
         </div>
     </div>
@@ -28,9 +31,10 @@
             document.getElementById('modal').style.display = 'none';
         }
 
-        function openModal(titulo, descricao) {
+        function openModal(titulo, descricao, conteudo) {
             document.getElementById('modal-title').innerText = titulo;
             document.getElementById('modal-desc').innerText = descricao;
+            document.getElementById('modal-content').innerText = conteudo;
             document.getElementById('modal').style.display = 'flex';
         }
 
@@ -79,7 +83,7 @@
 
                             const btn = document.createElement('button');
                             btn.textContent = 'Ver mais';
-                            btn.onclick = () => openModal(dica.titulo, dica.descricao);
+                            btn.onclick = () => openModal(dica.titulo, dica.descricao, dica.conteudo);
                             card.appendChild(btn);
 
                             wrapper.appendChild(card);
@@ -96,8 +100,7 @@
                             autoplaySpeed: 4000,
                             arrows: true,
                             dots: true,
-                            responsive: [
-                                {
+                            responsive: [{
                                     breakpoint: 1024,
                                     settings: {
                                         slidesToShow: 3
@@ -122,4 +125,5 @@
             });
     </script>
 </body>
+
 </html>

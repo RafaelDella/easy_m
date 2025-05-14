@@ -1,4 +1,7 @@
 <?php
+
+Query para verificar o perfil
+
 session_start();
 require_once '../../db.php';
 
@@ -12,7 +15,7 @@ $dicas = [];
 /*
 // Obter o perfil do usuário
 if ($userId) {
-    $stmt = $conn->prepare("SELECT perfil FROM usuarios WHERE id = :id");
+    $stmt = $conn->prepare("SELECT perfil FROM usuario WHERE id = :id");
     $stmt->execute([':id' => $userId]);
     $perfil = $stmt->fetchColumn();
 }
