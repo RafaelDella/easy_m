@@ -1,48 +1,63 @@
-document.getElementById('modoQuitacao').addEventListener('change', function () {
-  const modo = this.value;
-  document.getElementById('campoValorParcela').classList.toggle('hidden', modo !== 'valor_parcela');
-  document.getElementById('campoTempo').classList.toggle('hidden', modo !== 'tempo_quitacao');
-});
-
-document.getElementById('debtForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const valorTotal = parseFloat(document.getElementById('valorTotal').value);
-  const juros = parseFloat(document.getElementById('juros').value);
-  const tipoJuros = document.getElementById('tipoJuros').value;
-  const modo = document.ElementById('modoQuitacao').value;
-
-  let tempoQuitacao = 0;
-
-  if (modo === 'valor_parcela') {
-    const parcela = parseFloat(document.getElementById('valorParcela').value);
-    let taxaMensal = tipoJuros === 'anual' ? juros / 12 / 100 : juros / 100;
-    tempoQuitacao = Math.ceil(Math.log((parcela / (parcela - valorTotal * taxaMensal))) / Math.log(1 + taxaMensal));
-  } else {
-    let tempo = parseFloat(document.getElementById('tempo').value);
-    const unidade = document.getElementById('unidadeTempo').value;
-    tempoQuitacao = unidade === 'anos' ? tempo * 12 : tempo;
-  }
-
-  const resultadoTexto = `A previsão de quitação é de aproximadamente ${tempoQuitacao} meses.`;
-  document.getElementById('resultadoTexto').textContent = resultadoTexto;
-  document.getElementById('popupResultado').classList.remove('hidden');
-});
-
-// Botão fechar popup
-document.getElementById('fecharPopup').addEventListener('click', function () {
-  document.getElementById('popupResultado').classList.add('hidden');
-});
-
-// Recalcular
-document.getElementById('recalcularBtn').addEventListener('click', function () {
-  document.getElementById('popupResultado').classList.add('hidden');
-  document.getElementById('valorParcela').value = '';
-  document.getElementById('tempo').value = '';
-});
-
-// Simular "salvar" no banco
-document.getElementById('salvarBtn').addEventListener('click', function () {
-  alert("Previsão salva com sucesso! (simulado)");
-  document.getElementById('popupResultado').classList.add('hidden');
+document.addEventListener('DOMContentLoaded', function() {
+  const modoQuitacao = document.getElementById('modoQuitacao');
+  const campoValorParcela = document.getElementById('campoValorParcela');
+  const campoTempo = document.getElementById('campoTempo');
+  
+  // Mostrar campos conforme seleção
+  modoQuitacao.addEventListener('change', function() {
+    if (this.value === 'valor_parcela') {
+      campoValorParcela.classList.remove('hidden');
+      campoTempo.classList.add('hidden');
+    } else {
+      campoValorParcela.classList.add('hidden');
+      campoTempo.classList.remove('hidden');
+    }
+  });
+  
+  // Form submission
+  const debtForm = document.getElementById('debtForm');
+  const popup = document.getElementById('popupResultado');
+  const fecharPopup = document.getElementById('fecharPopup');
+  const recalcularBtn = document.getElementById('recalcularBtn');
+  
+  debtForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Simulação de cálculo (substitua pela lógica real)
+    const tipoDivida = document.getElementById('tipoDivida').value;
+    const valorTotal = parseFloat(document.getElementById('valorTotal').value);
+    const juros = parseFloat(document.getElementById('juros').value);
+    
+    let resultado = `Para sua dívida de ${tipoDivida} no valor de R$ ${valorTotal.toFixed(2)} com juros de ${juros}%:`;
+    
+    if (modoQuitacao.value === 'valor_parcela') {
+      const valorParcela = parseFloat(document.getElementById('valorParcela').value);
+      const meses = Math.ceil(valorTotal / valorParcela);
+      resultado += `<br><br>Pagando R$ ${valorParcela.toFixed(2)} por mês, você quitará em aproximadamente ${meses} meses.`;
+    } else {
+      const tempo = parseFloat(document.getElementById('tempo').value);
+      const unidade = document.getElementById('unidadeTempo').value;
+      const mesesTotal = unidade === 'anos' ? tempo * 12 : tempo;
+      const parcela = (valorTotal * (1 + juros/100)) / mesesTotal;
+      resultado += `<br><br>Para quitar em ${tempo} ${unidade}, você precisará pagar aproximadamente R$ ${parcela.toFixed(2)} por mês.`;
+    }
+    
+    document.getElementById('resultadoTexto').innerHTML = resultado;
+    popup.classList.add('active');
+  });
+  
+  fecharPopup.addEventListener('click', function() {
+    popup.classList.remove('active');
+  });
+  
+  recalcularBtn.addEventListener('click', function() {
+    popup.classList.remove('active');
+  });
+  
+  // Fechar popup ao clicar fora
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+      popup.classList.remove('active');
+    }
+  });
 });
