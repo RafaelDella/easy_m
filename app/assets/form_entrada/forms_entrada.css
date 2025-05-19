@@ -10,26 +10,30 @@
 body {
     width: 100%;
     height: 100vh;
-    background: #9bfab0;
+    background-color: #191919;
+    color: #e6e6e6;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    background: #fff;
+    background-color: #262626;
     padding: 2rem 2.5rem;
     border-radius: 1rem;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
     width: 100%;
     max-width: 450px;
+    border: 2px solid #37393b;
 }
 
 h2 {
     text-align: center;
-    color: #333;
+    color: #e6e6e6;
     margin-bottom: 1.5rem;
     position: relative;
+    font-weight: 400;
+    font-size: 1.6rem;
 }
 
 h2::after {
@@ -37,7 +41,7 @@ h2::after {
     display: block;
     width: 5rem;
     height: 4px;
-    background-color: #008d62;
+    background-color: #0ba18c;
     margin: 0.5rem auto 0;
     border-radius: 5px;
 }
@@ -45,8 +49,9 @@ h2::after {
 label {
     display: block;
     margin: 12px 0 6px;
-    font-weight: 500;
-    color: #333;
+    font-weight: 400;
+    color: #e6e6e6;
+    font-size: 0.9rem;
 }
 
 input,
@@ -54,22 +59,24 @@ select,
 textarea {
     width: 100%;
     padding: 0.8rem 1rem;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 1px 1px 6px #0000001c;
+    background-color: #262626;
+    color: white;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    box-shadow: 1px 1px 6px #0000001c;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 1px solid #008d62;
-    background-color: #eeeeee75;
+    outline: 1px solid #0ba18c;
+    background-color: #2e2e2e;
 }
 
 button {
-    background-color: #008d62;
+    background-color: #0ba18c;
     color: #fff;
     font-weight: 500;
     padding: 0.8rem;
@@ -82,20 +89,41 @@ button {
 }
 
 button:hover {
-    background-color: #6b63fff1;
+    background-color: #13b39e;
 }
 
 .voltar-link {
     display: block;
     margin-top: 1.5rem;
     text-align: center;
-    color: #008d62;
+    color: #0ba18c;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .voltar-link:hover {
     text-decoration: underline;
+}
+
+/* Scrollbar */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #0ba18c;
+    border-radius: 6px;
+    border: 3px solid #1e1e1e;
+}
+
+.container {
+    scrollbar-width: thin;
+    scrollbar-color: #13b39e6b #1e1e1e;
 }
 
 /* Responsivo */
@@ -109,4 +137,14 @@ button:hover {
         width: 3rem;
         height: 3px;
     }
+}
+
+/* Autofill */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    border: 1px solid #ccc;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
