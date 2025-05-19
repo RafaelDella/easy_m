@@ -62,7 +62,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     <li><a href="dashboard.php">🏠 Painel</a></li>
                     <li><a href="../view/extrato_page/extrato_view.php">📄 Extrato</a></li>
                     <li><a href="../view/form_entrada/forms_entrada.html">➕ Nova Entrada</a></li>
-                    <li><a href="../view/fomulario_gasto/forms_gasto.html">➖ Novo Gasto</a></li>
+                    <li><a href="../view/formulario_gasto/forms_gasto.html">➖ Novo Gasto</a></li>
                     <li><a href="../view/formulário_perfil/forms_perfil.html">👤 Teste de Perfil</a></li>
                     <li><a href="../view/formulario_login/form_login.html">🚪 Logout</a></li>
                 </ul>
