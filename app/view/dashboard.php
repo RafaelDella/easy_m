@@ -126,7 +126,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                         </li>
 
                         <li class="side-item">
-                            <a href="../view/formulário_perfil/forms_perfil.html">
+                            <a href="../view/calculo_quitacao_divida/calcular_quitacao.html">
                                 <i class="fa-solid fa-calculator"></i>
                                 <span class="item-description">Calculadora de quitação</span>
                             </a>
@@ -140,7 +140,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                         </li>
 
                         <li class="side-item">
-                            <a href="../view/formulário_perfil/forms_perfil.html">
+                            <a href="../view/forum/forum.php">
                                 <i class="fa-solid fa-comments-dollar"></i>
                                 <span class="item-description">Fórum</span>
                             </a>
