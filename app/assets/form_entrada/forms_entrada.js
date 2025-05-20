@@ -1,4 +1,4 @@
-function validarFormulario() {
+function validarformularioulario() {
     const descricao = document.getElementById('descricao').value.trim();
     const valor = parseFloat(document.getElementById('valor').value);
     const categoria = document.getElementById('categoria').value;

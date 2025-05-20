@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de Quitação - EasyM</title>
+  <link rel="stylesheet" href="../../assets/calculo_quitacao_divida/calculo_quitacao.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Simulador de Quitação de Dívida</h1>
+    <formulario id="debtformulario">
+      <label for="tipoDivida">Tipo de Dívida:</label>
+      <select id="tipoDivida" required>
+        <option value="">Selecione</option>
+        <option value="Cartão de Crédito">Cartão de Crédito</option>
+        <option value="Empréstimo Pessoal">Empréstimo Pessoal</option>
+        <option value="Cheque Especial">Cheque Especial</option>
+        <option value="Outros">Outros</option>
+      </select>
+
+      <label for="valorTotal">Valor total da dívida (R$):</label>
+      <input type="number" id="valorTotal" required />
+
+      <label for="juros">Valor dos juros (%):</label>
+      <input type="number" id="juros" required />
+
+      <label for="tipoJuros">Tipo de juros:</label>
+      <select id="tipoJuros" required>
+        <option value="mensal">Mensal</option>
+        <option value="anual">Anual</option>
+      </select>
+
+      <label for="modoQuitacao">Como deseja quitar?</label>
+      <select id="modoQuitacao" required>
+        <option value="valor_parcela">Com valor fixo de parcelas</option>
+        <option value="tempo_quitacao">Informularioar em quanto tempo deseja quitar</option>
+      </select>
+
+      <div id="campoValorParcela" class="opcao">
+        <label for="valorParcela">Valor da parcela (R$):</label>
+        <input type="number" id="valorParcela" />
+      </div>
+
+      <div id="campoTempo" class="opcao hidden">
+        <label for="tempo">Tempo para quitar:</label>
+        <input type="number" id="tempo" />
+        <select id="unidadeTempo">
+          <option value="meses">Meses</option>
+          <option value="anos">Anos</option>
+        </select>
+      </div>
+
+      <button type="submit">Calcular Previsão</button>
+    </formulario>
+  </div>
+
+  <!-- POPUP -->
+  <div id="popupResultado" class="popup hidden">
+    <div class="popup-content">
+      <span class="close-btn" id="fecharPopup">&times;</span>
+      <h2>Resultado da Previsão</h2>
+      <p id="resultadoTexto"></p>
+      <div class="popup-buttons">
+        <button id="salvarBtn">Salvar Previsão</button>
+        <button id="recalcularBtn">Recalcular Previsão</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="quitacao_divida.js"></script>
+</body>
+
+</html>

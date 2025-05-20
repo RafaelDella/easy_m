@@ -1,5 +1,5 @@
 
-const steps = document.querySelectorAll(".form-step");
+const steps = document.querySelectorAll(".formulario-step");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const submitBtn = document.getElementById("submitBtn");

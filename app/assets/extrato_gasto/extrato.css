@@ -1,6 +1,51 @@
 body {
+<<<<<<< Updated upstream
     font-family: Arial, sans-serif;
     background: #f0f2f5;
+=======
+    background-color: #191919;
+    color: #e6e6e6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #e6e6e6;
+}
+
+.formulario-container {
+    background-color: #262626;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #37393b;
+    overflow-x: auto;
+}
+
+.saldo-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card-financeiro {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.card-financeiro h3 {
+>>>>>>> Stashed changes
     margin: 0;
     padding: 20px;
 }

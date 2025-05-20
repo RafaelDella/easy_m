@@ -4,7 +4,32 @@ body {
   padding: 2rem;
   background: #f0f4f8;
 }
+<<<<<<< Updated upstream
 form {
+=======
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #e6e6e6;
+  font-weight: 400;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 5rem;
+  height: 4px;
+  background-color: #0ba18c;
+  margin: 0.5rem auto 0;
+  border-radius: 5px;
+}
+
+formulario {
+  width: 100%;
+>>>>>>> Stashed changes
   max-width: 600px;
   margin: 0 auto;
   background: #fff;
@@ -12,10 +37,19 @@ form {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+<<<<<<< Updated upstream
 .form-step {
   display: none;
 }
 .form-step.active {
+=======
+
+.formulario-step {
+  display: none;
+}
+
+.formulario-step.active {
+>>>>>>> Stashed changes
   display: block;
 }
 label {
@@ -36,5 +70,44 @@ button {
   cursor: pointer;
 }
 button:hover {
+<<<<<<< Updated upstream
   background: #0056b3;
+=======
+  background-color: #13b39e;
+}
+
+#submitBtn {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  formulario {
+    padding: 1.5rem;
+  }
+
+  h1::after {
+    width: 3rem;
+    height: 3px;
+  }
+
+
+
+  .buttons {
+    flex-direction: column;
+  }
+}
+
+/* Autofill */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  border: 1px solid #ccc;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
+  transition: background-color 5000s ease-in-out 0s;
+>>>>>>> Stashed changes
 }
