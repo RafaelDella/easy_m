@@ -48,26 +48,75 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - EasyM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-
     <div class="container">
-        <aside class="sidebar">
-            <h2>📊 EasyM</h2>
-            <nav>
-                <ul>
-                    <li><a href="dashboard.php">🏠 Painel</a></li>
-                    <li><a href="../view/extrato_page/extrato_view.php">📄 Extrato</a></li>
-                    <li><a href="../view/form_entrada/forms_entrada.html">➕ Nova Entrada</a></li>
-                    <li><a href="../view/formulario_gasto/forms_gasto.html">➖ Novo Gasto</a></li>
-                    <li><a href="../view/formulário_perfil/forms_perfil.html">👤 Teste de Perfil</a></li>
-                    <li><a href="../view/formulario_login/form_login.html">🚪 Logout</a></li>
-                </ul>
+
+            <nav id="sidebar">
+                <div id="sidebar_content">
+                    <div id="user">
+                        <a href="perfil_usuario/perfil_usuario.html" title="Editar Perfil">
+                            <img src="../assets/image/zeca.jpg" id="user_avatar" alt="Avatar">
+                        </a>
+                        <p id="user_infos">
+                            <span class="item-description">Fulano de Tal</span>
+                            <span class="item-description">Lorem Ipsum</span>
+                        </p>
+                    </div>
+
+                    <ul id="side_items">
+                        <li class="side-item active">
+                            <a href="dashboard.php">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span class="item-description">Painel</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/extrato_page/extrato_view.php">
+                                <i class="fa-solid fa-file"></i>
+                                <span class="item-description">Extrato</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/form_entrada/forms_entrada.html">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="item-description">Nova Entrada</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulario_gasto/forms_gasto.html">
+                                <i class="fa-solid fa-minus"></i>
+                                <span class="item-description">Novo Gasto</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-user"></i>
+                                <span class="item-description">Teste de Perfil</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulario_login/form_login.html">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span class="item-description">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <button id="open_btn">
+                        <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </nav>
-        </aside>
 
         <main class="content">
             <header class="header">
@@ -75,7 +124,6 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                 <p style="font-size: 1.2em; color: #555;">
                     Perfil Financeiro: <strong><?= htmlspecialchars($perfilUsuario ?? 'Não definido') ?></strong>
                 </p>
-                <a href="perfil_usuario/perfil_usuario.html" class="profile-icon" title="Editar Perfil">👤</a>
             </header>
 
             <section class="cards">
@@ -204,6 +252,10 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     }
                 }
             }
+        });
+
+        document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
         });
     </script>
 
