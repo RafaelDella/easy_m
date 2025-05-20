@@ -82,6 +82,7 @@ body {
     min-width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     border: 1px solid #333;
+    margin-top: 30px;
 }
 
 .table-box table {
@@ -123,9 +124,10 @@ body {
 #sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; 
     background-color: #262626;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     border-radius: 0px 18px 18px 0px;
     position: relative;
     transition: all .5s;

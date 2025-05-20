@@ -63,8 +63,8 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                             <img src="../assets/image/zeca.jpg" id="user_avatar" alt="Avatar">
                         </a>
                         <p id="user_infos">
-                            <span class="item-description">Fulano de Tal</span>
-                            <span class="item-description">Lorem Ipsum</span>
+                            <span class="item-description"><?= htmlspecialchars($nome) ?></span>
+                            <span class="item-description"><?= htmlspecialchars($perfilUsuario ?? 'Não definido') ?></span>
                         </p>
                     </div>
 
@@ -78,22 +78,29 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
 
                         <li class="side-item">
                             <a href="../view/extrato_page/extrato_view.php">
-                                <i class="fa-solid fa-file"></i>
+                                <i class="fa-solid fa-file-invoice"></i>
                                 <span class="item-description">Extrato</span>
                             </a>
                         </li>
 
                         <li class="side-item">
                             <a href="../view/form_entrada/forms_entrada.html">
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
                                 <span class="item-description">Nova Entrada</span>
                             </a>
                         </li>
 
                         <li class="side-item">
                             <a href="../view/formulario_gasto/forms_gasto.html">
-                                <i class="fa-solid fa-minus"></i>
+                                <i class="fa-solid fa-sack-xmark"></i>
                                 <span class="item-description">Novo Gasto</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulario_divida/index.php">
+                                <i class="fa-solid fa-cash-register"></i>
+                                <span class="item-description">Nova dívida</span>
                             </a>
                         </li>
 
@@ -103,6 +110,43 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                                 <span class="item-description">Teste de Perfil</span>
                             </a>
                         </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-user"></i>
+                                <span class="item-description">Análisar dívida</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                                <span class="item-description">Teto de gasto</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-calculator"></i>
+                                <span class="item-description">Calculadora de quitação</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-chart-pie"></i>
+                                <span class="item-description">Gráfico de pizza</span>
+                            </a>
+                        </li>
+
+                        <li class="side-item">
+                            <a href="../view/formulário_perfil/forms_perfil.html">
+                                <i class="fa-solid fa-comments-dollar"></i>
+                                <span class="item-description">Fórum</span>
+                            </a>
+                        </li>
+
+
 
                         <li class="side-item">
                             <a href="../view/formulario_login/form_login.html">
