@@ -42,8 +42,8 @@ CREATE TABLE Meta (
     categoria VARCHAR(50) NOT NULL,
     valor_meta DECIMAL(10,2) NOT NULL,
     previsao_conclusao DATE NOT NULL, -- Calculadora de Juros com Amortização ou Definir pelo usuário as parcelas restantes
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Teto_gasto (
@@ -53,8 +53,8 @@ CREATE TABLE Teto_gasto (
     categoria VARCHAR(50) NOT NULL, -- Qual área se aplica
     valor_teto DECIMAL(10,2) NOT NULL, -- Valor limite para os gastos
     valor_atual DECIMAL(10,2) DEFAULT 0.00, -- Soma dos gastos
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Entrada (
@@ -63,6 +63,6 @@ CREATE TABLE Entrada (
     valor DECIMAL(10,2) NOT NULL,
     categoria VARCHAR(50), --Selector no front
     data_entrada DATE NOT NULL,
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
 );

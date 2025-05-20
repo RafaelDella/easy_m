@@ -47,7 +47,7 @@
 
         <?php
         // Consulta Extrato de Entradas
-        $stmtEntradas = $pdo->prepare("SELECT id_entrada AS id_deposito, descricao, valor, data_entrada AS data FROM Entrada WHERE id_usuario = :usuario_id ORDER BY data_entrada DESC");
+        $stmtEntradas = $pdo->prepare("SELECT id_entrada AS id_deposito, descricao, valor, data_entrada AS data FROM Entrada WHERE usuario_id = :usuario_id ORDER BY data_entrada DESC");
         $stmtEntradas->execute(['usuario_id' => $usuario_id]);
         $entradas = $stmtEntradas->fetchAll();
 
