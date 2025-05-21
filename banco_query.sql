@@ -61,7 +61,7 @@ CREATE TABLE Entrada (
     id_entrada INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
-    categoria VARCHAR(50), --Selector no front
+    categoria VARCHAR(50), -- Selector no front
     data_entrada DATE NOT NULL,
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
