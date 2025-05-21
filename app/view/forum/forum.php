@@ -20,6 +20,8 @@
             error_log("Perfil não encontrado com ID: $userId");
         }
     }
+
+    $perfil = "Doméstico";
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +113,7 @@
                         slidesToShow: 4,
                         slidesToScroll: 1,
                         autoplay: true,
-                        autoplaySpeed: 4000,
+                        autoplaySpeed: 8000,
                         arrows: true,
                         dots: true,
                         responsive: [
