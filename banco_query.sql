@@ -29,6 +29,7 @@ CREATE TABLE Divida (
     id_divida INT AUTO_INCREMENT PRIMARY KEY,
     nome_divida VARCHAR(100) NOT NULL,
     taxa_divida DECIMAL(5,2) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
     categoria_divida VARCHAR(50) NOT NULL,
     data_divida DATE NOT NULL,
     usuario_id INT NOT NULL,
@@ -61,12 +62,10 @@ CREATE TABLE Entrada (
     id_entrada INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
-    categoria VARCHAR(50), --Selector no front
+    categoria VARCHAR(50), -- Selector no front
     data_entrada DATE NOT NULL,
     usuario_id INT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
-<<<<<<< Updated upstream
-=======
 );
 
 CREATE TABLE Despesa (
@@ -78,5 +77,22 @@ CREATE TABLE Despesa (
     data_vencimento DATE NOT NULL,
     usuario_id INT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
->>>>>>> Stashed changes
+);
+
+CREATE TABLE Despesa (
+    id_despesa INT AUTO_INCREMENT PRIMARY KEY,
+    nome_despesa VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    categoria VARCHAR(50) NOT NULL,
+    valor_despesa DECIMAL(10,2) NOT NULL, 
+    data_vencimento DATE NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+);
+
+CREATE TABLE RecuperacaoSenha (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(150) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expiracao DATETIME NOT NULL
 );
