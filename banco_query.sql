@@ -77,3 +77,10 @@ CREATE TABLE Despesa (
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
+
+CREATE TABLE RecuperacaoSenha (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(150) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expiracao DATETIME NOT NULL
+);
