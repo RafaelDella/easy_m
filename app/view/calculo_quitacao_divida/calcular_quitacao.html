@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador de Quitação - EasyM</title>
   <link rel="stylesheet" href="../../assets/calculo_quitacao_divida/calculo_quitacao.css">
 </head>
-
 <body>
   <div class="container">
     <h1>Simulador de Quitação de Dívida</h1>
@@ -22,10 +20,10 @@
       </select>
 
       <label for="valorTotal">Valor total da dívida (R$):</label>
-      <input type="number" id="valorTotal" required />
+      <input type="number" id="valorTotal" step="0.01" min="0" required />
 
       <label for="juros">Valor dos juros (%):</label>
-      <input type="number" id="juros" required />
+      <input type="number" id="juros" step="0.01" min="0" required />
 
       <label for="tipoJuros">Tipo de juros:</label>
       <select id="tipoJuros" required>
@@ -39,14 +37,14 @@
         <option value="tempo_quitacao">Informar em quanto tempo deseja quitar</option>
       </select>
 
-      <div id="campoValorParcela" class="opcao">
+      <div id="campoValorParcela">
         <label for="valorParcela">Valor da parcela (R$):</label>
-        <input type="number" id="valorParcela" />
+        <input type="number" id="valorParcela" step="0.01" min="0" />
       </div>
 
       <div id="campoTempo" class="opcao hidden">
         <label for="tempo">Tempo para quitar:</label>
-        <input type="number" id="tempo" />
+        <input type="number" id="tempo" min="1" />
         <select id="unidadeTempo">
           <option value="meses">Meses</option>
           <option value="anos">Anos</option>
@@ -72,5 +70,4 @@
 
   <script src="quitacao_divida.js"></script>
 </body>
-
 </html>

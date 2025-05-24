@@ -1,3 +1,8 @@
+/* Box model global */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background: #121212;
@@ -31,9 +36,11 @@ label {
   color: #e0e0e0;
 }
 
+/* Inputs e selects com altura uniforme e alinhamento */
 input,
 select {
   width: 100%;
+  height: 44px;
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 6px;
@@ -41,9 +48,12 @@ select {
   background: #2d2d2d;
   color: #f0f0f0;
   font-size: 1rem;
+  line-height: 1.5;
   transition: all 0.3s;
+  box-sizing: border-box;
 }
 
+/* Foco visual */
 input:focus,
 select:focus {
   outline: none;
@@ -51,6 +61,31 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(11, 161, 140, 0.3);
 }
 
+/* Remove setas do input[type=number] */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Alinha visualmente os selects e troca a seta padrão */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='70,100 100,60 40,60' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+
+/* Botão padrão */
 button {
   width: 100%;
   padding: 14px;
@@ -69,14 +104,7 @@ button:hover {
   background: #088d7c;
 }
 
-.opcao {
-  padding: 15px;
-  background: #2d2d2d;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-/* Estilos do Popup */
+/* Popup */
 .popup {
   position: fixed;
   top: 0;
@@ -168,6 +196,7 @@ button:hover {
   display: none;
 }
 
+/* Responsivo */
 @media (max-width: 768px) {
   .container {
     padding: 20px;
