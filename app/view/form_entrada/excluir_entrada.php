@@ -3,7 +3,7 @@ session_start();
 require_once '../../../app/db.php';
 
 // Verifica se o usuário está logado e se os dados foram enviados
-if (!isset($_SESSION['usuario_id']) || !isset($_POST['id']) || $_POST['tipo'] !== 'receita') {
+if (!isset($_SESSION['usuario_id']) || !isset($_POST['id'])) {
     header("Location: ../../formulario_login/form_login.html");
     exit;
 }

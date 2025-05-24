@@ -84,7 +84,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/form_entrada/forms_entrada.html">
+                        <a href="../view/form_entrada/formulario_entrada.php">
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                             <span class="item-description">Nova Entrada</span>
                         </a>
