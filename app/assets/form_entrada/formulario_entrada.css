@@ -17,14 +17,16 @@ body {
 /* MAIN CONTENT */
 main {
   margin-left: 0px;
+  margin-top: 8vh;
   padding: 20px;
   width: 100%;
+  height: 92vh;
 }
 
 h1 {
   font-size: 26px;
   color: #e6e6e6;
-  padding: 20px 30px 20px 30px;
+  padding: 10px 0px 30px 0px;
 }
 
 .top-bar {
@@ -34,18 +36,20 @@ h1 {
   margin-bottom: 20px;
 }
 
-select,
-input[type="text"] {
-  padding: 10px;
+.top-bar select,
+.top-bar input[type="text"] {
+  padding: 8px 12px; /* menos espaço vertical (alto x largo) */
   border: 1px solid #444;
-  border-radius: 8px;
-  min-width: 180px;
+  border-radius: 6px; /* pode afinar as bordas também */
+  min-width: 160px;
   background-color: #2e2e2e;
   color: #e6e6e6;
+  margin-right: 16px; /* opcional: reduz o espaçamento lateral entre os campos */
+  font-size: 14px; /* menor fonte = campo mais compacto */
 }
 
 .btn {
-  padding: 10px 16px;
+  padding: 10px;
   margin-right: 10px;
   margin-left: 10px;
   border: none;
@@ -58,16 +62,26 @@ input[type="text"] {
   transition: background-color 0.2s;
 }
 
+.top-bar button {
+  margin: 10px;
+}
+
+.btn.yellow{
+    background-color: #ffd43b;
+    color: rgb(5, 5, 85);
+    margin-left: 15px;
+    padding: 12px;
+}
+
 .btn.green {
   background-color: #0ba18c;
   color: #191919;
-  padding: 10px 16px;
 }
 
 .btn.red {
   background-color: #dc3545;
   color: #fff;
-  padding: 14px 16px;
+  padding: 12px;
 }
 
 .btn.blue {
@@ -128,7 +142,7 @@ input[type="text"] {
   position: relative;
   transition: all .5s;
   min-width: 82px;
-  z-index: 2;
+  z-index: 1001;
   border-right: 2px solid #37393b;
 }
 
@@ -416,5 +430,109 @@ input[type="text"] {
     color: #3A8DFF; /* azul destaque */
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+  box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+  -webkit-text-fill-color: #e6e6e6 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
+#top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #262626; /* mesma paleta escura do sistema */
+    color: #0ba18c;
+    padding: 10px 20px;
+    height: 8vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-left: 270px;
+    border: 2px solid #37393b;
+    border-radius: 0px 0px 10px 0px;
+}
 
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+#confirmModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(25, 25, 25, 0.8);
+  display: none; /* Inicia escondido */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#confirmModal .modal-content {
+  background-color: #262626;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #37393b;
+  color: #e6e6e6;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Texto da mensagem */
+#confirmModal .modal-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+/* Botões */
+#confirmModal .modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+#confirmModal .modal-buttons button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Botão cancelar */
+#confirmModal .modal-buttons .cancelar {
+  background-color: #E63946;
+  color: white;
+}
+
+#confirmModal .modal-buttons .cancelar:hover {
+  background-color: #B02E37;
+}
+
+/* Botão confirmar */
+#confirmModal .modal-buttons .confirmar {
+  background-color: #0ba18c;
+  color: white;
+}
+
+#confirmModal .modal-buttons .confirmar:hover {
+  background-color: #13b39e;
+}

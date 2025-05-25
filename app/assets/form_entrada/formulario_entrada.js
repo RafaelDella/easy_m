@@ -165,12 +165,26 @@ window.addEventListener('click', function(event) {
     }
 });
 
-document.getElementById('campo-busca').addEventListener('input', function () {
-    const termo = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.session-card');
+document.addEventListener("DOMContentLoaded", function() {
+    const selectAno = document.getElementById("ano");
+    const anoAtual = new Date().getFullYear();
 
-    cards.forEach(card => {
-        const texto = card.textContent.toLowerCase();
-        card.style.display = texto.includes(termo) ? 'block' : 'none';
-    });
+    for (let ano = anoAtual - 10; ano < anoAtual; ano++) {
+        const option = document.createElement("option");
+        option.value = ano;
+        option.textContent = ano;
+        selectAno.appendChild(option);
+    }
 });
+
+function abrirModalExcluir() {
+document.getElementById("confirmModal").style.display = "flex";
+}
+
+function fecharModalExcluir() {
+document.getElementById("confirmModal").style.display = "none";
+}
+
+function confirmarExclusao() {
+document.getElementById("form-excluir-todas").submit();
+}

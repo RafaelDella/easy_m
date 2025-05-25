@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../formulario_login/form_login.html");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -36,7 +44,6 @@
 
             <button type="button" class="btn-excluir-conta" onclick="confirmarExclusao()">Excluir Conta</button>
             <a href="../dashboard.php" class="voltar-link">← Voltar para o Painel</a>
-
         </form>
     </div>
 
