@@ -124,3 +124,53 @@ if (event.target === modalEditar) {
 function fecharModalEditar() {
 document.getElementById('modalEditarEntrada').style.display = 'none';
 }
+
+function visualizarEntrada(id) {
+    fetch(`http://localhost/easy_m/app/view/form_entrada/buscar_entrada.php?id=${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta do servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.sucesso) {
+                const entrada = data.entrada;
+                document.getElementById('verDescricao').innerText = entrada.descricao;
+                document.getElementById('verValor').innerText = `R$ ${parseFloat(entrada.valor).toFixed(2)}`;
+                document.getElementById('verCategoria').innerText = entrada.categoria;
+                document.getElementById('verDataEntrada').innerText = entrada.data_entrada;
+
+                document.getElementById('modalVisualizar').style.display = 'block';
+            } else {
+                alert('⚠ Erro: ' + data.erro);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            alert('❌ Erro ao buscar entrada.');
+        });
+}
+
+function fecharModalVisualizar() {
+    document.getElementById('modalVisualizar').style.display = 'none';
+}
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('modalVisualizar');
+    const content = document.querySelector('#modalVisualizar .modal-content');
+
+    if (event.target === modal) {
+        fecharModalVisualizar();
+    }
+});
+
+document.getElementById('campo-busca').addEventListener('input', function () {
+    const termo = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.session-card');
+
+    cards.forEach(card => {
+        const texto = card.textContent.toLowerCase();
+        card.style.display = texto.includes(termo) ? 'block' : 'none';
+    });
+});

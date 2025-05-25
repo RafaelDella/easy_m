@@ -58,7 +58,7 @@ if (!empty($_POST['id'])) {
 
         echo "<script>
             alert('✅ Entrada registrada com sucesso!');
-            window.location.href='../extrato_page/extrato_view.php';
+            window.location.href='../form_entrada/formulario_entrada.php';
         </script>";
         exit;
     } catch (PDOException $e) {

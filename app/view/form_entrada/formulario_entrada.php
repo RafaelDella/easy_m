@@ -18,6 +18,24 @@ $stmtPerfil = $pdo->prepare("SELECT perfil FROM Usuario WHERE id = :id");
 $stmtPerfil->execute([':id' => $usuario_id]);
 $perfilUsuario = $stmtPerfil->fetchColumn();
 
+function limitarTexto($texto, $limite = 10) {
+    return strlen($texto) > $limite ? substr($texto, 0, $limite) . '...' : $texto;
+}
+
+$busca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
+
+$sql = "SELECT * FROM Entrada WHERE id_usuario = :usuario_id";
+$params = ['usuario_id' => $_SESSION['usuario_id']];
+
+if ($busca !== '') {
+    $sql .= " AND (descricao LIKE :busca OR categoria LIKE :busca)";
+    $params['busca'] = '%' . $busca . '%';
+}
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$entradas = $stmt->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +73,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                 </li>
                 <li class="side-item"><a href="../view/extrato_page/extrato_view.php"><i
                             class="fa-solid fa-file-invoice"></i><span class="item-description">Extrato</span></a></li>
-                <li class="side-item"><a href="../view/form_entrada/forms_entrada.html"><i
+                <li class="side-item"><a href="formulario_entrada.php"><i
                             class="fa-solid fa-hand-holding-dollar"></i><span class="item-description">Nova
                             Entrada</span></a></li>
                 <li class="side-item"><a href="../view/formulario_gasto/forms_gasto.html"><i
@@ -68,8 +86,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                             Quitação</span></a></li>
                 <li class="side-item"><a href="../view/formulário_perfil/forms_perfil.html"><i
                             class="fa-solid fa-user"></i><span class="item-description">Teste de Perfil</span></a></li>
-                <li class="side-item"><a href="../view/formulário_perfil/forms_perfil.html"><i
-                            class="fa-solid fa-user"></i><span class="item-description">Analisar Dívida</span></a></li>
+                <li class="side-item"><a href="../view/formulário_perfil/forms_perfil.html"><i class="fa-solid fa-pager"></i><span class="item-description">Analisar Dívida</span></a></li>
                 <li class="side-item"><a href="../view/formulário_perfil/forms_perfil.html"><i
                             class="fa-solid fa-circle-dollar-to-slot"></i><span class="item-description">Teto de
                             Gasto</span></a></li>
@@ -97,9 +114,14 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
             <select>
                 <option>Selecione a disciplina</option>
             </select>
-            <input type="text" placeholder="Procurar...">
-            <button class="btn red">🗑</button>
-            <button class="btn green" onclick="abrirModal()">➕ Cadastrar entrada</button>
+            <input type="text" id="campo-busca" placeholder="Procurar...">
+            <button type="submit">🔍</button>
+            <form action="deletar_todas_entradas.php" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar TODOS os itens? Esta ação não pode ser desfeita!');" style="display:inline;">
+                <button class="btn red" type="submit">
+                    <i class="fa-solid fa-delete-left"></i> Deletar todos os itens
+                </button>
+            </form>
+            <button class="btn green" onclick="abrirModal()"><i class="fa-solid fa-square-plus"></i> Cadastrar entrada</button>
         </div>
 
         <div id="modalEntrada" class="modal">
@@ -172,7 +194,21 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
             </div>
         </div>
 
-        <div class="container">
+        <div id="modalVisualizar" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModalVisualizar()">&times;</span>
+                <h2>Detalhes da Entrada</h2>
+
+                <p><strong>Descrição:</strong> <span id="verDescricao"></span></p>
+                <p><strong>Valor:</strong> <span id="verValor"></span></p>
+                <p><strong>Categoria:</strong> <span id="verCategoria"></span></p>
+                <p><strong>Data:</strong> <span id="verDataEntrada"></span></p>
+
+                <button onclick="fecharModalVisualizar()" class="btn-cancelar">Fechar</button>
+            </div>
+        </div>
+        
+        <div class="container"> 
             <?php
                 $stmt = $pdo->prepare("SELECT * FROM Entrada WHERE id_usuario = :usuario_id ORDER BY data_entrada DESC");
                 $stmt->execute(['usuario_id' => $usuario_id]);
@@ -180,27 +216,45 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
 
                 foreach ($entradas as $entrada): ?>
                     <div class="session-card">
-                        <div class="session-header">Entrada: <?= htmlspecialchars($entrada['id_entrada']) ?></div>
-                        <div class="session-info">Descrição: <?= htmlspecialchars($entrada['descricao']) ?></div>
-                        <div class="session-info">Valor: R$ <?= number_format($entrada['valor'], 2, ',', '.') ?></div>
-                        <div class="session-info">Categoria: <?= htmlspecialchars($entrada['categoria']) ?></div>
-                        <div class="session-info">Data: <?= date('d/m/Y', strtotime($entrada['data_entrada'])) ?></div>
+                                    <div class="session-header">
+                                Entrada: <?= htmlspecialchars($entrada['id_entrada']) ?>
+                            </div>
+
+                            <div class="session-info">
+                                Descrição: <?= htmlspecialchars(limitarTexto($entrada['descricao'], 10)) ?>
+                            </div>
+
+                            <div class="session-info">
+                                Valor: R$ <?= htmlspecialchars(limitarTexto(number_format($entrada['valor'], 2, ',', '.'), 10)) ?>
+                            </div>
+
+                            <div class="session-info">
+                                Categoria: <?= htmlspecialchars(limitarTexto($entrada['categoria'], 10)) ?>
+                            </div>
+
+                            <div class="session-info">
+                                Data: <?= htmlspecialchars(limitarTexto(date('d/m/Y', strtotime($entrada['data_entrada'])), 10)) ?>
+                            </div>
 
                         <div class="session-actions">
+
+                            <button class="btn purple" onclick="visualizarEntrada(<?= $entrada['id_entrada'] ?>)"><i class="fa-solid fa-eye"></i> Visualizar Entrada</button>
+
                             <button class="btn blue"
                                 onclick='editarEntrada(
-        <?= json_encode([
-            "id" => $entrada["id_entrada"],
-            "descricao" => $entrada["descricao"],
-            "valor" => $entrada["valor"],
-            "categoria" => $entrada["categoria"],
-            "data_entrada" => $entrada["data_entrada"]
-        ]) ?>
-    )'>✏ Alterar</button>
+                            <?= json_encode([
+                                "id" => $entrada["id_entrada"],
+                                "descricao" => $entrada["descricao"],
+                                "valor" => $entrada["valor"],
+                                "categoria" => $entrada["categoria"],
+                                "data_entrada" => $entrada["data_entrada"]
+                            ]) ?>
+                        )'> <i class="fa-solid fa-pen-to-square"></i> Alterar</button>
 
                             <form action="excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta entrada?');">
                                 <input type="hidden" name="id" value="<?= $entrada['id_entrada'] ?>">
-                                <button class="btn red">🗑 Excluir</button>
+                                <button class="btn red"> <i class="fa-solid fa-trash"></i> Excluir</button>
+                                
                             </form>
                         </div>
                     </div>

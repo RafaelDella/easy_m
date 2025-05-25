@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<script>
             alert('✅ Entrada atualizada com sucesso!');
-            window.location.href = '../extrato_page/extrato_view.php';
+            window.location.href = '../form_entrada/formulario_entrada.php';
         </script>";
     } catch (PDOException $e) {
         echo "Erro ao atualizar entrada: " . $e->getMessage();

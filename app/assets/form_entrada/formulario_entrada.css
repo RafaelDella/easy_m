@@ -46,6 +46,8 @@ input[type="text"] {
 
 .btn {
   padding: 10px 16px;
+  margin-right: 10px;
+  margin-left: 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -59,11 +61,13 @@ input[type="text"] {
 .btn.green {
   background-color: #0ba18c;
   color: #191919;
+  padding: 10px 16px;
 }
 
 .btn.red {
   background-color: #dc3545;
   color: #fff;
+  padding: 14px 16px;
 }
 
 .btn.blue {
@@ -81,12 +85,16 @@ input[type="text"] {
 }
 
 .session-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #262626;
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   border: 1px solid #333;
+  flex-wrap: wrap;
 }
 
 .session-header {
@@ -98,6 +106,7 @@ input[type="text"] {
 .session-info {
   margin-top: 4px;
   color: #cfcfcf;
+  overflow-wrap: break-word;
 }
 
 .session-actions {
@@ -346,5 +355,66 @@ input[type="text"] {
 .btn-cancelar:hover {
   background-color: #c82333;
 }
+
+/* Modal base */
+#modalVisualizar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* fundo escuro transparente */
+    justify-content: center;
+    align-items: center;
+}
+
+#modalVisualizar .modal-content {
+    background-color: #262626; /* fundo escuro igual ao do container */
+    color: #e6e6e6;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    animation: modalFade 0.3s ease-in-out;
+}
+
+
+#modalVisualizar .close {
+    color: #aaa;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#modalVisualizar .close:hover {
+    color: #0ba18c;
+}
+
+#modalVisualizar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+    color: #0ba18c;
+    border-bottom: 1px solid #37393b;
+    padding-bottom: 12px;
+}
+
+#modalVisualizar p {
+    margin: 14px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #dfdfdf;
+}
+
+#modalVisualizar p strong {
+    color: #3A8DFF; /* azul destaque */
+}
+
 
 

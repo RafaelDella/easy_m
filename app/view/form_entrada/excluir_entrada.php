@@ -20,7 +20,7 @@ try {
 
     echo "<script>
         alert('✅ Entrada excluída com sucesso!');
-        window.location.href='../extrato_page/extrato_view.php';
+        window.location.href='../form_entrada/formulario_entrada.php';
     </script>";
 } catch (PDOException $e) {
     echo "Erro ao excluir entrada: " . $e->getMessage();
