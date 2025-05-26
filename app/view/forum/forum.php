@@ -1,28 +1,26 @@
 <?php
-    session_start();
-    require_once '../../db.php';
+session_start();
+require_once '../../db.php';
 
-    $db = new DB();
-    $conn = $db->connect();
+$db = new DB();
+$conn = $db->connect();
 
-    $userId = $_SESSION['user_id'] ?? null;
-    $perfil = "";
+$userId = $_SESSION['usuario_id'] ?? null;
+$perfil = "Doméstico"; // valor padrão
 
-    // Buscar perfil com base no id de usuário
-    if ($userId) {
-        $userRole = $conn->prepare("SELECT perfil FROM usuario WHERE id = :id");
-        $userRole->execute([':id' => $userId]);
-        $perfilBanco = $userRole->fetchColumn();
+if ($userId) {
+    $stmt = $conn->prepare("SELECT perfil FROM usuario WHERE id = :id");
+    $stmt->execute([':id' => $userId]);
+    $perfilBanco = $stmt->fetchColumn();
 
-        if ($perfilBanco) {
-            $perfil = $perfilBanco;
-        } else {
-            error_log("Perfil não encontrado com ID: $userId");
-        }
+    if ($perfilBanco) {
+        $perfil = $perfilBanco;
+    } else {
+        error_log("Perfil não encontrado com ID: $userId");
     }
-
-    $perfil = "Doméstico";
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -37,6 +35,9 @@
 
 <body>
     <h1>Fórum de Dicas</h1>
+
+    <!-- Debug opcional -->
+    <!-- <p>Perfil carregado: <?= htmlspecialchars($perfil) ?></p> -->
 
     <div id="forum"></div>
 
@@ -67,7 +68,9 @@
             .then(response => response.json())
             .then(data => {
                 const forum = document.getElementById('forum');
-                const dicasPerfil = data.filter(dica => dica.tipo === perfilUsuario);
+                const dicasPerfil = data.filter(dica =>
+                    dica.tipo.toLowerCase() === perfilUsuario.toLowerCase()
+                );
 
                 if (dicasPerfil.length > 0) {
                     const container = document.createElement('div');
@@ -116,10 +119,24 @@
                         autoplaySpeed: 8000,
                         arrows: true,
                         dots: true,
-                        responsive: [
-                            { breakpoint: 1024, settings: { slidesToShow: 3 }},
-                            { breakpoint: 768, settings: { slidesToShow: 2 }},
-                            { breakpoint: 480, settings: { slidesToShow: 1 }}
+                        responsive: [{
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: 3
+                                }
+                            },
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 2
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 1
+                                }
+                            }
                         ]
                     });
                 } else {
@@ -135,4 +152,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </body>
+
 </html>

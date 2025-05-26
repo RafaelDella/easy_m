@@ -140,7 +140,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulário_perfil/forms_perfil.html">
+                        <a href="forum/forum.php">
                             <i class="fa-solid fa-comments-dollar"></i>
                             <span class="item-description">Fórum</span>
                         </a>

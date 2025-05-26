@@ -34,7 +34,7 @@ try {
     }
 
     // Conectar ao banco
-    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '1234'); // ajuste aqui
+    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', ''); // ajuste aqui
 
     // Verifica se email, cpf ou usuario já existem - segurança adicional
     $stmtVerificar = $db->prepare('SELECT id FROM Usuario WHERE email = :email OR cpf = :cpf OR usuario = :usuario');
