@@ -173,15 +173,15 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
             <section class="cards">
                 <div class="card">
                     <h3>Saldo Atual</h3>
-                    <p>R$<?= number_formsat($saldo, 2, ',', '.') ?></p>
+                    <p>R$<?= number_format($saldo, 2, ',', '.') ?></p>
                 </div>
                 <div class="card">
                     <h3>Receita</h3>
-                    <p>R$<?= number_formsat($receita, 2, ',', '.') ?></p>
+                    <p>R$<?= number_format($receita, 2, ',', '.') ?></p>
                 </div>
                 <div class="card">
                     <h3>Gastos</h3>
-                    <p>R$<?= number_formsat($gastos, 2, ',', '.') ?></p>
+                    <p>R$<?= number_format($gastos, 2, ',', '.') ?></p>
                 </div>
             </section>
 
@@ -204,7 +204,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                                 <?php foreach ($entradas as $entrada): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($entrada['descricao']) ?></td>
-                                        <td>R$ <?= number_formsat($entrada['valor'], 2, ',', '.') ?></td>
+                                        <td>R$ <?= number_format($entrada['valor'], 2, ',', '.') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -230,7 +230,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                                 <?php foreach ($ultimosGastos as $gasto): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($gasto['nome_gasto']) ?></td>
-                                        <td>R$ <?= number_formsat($gasto['valor_gasto'], 2, ',', '.') ?></td>
+                                        <td>R$ <?= number_format($gasto['valor_gasto'], 2, ',', '.') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
