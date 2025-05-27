@@ -1,0 +1,131 @@
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background-color: #262626;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+    border: 2px solid #37393b;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    text-align: center; /* Centraliza o conteúdo do modal por padrão */
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente os itens da coluna */
+    margin-bottom: 1.5rem;
+    text-align: center; /* Garante que o texto do header fique centralizado */
+}
+
+.modal-icon-wrapper { /* Novo wrapper para o ícone */
+    margin-bottom: 0.5rem; /* Espaço entre o ícone e o texto */
+    font-size: 3rem; /* Ícone maior */
+    line-height: 1;
+    display: flex; /* Para centralizar o ícone dentro dele */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupa a largura total para ajudar na centralização */
+}
+
+/* Garante que a tag <i> do Font Awesome seja renderizada corretamente e herde a cor */
+.modal-icon-wrapper i {
+    font-family: "Font Awesome 6 Free"; /* Ou "Font Awesome 6 Pro" se estiver usando a versão Pro */
+    font-weight: 900; /* Para ícones sólidos (fa-solid) */
+    font-size: inherit; /* Herda o tamanho do .modal-icon-wrapper */
+    line-height: 1; /* Ajuda no alinhamento vertical */
+    display: inline-block; /* Garante que o ícone se comporte como um bloco para dimensionamento */
+}
+
+/* Cores dos ícones baseadas no tipo do modal */
+.modal-icon-wrapper.success {
+    color: #4CAF50;
+}
+
+.modal-icon-wrapper.error {
+    color: #F44336;
+}
+
+.modal-icon-wrapper.warning {
+    color: #FF9800;
+}
+
+.modal-icon-wrapper.info {
+    color: #2196F3;
+}
+
+.modal-title {
+    color: #e6e6e6;
+    font-weight: 600; /* Negrito para o "ERRO" */
+    font-size: 1.8rem; /* Tamanho para o "ERRO" */
+    margin-bottom: 0.5rem; /* Espaço entre o título principal e a mensagem do header */
+    text-transform: uppercase; /* Opcional: para deixar em maiúsculas "ERRO" */
+}
+
+.modal-header-message { /* Novo estilo para a mensagem do header (abaixo do "ERRO") */
+    color: #dfdfdf;
+    font-size: 0.9rem; /* Fonte menor */
+    line-height: 1.4;
+    text-align: center; /* Justifica o texto dentro do cabeçalho */
+    margin-bottom: 1.5rem; /* Espaço abaixo da mensagem do header */
+}
+
+.modal-content {
+    color: #dfdfdf;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify; /* Justifica o conteúdo principal */
+    margin-bottom: 1.5rem;
+    /* Se modalContent não for mais usado para a mensagem principal, você pode remover o text-align: justify;
+       Ou usá-lo para uma descrição mais detalhada que realmente precise de justificação. */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button-primary {
+    background-color: #3A8DFF;
+    color: #dfdfdf;
+}
+
+.modal-button-primary:hover {
+    background-color: #559DFF;
+}
