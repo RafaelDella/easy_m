@@ -2,7 +2,7 @@ CREATE DATABASE easym;
 USE easym;
 
 CREATE TABLE Usuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     usuario VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -21,8 +21,8 @@ CREATE TABLE Gasto (
     valor_gasto DECIMAL(10,2) NOT NULL,
     is_imprevisto BOOLEAN NOT NULL DEFAULT FALSE,
     data_gasto DATE NOT NULL,
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Divida (
@@ -31,8 +31,8 @@ CREATE TABLE Divida (
     taxa_divida DECIMAL(5,2) NOT NULL,
     categoria_divida VARCHAR(50) NOT NULL,
     data_divida DATE NOT NULL,
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Meta (
@@ -43,7 +43,7 @@ CREATE TABLE Meta (
     valor_meta DECIMAL(10,2) NOT NULL,
     previsao_conclusao DATE NOT NULL, -- Calculadora de Juros com Amortização ou Definir pelo usuário as parcelas restantes
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Teto_gasto (
@@ -54,7 +54,7 @@ CREATE TABLE Teto_gasto (
     valor_teto DECIMAL(10,2) NOT NULL, -- Valor limite para os gastos
     valor_atual DECIMAL(10,2) DEFAULT 0.00, -- Soma dos gastos
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Entrada (
@@ -64,7 +64,7 @@ CREATE TABLE Entrada (
     categoria VARCHAR(50), -- Selector no front
     data_entrada DATE NOT NULL,
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Despesa (
@@ -75,11 +75,11 @@ CREATE TABLE Despesa (
     valor_despesa DECIMAL(10,2) NOT NULL, 
     data_vencimento DATE NOT NULL,
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE RecuperacaoSenha (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_recuperacao INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(150) NOT NULL,
     token VARCHAR(64) NOT NULL,
     expiracao DATETIME NOT NULL
