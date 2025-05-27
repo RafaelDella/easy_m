@@ -1,0 +1,158 @@
+/* assets/css/components.css */
+
+/* --- Top Header Styles --- */
+#top-header {
+    background-color: #262626; /* Cor de fundo do cabeçalho */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #37393b; /* Borda inferior */
+    z-index: 1; /* Para garantir que fique acima de outros elementos se necessário */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Adicione estas propriedades se o header for fixo ou tiver largura específica */
+    /* position: fixed; */
+    /* top: 0; */
+    /* width: 100%; */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.logo-img {
+    width: 40px; /* Tamanho da imagem do logo */
+    height: 40px;
+    border-radius: 50%; /* Se a imagem for circular */
+    object-fit: cover;
+}
+
+.logo-text {
+    color: #e6e6e6;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* --- Sidebar Styles --- */
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #262626;
+    min-height: 100vh;
+    height: auto;
+    border-radius: 0px 18px 18px 0px;
+    position: relative; /* Para posicionar o #open_btn */
+    transition: all .5s; /* Transição para abertura/fechamento */
+    min-width: 82px; /* Largura inicial da sidebar fechada */
+    z-index: 2; /* Para que a sidebar fique acima do conteúdo principal */
+    border-right: 2px solid #37393b;
+}
+
+#sidebar_content {
+    padding: 12px;
+}
+
+#user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+#user_avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+#user_infos {
+    display: flex;
+    flex-direction: column;
+}
+
+#user_infos span:last-child {
+    color: #a0a0a0;
+    font-size: 12px;
+}
+
+#side_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+}
+
+.side-item {
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.side-item.active {
+    background-color: #0ba18c;
+}
+
+.side-item:hover:not(.active) {
+    background-color: #37393b;
+}
+
+.side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza ícone quando sidebar está fechada */
+    color: #e6e6e6;
+}
+
+.side-item.active a {
+    color: #191919;
+}
+
+.side-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#open_btn {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: #0ba18c;
+    color: #191919;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.item-description {
+    width: 0px; /* Largura inicial para esconder o texto */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px; /* Altura inicial para esconder o texto */
+}
+
+/* Sidebar Aberta (controle via JavaScript) */
+#sidebar.open-sidebar {
+    min-width: 220px; /* Largura da sidebar aberta */
+}
+
+#sidebar.open-sidebar .item-description {
+    width: 150px; /* Revela o texto */
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    gap: 14px; /* Espaço entre ícone e texto */
+}
