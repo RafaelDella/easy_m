@@ -92,15 +92,15 @@ foreach ($meses as $mes) {
         <div class="saldo-container">
             <div class="card-financeiro" id="card-receita">
                 <h3>Total de Receitas</h3>
-                <p>R$ <?= number_formsat($totalReceita, 2, ',', '.') ?></p>
+                <p>R$ <?= number_format($totalReceita, 2, ',', '.') ?></p>
             </div>
             <div class="card-financeiro" id="card-gasto">
                 <h3>Total de Gastos</h3>
-                <p>R$ <?= number_formsat($totalGasto, 2, ',', '.') ?></p>
+                <p>R$ <?= number_format($totalGasto, 2, ',', '.') ?></p>
             </div>
             <div class="card-financeiro" id="card-saldo">
                 <h3>Saldo Atual</h3>
-                <p>R$ <?= number_formsat($saldoAtual, 2, ',', '.') ?></p>
+                <p>R$ <?= number_format($saldoAtual, 2, ',', '.') ?></p>
             </div>
         </div>
 
@@ -131,7 +131,7 @@ foreach ($meses as $mes) {
                         <tr>
                             <td><?= date('d/m/Y', strtotime($mov['data'])) ?></td>
                             <td><?= htmlspecialchars($mov['descricao']) ?></td>
-                            <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_formsat(abs($mov['valor']), 2, ',', '.') ?></td>
+                            <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
                             <td><?= $mov['tipo'] ?></td>
                             <td>
                                 <?php if (strtolower($mov['tipo']) === 'receita'): ?>

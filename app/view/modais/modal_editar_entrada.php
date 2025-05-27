@@ -4,7 +4,7 @@
         <span class="close" onclick="fecharModalEditar()">&times;</span>
         <h2>Editar Entrada</h2>
 
-        <forms action="editar_entrada.php" method="POST" onsubmit="return validarformsEditar()">
+        <form action="editar_entrada.php" method="POST" onsubmit="return validarformsEditar()">
             <input type="hidden" name="id" id="editar_entrada_id">
 
             <label for="editar_descricao">Descrição:</label>
@@ -29,6 +29,6 @@
                 <button type="submit" id="btn-submit">Salvar Alterações</button>
                 <button type="button" onclick="fecharModalEditar()" class="btn-cancelar">Cancelar</button>
             </div>
-        </forms>
+        </form>
     </div>
 </div>

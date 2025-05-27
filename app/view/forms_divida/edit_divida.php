@@ -33,7 +33,7 @@ if ($id) {
 }
 
 ?>
-<forms method="POST" action="edit_divida.php">
+<form method="POST" action="edit_divida.php">
   <input type="hidden" name="id_divida" value="<?= $divida['id_divida'] ?>">
   <input type="text" name="nome_divida" value="<?= $divida['nome_divida'] ?>" required>
   <input type="number" name="taxa_divida" step="0.01" value="<?= $divida['taxa_divida'] ?>" required>
@@ -41,4 +41,4 @@ if ($id) {
   <input type="date" name="data_divida" value="<?= $divida['data_divida'] ?>" required>
   <input type="number" name="usuario_id" value="<?= $divida['usuario_id'] ?>" required>
   <button type="submit">Salvar</button>
-</forms>
+</form>

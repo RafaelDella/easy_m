@@ -30,14 +30,14 @@ $email = $stmt->fetchColumn();
 <body>
     <div class="forms-container">
         <h2>Redefinir Senha</h2>
-        <forms action="atualizar_senha.php" method="POST">
+        <form action="atualizar_senha.php" method="POST">
             <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
             <label for="senha">Nova Senha:</label>
             <input type="password" name="senha" required minlength="8">
             <label for="confirmar">Confirmar Senha:</label>
             <input type="password" name="confirmar" required minlength="8">
             <button type="submit">Atualizar Senha</button>
-        </forms>
+        </form>
     </div>
 </body>
 </html>

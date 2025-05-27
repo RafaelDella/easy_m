@@ -17,14 +17,14 @@ $dividas = $conn->query("
 </head>
 <body>
   <h1>Gerenciador de Dívidas</h1>
-  <forms action="create_divida.php" method="POST" onsubmit="return validateforms()">
+  <form action="create_divida.php" method="POST" onsubmit="return validateforms()">
     <input type="text" name="nome_divida" placeholder="Nome da dívida" required>
     <input type="number" name="taxa_divida" step="0.01" placeholder="Taxa (%)" required>
     <input type="text" name="categoria_divida" placeholder="Categoria" required>
     <input type="date" name="data_divida" required>
     <input type="number" name="usuario_id" placeholder="ID do usuário" required>
     <button type="submit">Adicionar</button>
-  </forms>
+  </form>
   <table>
     <tr>
       <th>ID</th><th>Nome</th><th>Taxa (%)</th><th>Categoria</th><th>Vencimento</th><th>Usuário</th><th>Ações</th>

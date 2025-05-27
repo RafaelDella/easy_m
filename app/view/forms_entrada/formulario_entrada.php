@@ -114,7 +114,7 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1>Cadastrar Entrada</h1>
 
         <div class="top-bar">
-            <forms method="GET" action="" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <form method="GET" action="" style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <select name="categoria">
                     <option value="">Selecione a Categoria</option>
                     <option value="Salário" <?= $categoria == 'Salário' ? 'selected' : '' ?>>Salário</option>
@@ -153,7 +153,7 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <button type="submit" class="btn yellow">
                     <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
                 </button>
-            </forms>
+            </form>
 
 
             <div id="confirmModal" class="modal" style="display: none;">
@@ -171,11 +171,11 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <!-- Botão abre o modal -->
-            <forms id="forms-excluir-todas" action="deletar_todas_entradas.php" method="POST">
+            <form id="forms-excluir-todas" action="deletar_todas_entradas.php" method="POST">
                 <button type="button" class="btn red" onclick="abrirModalExcluir()">
                     <i class="fa-solid fa-delete-left"></i> Excluir Todas as Entradas
                 </button>
-            </forms>
+            </form>
 
             <button class="btn green" onclick="abrirModal()">
                 <i class="fa-solid fa-square-plus"></i> Cadastrar Entrada
@@ -193,7 +193,7 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="session-card">
                     <div class="session-header">Entrada: <?= htmlspecialchars($entrada['id_entrada']) ?></div>
                     <div class="session-info">Descrição: <?= htmlspecialchars(limitarTexto($entrada['descricao'])) ?></div>
-                    <div class="session-info">Valor: R$ <?= htmlspecialchars(number_formsat($entrada['valor'], 2, ',', '.')) ?></div>
+                    <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($entrada['valor'], 2, ',', '.')) ?></div>
                     <div class="session-info">Categoria: <?= htmlspecialchars(limitarTexto($entrada['categoria'])) ?></div>
                     <div class="session-info">Data: <?= htmlspecialchars(date('d/m/Y', strtotime($entrada['data_entrada']))) ?></div>
 
@@ -208,10 +208,10 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             "data_entrada" => $entrada["data_entrada"]
                         ]) ?>)'><i class="fa-solid fa-pen-to-square"></i> Alterar</button>
 
-                        <forms action="excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta entrada?');">
+                        <form action="excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta entrada?');">
                             <input type="hidden" name="id" value="<?= $entrada['id_entrada'] ?>">
                             <button class="btn red"><i class="fa-solid fa-trash"></i> Excluir</button>
-                        </forms>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>

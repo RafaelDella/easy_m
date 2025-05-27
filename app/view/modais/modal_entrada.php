@@ -4,7 +4,7 @@
         <span class="close" onclick="fecharModal()">&times;</span>
         <h2>Nova Entrada</h2>
 
-        <forms action="salvar_entrada.php" method="POST" onsubmit="return validarforms()">
+        <form action="salvar_entrada.php" method="POST" onsubmit="return validarforms()">
             <input type="hidden" name="id" id="entrada_id">
 
             <label for="descricao">Descrição:</label>
@@ -29,7 +29,7 @@
                 <button type="submit" id="btn-submit">Salvar Entrada</button>
                 <button type="button" onclick="fecharModal()" class="btn-cancelar">Cancelar</button>
             </div>
-        </forms>
+        </form>
     </div>
 </div>
 
