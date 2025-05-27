@@ -2,7 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
+<<<<<<< Updated upstream
     header("Location: ../formulario_login/formulario_login.html");
+=======
+    header("Location: ../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -14,7 +18,7 @@ $pdo = $db->connect();
 $usuario_id = $_SESSION['usuario_id'];
 
 // Buscar valores totais
-$stmtReceita = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE id_usuario = :usuario_id");
+$stmtReceita = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE usuario_id = :usuario_id");
 $stmtReceita->execute([':usuario_id' => $usuario_id]);
 $receita = $stmtReceita->fetchColumn() ?? 0;
 
@@ -25,7 +29,7 @@ $gastos = $stmtGastos->fetchColumn() ?? 0;
 $saldo = $receita - $gastos;
 
 // Buscar últimas entradas
-$stmtEntradas = $pdo->prepare("SELECT descricao, valor FROM Entrada WHERE id_usuario = :usuario_id ORDER BY data_entrada DESC LIMIT 5");
+$stmtEntradas = $pdo->prepare("SELECT descricao, valor FROM Entrada WHERE usuario_id = :usuario_id ORDER BY data_entrada DESC LIMIT 5");
 $stmtEntradas->execute([':usuario_id' => $usuario_id]);
 $entradas = $stmtEntradas->fetchAll(PDO::FETCH_ASSOC);
 
@@ -84,64 +88,100 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_entrada/forms_entrada.html">
+=======
+                            <a href="../view/form_entrada/forms_entrada.php">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-hand-holding-dollar"></i>
                                 <span class="item-description">Nova Entrada</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_gasto/forms_gasto.html">
+=======
+                            <a href="../view/forms_gasto/forms_gasto.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-sack-xmark"></i>
                                 <span class="item-description">Novo Gasto</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_divida/index.php">
+=======
+                            <a href="../view/forms_divida/index.php">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-cash-register"></i>
                                 <span class="item-description">Nova dívida</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_perfil/forms_perfil.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-user"></i>
                                 <span class="item-description">Teste de Perfil</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_perfil/forms_perfil.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-user"></i>
                                 <span class="item-description">Análisar dívida</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_perfil/forms_perfil.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-circle-dollar-to-slot"></i>
                                 <span class="item-description">Teto de gasto</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_perfil/forms_perfil.html">
                             <a href="../view/calculo_quitacao_divida/calcular_quitacao.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-calculator"></i>
                                 <span class="item-description">Calculadora de quitação</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_perfil/forms_perfil.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <span class="item-description">Gráfico de pizza</span>
                             </a>
                         </li>
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulário_perfil/forms_perfil.html">
+=======
+                            <a href="../view/forms_perfil/forms_perfil.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-comments-dollar"></i>
                                 <span class="item-description">Fórum</span>
                             </a>
@@ -150,7 +190,11 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
 
 
                         <li class="side-item">
+<<<<<<< Updated upstream
                             <a href="../view/formulario_login/formulario_login.html">
+=======
+                            <a href="../view/forms_login/form_login.html">
+>>>>>>> Stashed changes
                                 <i class="fa-solid fa-right-from-bracket"></i>
                                 <span class="item-description">Logout</span>
                             </a>

@@ -1,3 +1,14 @@
+<<<<<<< Updated upstream:app/view/perfil_usuario/perfil_usuario.html
+=======
+<?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../forms_login/form_login.html");
+    exit;
+}
+?>
+
+>>>>>>> Stashed changes:app/view/perfil_usuario/perfil_usuario.php
 <!DOCTYPE html>
 <html lang="pt-BR">
 

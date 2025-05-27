@@ -3,8 +3,13 @@ session_start();
 require_once '../../../app/db.php';
 
 // Verifica se o usuário está logado e se os dados foram enviados
+<<<<<<< Updated upstream
 if (!isset($_SESSION['usuario_id']) || !isset($_POST['id']) || $_POST['tipo'] !== 'receita') {
     header("Location: ../../formularioulario_login/formulario_login.html");
+=======
+if (!isset($_SESSION['usuario_id']) || !isset($_POST['id'])) {
+    header("Location: ../../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -20,7 +25,11 @@ try {
 
     echo "<script>
         alert('✅ Entrada excluída com sucesso!');
+<<<<<<< Updated upstream
         window.location.href='../extrato_page/extrato_view.php';
+=======
+        window.location.href='../form_entrada/forms_entrada.php';
+>>>>>>> Stashed changes
     </script>";
 } catch (PDOException $e) {
     echo "Erro ao excluir entrada: " . $e->getMessage();

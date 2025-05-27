@@ -20,7 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt2->execute([$email, $token, $expiracao]);
 
         // Link de redefinição
+<<<<<<< Updated upstream
         $link = "http://localhost/easy_m/app/view/formularioulario_login/redefinir_senha.php?token=$token";
+=======
+        $link = "http://localhost/easy_m/app/view/forms_login/redefinir_senha.php?token=$token";
+>>>>>>> Stashed changes
 
 
         // Simulação visual

@@ -66,6 +66,7 @@ CREATE TABLE Entrada (
     data_entrada DATE NOT NULL,
     usuario_id INT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
+<<<<<<< Updated upstream
 );
 
 CREATE TABLE Despesa (
@@ -77,6 +78,8 @@ CREATE TABLE Despesa (
     data_vencimento DATE NOT NULL,
     usuario_id INT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
+=======
+>>>>>>> Stashed changes
 );
 
 CREATE TABLE Despesa (
@@ -86,8 +89,8 @@ CREATE TABLE Despesa (
     categoria VARCHAR(50) NOT NULL,
     valor_despesa DECIMAL(10,2) NOT NULL, 
     data_vencimento DATE NOT NULL,
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 CREATE TABLE RecuperacaoSenha (

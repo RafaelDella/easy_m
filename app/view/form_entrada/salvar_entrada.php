@@ -3,7 +3,11 @@ session_start();
 require_once '../../../app/db.php';
 
 if (!isset($_SESSION['usuario_id'])) {
+<<<<<<< Updated upstream
     header("Location: ../../formularioulario_login/formulario_login.html");
+=======
+    header("Location: ../../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -58,7 +62,11 @@ if (!empty($_POST['id'])) {
 
         echo "<script>
             alert('✅ Entrada registrada com sucesso!');
+<<<<<<< Updated upstream
             window.location.href='../extrato_page/extrato_view.php';
+=======
+            window.location.href='../form_entrada/forms_entrada.php';
+>>>>>>> Stashed changes
         </script>";
         exit;
     } catch (PDOException $e) {

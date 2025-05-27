@@ -14,8 +14,13 @@ body {
   min-height: 100vh;
 }
 
+<<<<<<< Updated upstream
 /* formularioulário */
 formulario {
+=======
+/* forms */
+form {
+>>>>>>> Stashed changes
   background-color: #262626;
   padding: 2rem;
   border-radius: 10px;

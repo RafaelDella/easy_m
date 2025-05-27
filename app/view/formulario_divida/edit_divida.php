@@ -17,7 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['usuario_id'],
     $_POST['id_divida']
   ]);
+<<<<<<< Updated upstream
   header("Location: /easy_m/app/view/formularioulario_divida/index.php?status=" . urlencode("Dívida atualizada."));  
+=======
+  header("Location: /easy_m/app/view/forms_divida/index.php?status=" . urlencode("Dívida atualizada."));  
+>>>>>>> Stashed changes
   exit;
 }
 

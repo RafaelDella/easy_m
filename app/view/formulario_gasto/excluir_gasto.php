@@ -4,7 +4,11 @@ require_once '../../db.php';
 
 // Verifica se o usuário está logado e se o ID foi enviado
 if (!isset($_SESSION['usuario_id']) || !isset($_POST['id'])) {
+<<<<<<< Updated upstream
     header("Location: ../formularioulario_login/formulario_login.html");
+=======
+    header("Location: ../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 

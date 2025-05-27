@@ -3,7 +3,11 @@ session_start();
 require_once '../../../app/db.php';
 
 if (!isset($_SESSION['usuario_id'])) {
+<<<<<<< Updated upstream
     header("Location: ../../formularioulario_login/formulario_login.html");
+=======
+    header("Location: ../../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -12,7 +16,11 @@ $pdo = $db->connect();
 $usuario_id = $_SESSION['usuario_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+<<<<<<< Updated upstream
     // Parte de ATUALIZAÇÃO
+=======
+    // Coleta os dados do forms
+>>>>>>> Stashed changes
     $id = $_POST['id'];
     $descricao = $_POST['descricao'];
     $valor = $_POST['valor'];
@@ -20,9 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST['data_entrada'];
 
     try {
+<<<<<<< Updated upstream
         $stmt = $pdo->prepare("UPDATE Entrada 
             SET descricao = :descricao, valor = :valor, categoria = :categoria, data_entrada = :data 
             WHERE id_entrada = :id AND usuario_id = :usuario_id");
+=======
+        // Atualiza os dados da entrada no banco
+        $sql = "UPDATE Entrada SET descricao = :descricao, valor = :valor, categoria = :categoria, data_entrada = :data 
+                WHERE id_entrada = :id AND usuario_id = :usuario_id";
+>>>>>>> Stashed changes
 
         $stmt->execute([
             'descricao' => $descricao,
@@ -35,7 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<script>
             alert('✅ Entrada atualizada com sucesso!');
+<<<<<<< Updated upstream
             window.location.href='../extrato_page/extrato_view.php';
+=======
+            window.location.href = '../form_entrada/forms_entrada.php';
+>>>>>>> Stashed changes
         </script>";
         exit;
     } catch (PDOException $e) {

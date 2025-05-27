@@ -51,7 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // 1º Passo: Verificar se já existe email, cpf ou usuario
+<<<<<<< Updated upstream
             const respostaVerificacao = await fetch("../../view/formularioulario_cadastro/verifica_usuario.php", {
+=======
+            const respostaVerificacao = await fetch("../../view/forms_cadastro/verifica_usuario.php", {
+>>>>>>> Stashed changes
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, cpf, usuario }),
@@ -73,7 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // 2º Passo: Enviar cadastro via AJAX
+<<<<<<< Updated upstream
             const respostaCadastro = await fetch("../../view/formularioulario_cadastro/cadastrar_usuario.php", {
+=======
+            const respostaCadastro = await fetch("../../view/forms_cadastro/cadastrar_usuario.php", {
+>>>>>>> Stashed changes
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -91,7 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (dadosCadastro.sucesso) {
                 alert("✅ Cadastro realizado com sucesso!");
+<<<<<<< Updated upstream
                 window.location.href = "../../view/formularioulario_login/formulario_login.html"; // redireciona para login
+=======
+                window.location.href = "../../view/forms_login/form_login.html"; // redireciona para login
+>>>>>>> Stashed changes
             } else {
                 alert("❌ Erro ao cadastrar: " + (dadosCadastro.mensagem || "Tente novamente."));
             }

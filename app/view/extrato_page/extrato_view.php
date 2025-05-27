@@ -121,8 +121,13 @@ foreach ($meses as $mes) {
 =======
         <div class="botoes-container">
             <a href="../dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
+<<<<<<< Updated upstream
             <a href="../formulario_entrada/formularios_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
             <a href="../formularioulario_gasto/formularios_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
+=======
+            <a href="../form_entrada/forms_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
+            <a href="../forms_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
+>>>>>>> Stashed changes
         </div>
 >>>>>>> Stashed changes
 
@@ -147,8 +152,13 @@ foreach ($meses as $mes) {
                                     <a href="../formulario_entrada/formularios_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
                                     <formulario action="../formulario_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta entrada?');">
                                     <?php else: ?>
+<<<<<<< Updated upstream
                                         <a href="../formularioulario_gasto/formularios_gasto.html?id=<?= $mov['id_transacao'] ?>&tipo=gasto">✏️</a>
                                         <formulario action="../formularioulario_gasto/excluir_gasto.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este gasto?');">
+=======
+                                        <a href="../forms_gasto/forms_gasto.html?id=<?= $mov['id_transacao'] ?>&tipo=gasto">✏️</a>
+                                        <form action="../forms_gasto/excluir_gasto.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este gasto?');">
+>>>>>>> Stashed changes
                                         <?php endif; ?>
                                         <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
                                         <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">

@@ -3,7 +3,11 @@ session_start();
 require_once '../../db.php';
 
 if (!isset($_SESSION['usuario_id'])) {
+<<<<<<< Updated upstream
     header('Location: ../formularioulario_login/formulario_login.html');
+=======
+    header('Location: ../forms_login/form_login.html');
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -12,7 +16,11 @@ $pdo = $db->connect();
 
 $usuario_id = $_SESSION['usuario_id'];
 
+<<<<<<< Updated upstream
 // Captura dados do formularioulario
+=======
+// Captura dados do forms
+>>>>>>> Stashed changes
 $id = $_POST['id'] ?? null;
 $nome = $_POST['nome_gasto'];
 $desc = $_POST['desc_gasto'] ?? null;

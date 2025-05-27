@@ -4,7 +4,11 @@ require_once '../../db.php';
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
+<<<<<<< Updated upstream
     header("Location: ../formularioulario_login/formulario_login.html");
+=======
+    header("Location: ../forms_login/form_login.html");
+>>>>>>> Stashed changes
     exit;
 }
 
@@ -23,7 +27,11 @@ try {
 
     echo "<script>
         alert('✅ Conta excluída com sucesso!');
+<<<<<<< Updated upstream
         window.location.href = '../formularioulario_login/formulario_login.html';
+=======
+        window.location.href = '../forms_login/form_login.html';
+>>>>>>> Stashed changes
     </script>";
 } catch (PDOException $e) {
     echo "Erro ao excluir conta: " . $e->getMessage();
