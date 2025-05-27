@@ -41,7 +41,7 @@ try {
     }
 
     // Conexão com o banco de dados
-    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '1234');
+    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Verifica se email, CPF ou usuário já existem
