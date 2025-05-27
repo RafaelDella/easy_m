@@ -4,7 +4,7 @@ require_once '../../db.php';
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../formulario_login/form_login.html");
+    header("Location: ../forms_login/forms_login.html");
     exit;
 }
 
@@ -23,7 +23,7 @@ try {
 
     echo "<script>
         alert('✅ Conta excluída com sucesso!');
-        window.location.href = '../formulario_login/form_login.html';
+        window.location.href = '../forms_login/forms_login.html';
     </script>";
 } catch (PDOException $e) {
     echo "Erro ao excluir conta: " . $e->getMessage();

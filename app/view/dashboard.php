@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../formulario_login/form_login.html");
+    header("Location: ../forms_login/forms_login.html");
     exit;
 }
 
@@ -84,42 +84,42 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/form_entrada/formulario_entrada.php">
+                        <a href="../view/forms_entrada/forms_entrada.php">
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                             <span class="item-description">Nova Entrada</span>
                         </a>
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulario_gasto/forms_gasto.html">
+                        <a href="../view/forms_gasto/formss_gasto.html">
                             <i class="fa-solid fa-sack-xmark"></i>
                             <span class="item-description">Novo Gasto</span>
                         </a>
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulario_divida/index.php">
+                        <a href="../view/forms_divida/index.php">
                             <i class="fa-solid fa-cash-register"></i>
                             <span class="item-description">Nova dívida</span>
                         </a>
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulário_perfil/forms_perfil.html">
+                        <a href="../view/forms_perfil/formss_perfil.html">
                             <i class="fa-solid fa-user"></i>
                             <span class="item-description">Teste de Perfil</span>
                         </a>
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulário_perfil/forms_perfil.html">
+                        <a href="../view/forms_perfil/formss_perfil.html">
                             <i class="fa-solid fa-user"></i>
                             <span class="item-description">Análisar dívida</span>
                         </a>
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulário_perfil/forms_perfil.html">
+                        <a href="../view/forms_perfil/formss_perfil.html">
                             <i class="fa-solid fa-circle-dollar-to-slot"></i>
                             <span class="item-description">Teto de gasto</span>
                         </a>
@@ -133,7 +133,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                     </li>
 
                     <li class="side-item">
-                        <a href="../view/formulário_perfil/forms_perfil.html">
+                        <a href="../view/forms_perfil/formss_perfil.html">
                             <i class="fa-solid fa-chart-pie"></i>
                             <span class="item-description">Gráfico de pizza</span>
                         </a>
@@ -149,7 +149,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
 
 
                     <li class="side-item">
-                        <a href="../view/formulario_login/form_login.html">
+                        <a href="../view/forms_login/forms_login.html">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span class="item-description">Logout</span>
                         </a>
@@ -173,15 +173,15 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
             <section class="cards">
                 <div class="card">
                     <h3>Saldo Atual</h3>
-                    <p>R$<?= number_format($saldo, 2, ',', '.') ?></p>
+                    <p>R$<?= number_formsat($saldo, 2, ',', '.') ?></p>
                 </div>
                 <div class="card">
                     <h3>Receita</h3>
-                    <p>R$<?= number_format($receita, 2, ',', '.') ?></p>
+                    <p>R$<?= number_formsat($receita, 2, ',', '.') ?></p>
                 </div>
                 <div class="card">
                     <h3>Gastos</h3>
-                    <p>R$<?= number_format($gastos, 2, ',', '.') ?></p>
+                    <p>R$<?= number_formsat($gastos, 2, ',', '.') ?></p>
                 </div>
             </section>
 
@@ -204,7 +204,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                                 <?php foreach ($entradas as $entrada): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($entrada['descricao']) ?></td>
-                                        <td>R$ <?= number_format($entrada['valor'], 2, ',', '.') ?></td>
+                                        <td>R$ <?= number_formsat($entrada['valor'], 2, ',', '.') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -230,7 +230,7 @@ $perfilUsuario = $stmtPerfil->fetchColumn();
                                 <?php foreach ($ultimosGastos as $gasto): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($gasto['nome_gasto']) ?></td>
-                                        <td>R$ <?= number_format($gasto['valor_gasto'], 2, ',', '.') ?></td>
+                                        <td>R$ <?= number_formsat($gasto['valor_gasto'], 2, ',', '.') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>

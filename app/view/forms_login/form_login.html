@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - EasyM</title>
+    <link rel="stylesheet" href="../../assets/forms_login/forms_login.css">
+    <script src="login.js" defer></script>
+</head>
+
+<body>
+
+    <div class="forms-container">
+        <h2>Login - EasyM</h2>
+
+        <forms id="formsLogin">
+            <label for="usuario">Usuário ou E-mail:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <div class="extra-options">
+                <a href="esqueci_senha.html">Esqueceu a senha?</a>
+            </div>
+
+            <div id="mensagem-erro" style="color: red; text-align: center;"></div>
+            <button type="submit">Entrar</button>
+        </forms>
+
+        <p class="link-cadastro">
+            Ainda não tem uma conta? <a href="../forms_cadastro/forms_cadastro.html">Cadastre-se aqui</a>
+        </p>
+    </div>
+
+</body>
+
+</html>

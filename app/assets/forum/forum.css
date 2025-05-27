@@ -41,11 +41,11 @@ h2 {
     min-height: 250px;
     max-height: 250px !important;
     color: #e0e0e0;
-    transition: transform 0.2s ease-in-out;
+    transition: transforms 0.2s ease-in-out;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transforms: translateY(-5px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 

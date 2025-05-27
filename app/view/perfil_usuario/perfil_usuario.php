@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../formulario_login/form_login.html");
+    header("Location: ../forms_login/forms_login.html");
     exit;
 }
 ?>
@@ -19,7 +19,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <div class="container">
         <h2>Meu Perfil</h2>
 
-        <form id="formPerfil" action="atualizar_perfil.php" method="POST">
+        <forms id="formsPerfil" action="atualizar_perfil.php" method="POST">
             <input type="hidden" id="usuario_id" name="usuario_id">
 
             <label for="nome">Nome completo:</label>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
             <button type="button" class="btn-excluir-conta" onclick="confirmarExclusao()">Excluir Conta</button>
             <a href="../dashboard.php" class="voltar-link">← Voltar para o Painel</a>
-        </form>
+        </forms>
     </div>
 
     <script>

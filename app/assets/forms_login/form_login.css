@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #191919;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forms-container {
+    background-color: #262626;
+    width: 90%;
+    max-width: 400px;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+    border: 2px solid #37393b;
+}
+
+h2 {
+    text-align: center;
+    color: #e6e6e6;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 400;
+    color: #e6e6e6;
+    font-size: 0.95rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #262626;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #3A8DFF;
+    color: #dfdfdf;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #559DFF;
+}
+
+#mensagem-erro {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.link-cadastro {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #dfdfdf;
+}
+
+.link-cadastro a {
+    color: #0ba18c;
+    text-decoration: none;
+}
+
+.link-cadastro a:hover {
+    text-decoration: underline;
+}
+
+.extra-options {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.extra-options a {
+    font-size: 0.8rem;
+    color: #0ba18c;
+    text-decoration: none;
+}
+
+.extra-options a:hover {
+    text-decoration: underline;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
+    border: 1px solid #ccc;
+    transition: background-color 5000s ease-in-out 0s;
+}

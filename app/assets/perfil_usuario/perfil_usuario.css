@@ -35,15 +35,15 @@ h2 {
     margin-bottom: 2rem;
 }
 
-form label {
+forms label {
     display: block;
     margin-top: 1.2rem;
     font-size: 0.95rem;
     color: #cccccc;
 }
 
-form input,
-form select {
+forms input,
+forms select {
     width: 100%;
     padding: 10px 12px;
     margin-top: 6px;
@@ -55,8 +55,8 @@ form select {
     transition: border-color 0.2s ease-in-out;
 }
 
-form input:focus,
-form select:focus {
+forms input:focus,
+forms select:focus {
     border-color: #0ba18c;
     outline: none;
 }

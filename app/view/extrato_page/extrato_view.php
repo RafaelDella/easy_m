@@ -40,7 +40,7 @@ $movimentacoes = $stmtMovimentacoes->fetchAll(PDO::FETCH_ASSOC);
 
 // Buscar Receitas por mês para o gráfico
 $stmtReceitasMes = $pdo->prepare("
-        SELECT DATE_FORMAT(data_entrada, '%m/%y') AS mes, SUM(valor) AS total_receita
+        SELECT DATE_formsAT(data_entrada, '%m/%y') AS mes, SUM(valor) AS total_receita
         FROM Entrada
         WHERE usuario_id = :usuario_id
         GROUP BY mes
@@ -51,7 +51,7 @@ $receitasMes = $stmtReceitasMes->fetchAll(PDO::FETCH_KEY_PAIR);
 
 // Buscar Gastos por mês para o gráfico
 $stmtGastosMes = $pdo->prepare("
-        SELECT DATE_FORMAT(data_gasto, '%m/%y') AS mes, SUM(valor_gasto) AS total_gasto
+        SELECT DATE_formsAT(data_gasto, '%m/%y') AS mes, SUM(valor_gasto) AS total_gasto
         FROM Gasto
         WHERE usuario_id = :usuario_id
         GROUP BY mes
@@ -86,21 +86,21 @@ foreach ($meses as $mes) {
 </head>
 
 <body>
-    <div class="form-container">
+    <div class="forms-container">
         <h2>Extrato Financeiro</h2>
 
         <div class="saldo-container">
             <div class="card-financeiro" id="card-receita">
                 <h3>Total de Receitas</h3>
-                <p>R$ <?= number_format($totalReceita, 2, ',', '.') ?></p>
+                <p>R$ <?= number_formsat($totalReceita, 2, ',', '.') ?></p>
             </div>
             <div class="card-financeiro" id="card-gasto">
                 <h3>Total de Gastos</h3>
-                <p>R$ <?= number_format($totalGasto, 2, ',', '.') ?></p>
+                <p>R$ <?= number_formsat($totalGasto, 2, ',', '.') ?></p>
             </div>
             <div class="card-financeiro" id="card-saldo">
                 <h3>Saldo Atual</h3>
-                <p>R$ <?= number_format($saldoAtual, 2, ',', '.') ?></p>
+                <p>R$ <?= number_formsat($saldoAtual, 2, ',', '.') ?></p>
             </div>
         </div>
 
@@ -110,8 +110,8 @@ foreach ($meses as $mes) {
 
         <div class="botoes-container">
             <a href="../dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
-            <a href="../form_entrada/forms_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
-            <a href="../formulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
+            <a href="../forms_entrada/formss_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
+            <a href="../forms_gasto/formss_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
         </div>
 
         <h3>Movimentações Recentes</h3>
@@ -131,20 +131,20 @@ foreach ($meses as $mes) {
                         <tr>
                             <td><?= date('d/m/Y', strtotime($mov['data'])) ?></td>
                             <td><?= htmlspecialchars($mov['descricao']) ?></td>
-                            <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_format(abs($mov['valor']), 2, ',', '.') ?></td>
+                            <td><?= ($mov['valor'] >= 0 ? '' : '-') . 'R$ ' . number_formsat(abs($mov['valor']), 2, ',', '.') ?></td>
                             <td><?= $mov['tipo'] ?></td>
                             <td>
                                 <?php if (strtolower($mov['tipo']) === 'receita'): ?>
-                                    <a href="../form_entrada/forms_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
-                                    <form action="../form_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta entrada?');">
+                                    <a href="../forms_entrada/formss_entrada.html?id=<?= $mov['id_transacao'] ?>&tipo=receita">✏️</a>
+                                    <forms action="../forms_entrada/excluir_entrada.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta entrada?');">
                                     <?php else: ?>
-                                        <a href="../formulario_gasto/forms_gasto.html?id=<?= $mov['id_transacao'] ?>&tipo=gasto">✏️</a>
-                                        <form action="../formulario_gasto/excluir_gasto.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este gasto?');">
+                                        <a href="../forms_gasto/formss_gasto.html?id=<?= $mov['id_transacao'] ?>&tipo=gasto">✏️</a>
+                                        <forms action="../forms_gasto/excluir_gasto.php" method="POST" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este gasto?');">
                                         <?php endif; ?>
                                         <input type="hidden" name="id" value="<?= $mov['id_transacao'] ?>">
                                         <input type="hidden" name="tipo" value="<?= strtolower($mov['tipo']) ?>">
                                         <button type="submit" style="background:none; border:none; cursor:pointer;">🗑️</button>
-                                        </form>
+                                        </forms>
                             </td>
                         </tr>
                     <?php endforeach; ?>

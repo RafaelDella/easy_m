@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  const debtForm = document.getElementById('debtForm');
+  const debtforms = document.getElementById('debtforms');
   const popup = document.getElementById('popupResultado');
   const fecharPopup = document.getElementById('fecharPopup');
   const recalcularBtn = document.getElementById('recalcularBtn');
   const resultadoTexto = document.getElementById('resultadoTexto');
 
-  debtForm.addEventListener('submit', function (e) {
+  debtforms.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const tipoDivida = document.getElementById('tipoDivida').value;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modoQuitacao.value === 'valor_parcela') {
       const valorParcela = parseFloat(document.getElementById('valorParcela').value);
       if (isNaN(valorParcela) || valorParcela <= 0) {
-        alert("Informe um valor válido para a parcela.");
+        alert("Informse um valor válido para a parcela.");
         return;
       }
       const meses = Math.ceil((valorTotal * (1 + juros / 100)) / valorParcela);
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const tempo = parseFloat(document.getElementById('tempo').value);
       const unidade = document.getElementById('unidadeTempo').value;
       if (isNaN(tempo) || tempo <= 0) {
-        alert("Informe um tempo válido para quitação.");
+        alert("Informse um tempo válido para quitação.");
         return;
       }
       const mesesTotal = unidade === 'anos' ? tempo * 12 : tempo;
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   recalcularBtn.addEventListener('click', function () {
     popup.classList.remove('active');
-    debtForm.reset();
+    debtforms.reset();
     campoValorParcela.classList.remove('hidden');
     campoTempo.classList.add('hidden');
   });

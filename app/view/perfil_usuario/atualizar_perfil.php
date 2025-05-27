@@ -4,7 +4,7 @@ require_once '../../db.php';
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../formulario_login/form_login.html");
+    header("Location: ../forms_login/forms_login.html");
     exit;
 }
 
@@ -12,7 +12,7 @@ $usuario_id = $_SESSION['usuario_id'];
 
 // Verifica se os dados foram enviados corretamente
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Captura os dados do formulário
+    // Captura os dados do forms
     $nome = $_POST['nome'] ?? '';
     $email = $_POST['email'] ?? '';
     $usuario = $_POST['usuario'] ?? '';
