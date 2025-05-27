@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Atualiza os dados da entrada no banco
         $sql = "UPDATE Entrada SET descricao = :descricao, valor = :valor, categoria = :categoria, data_entrada = :data 
-                WHERE id_entrada = :id AND id_usuario = :usuario_id";
+                WHERE id_entrada = :id AND usuario_id = :usuario_id";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([

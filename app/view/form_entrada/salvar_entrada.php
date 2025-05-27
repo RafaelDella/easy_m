@@ -23,7 +23,7 @@ if (!empty($_POST['id'])) {
     try {
         $stmt = $pdo->prepare("UPDATE Entrada 
             SET descricao = :descricao, valor = :valor, categoria = :categoria, data_entrada = :data 
-            WHERE id_entrada = :id AND id_usuario = :usuario_id");
+            WHERE id_entrada = :id AND usuario_id = :usuario_id");
 
         $stmt->execute([
             'descricao' => $descricao,
@@ -45,15 +45,15 @@ if (!empty($_POST['id'])) {
 } else {
     // INSERÇÃO
     try {
-        $stmt = $pdo->prepare("INSERT INTO Entrada (descricao, valor, categoria, data_entrada, id_usuario) 
-            VALUES (:descricao, :valor, :categoria, :data_entrada, :id_usuario)");
+        $stmt = $pdo->prepare("INSERT INTO Entrada (descricao, valor, categoria, data_entrada, usuario_id) 
+            VALUES (:descricao, :valor, :categoria, :data_entrada, :usuario_id)");
 
         $stmt->execute([
             'descricao' => $descricao,
             'valor' => $valor,
             'categoria' => $categoria,
             'data_entrada' => $data_entrada,
-            'id_usuario' => $usuario_id
+            'usuario_id' => $usuario_id
         ]);
 
         echo "<script>

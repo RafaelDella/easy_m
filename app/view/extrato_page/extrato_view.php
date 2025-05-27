@@ -10,7 +10,7 @@ $pdo = $db->connect();
 $usuario_id = $_SESSION['usuario_id'];
 
 // Buscar total de Receitas
-$stmtReceitasTotal = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE id_usuario = :usuario_id");
+$stmtReceitasTotal = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE usuario_id = :usuario_id");
 $stmtReceitasTotal->execute(['usuario_id' => $usuario_id]);
 $totalReceita = $stmtReceitasTotal->fetchColumn() ?? 0;
 
@@ -26,7 +26,7 @@ $saldoAtual = $totalReceita - $totalGasto;
 $stmtMovimentacoes = $pdo->prepare("
     (SELECT id_entrada AS id_transacao, descricao, valor, data_entrada AS data, 'Receita' AS tipo
     FROM Entrada
-    WHERE id_usuario = :usuario_id)
+    WHERE usuario_id = :usuario_id)
     UNION ALL
     (SELECT id_gasto AS id_transacao, nome_gasto AS descricao, -valor_gasto AS valor, data_gasto AS data, 'Gasto' AS tipo
     FROM Gasto
@@ -42,7 +42,7 @@ $movimentacoes = $stmtMovimentacoes->fetchAll(PDO::FETCH_ASSOC);
 $stmtReceitasMes = $pdo->prepare("
         SELECT DATE_FORMAT(data_entrada, '%m/%y') AS mes, SUM(valor) AS total_receita
         FROM Entrada
-        WHERE id_usuario = :usuario_id
+        WHERE usuario_id = :usuario_id
         GROUP BY mes
         ORDER BY STR_TO_DATE(mes, '%m/%y')
     ");

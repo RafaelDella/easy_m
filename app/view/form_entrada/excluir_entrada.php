@@ -15,7 +15,7 @@ $db = new DB();
 $pdo = $db->connect();
 
 try {
-    $stmt = $pdo->prepare("DELETE FROM Entrada WHERE id_entrada = :id AND id_usuario = :usuario_id");
+    $stmt = $pdo->prepare("DELETE FROM Entrada WHERE id_entrada = :id AND usuario_id = :usuario_id");
     $stmt->execute(['id' => $id, 'usuario_id' => $usuario_id]);
 
     echo "<script>

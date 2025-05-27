@@ -30,7 +30,7 @@ $ano       = $_GET['ano'] ?? '';
 $busca     = trim($_GET['busca'] ?? '');
 
 // Montar SQL com filtros
-$sql = "SELECT * FROM Entrada WHERE id_usuario = :usuario_id";
+$sql = "SELECT * FROM Entrada WHERE usuario_id = :usuario_id";
 $params = ['usuario_id' => $usuario_id];
 
 if (!empty($categoria)) {

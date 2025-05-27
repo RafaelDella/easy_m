@@ -14,7 +14,7 @@ $pdo = $db->connect();
 $usuario_id = $_SESSION['usuario_id'];
 
 // Buscar valores totais
-$stmtReceita = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE id_usuario = :usuario_id");
+$stmtReceita = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE usuario_id = :usuario_id");
 $stmtReceita->execute([':usuario_id' => $usuario_id]);
 $receita = $stmtReceita->fetchColumn() ?? 0;
 
@@ -25,7 +25,7 @@ $gastos = $stmtGastos->fetchColumn() ?? 0;
 $saldo = $receita - $gastos;
 
 // Buscar últimas entradas
-$stmtEntradas = $pdo->prepare("SELECT descricao, valor FROM Entrada WHERE id_usuario = :usuario_id ORDER BY data_entrada DESC LIMIT 5");
+$stmtEntradas = $pdo->prepare("SELECT descricao, valor FROM Entrada WHERE usuario_id = :usuario_id ORDER BY data_entrada DESC LIMIT 5");
 $stmtEntradas->execute([':usuario_id' => $usuario_id]);
 $entradas = $stmtEntradas->fetchAll(PDO::FETCH_ASSOC);
 
