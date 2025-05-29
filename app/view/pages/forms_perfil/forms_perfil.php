@@ -11,7 +11,7 @@ session_start();
 // em relação a este arquivo (perfil_financeiro.php).
 // Exemplo: se perfil_financeiro.php está em 'easy_m1/app/view/pages/forms_perfil/'
 // e o login está em 'easy_m1/forms_login/1-forms_login.html', o caminho seria '../../../../forms_login/1-forms_login.html'.
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../../forms_login/1-forms_login.html"); // Ajuste este caminho se necessário!
     exit;
 }
@@ -26,12 +26,12 @@ $db = new DB();
 $pdo = $db->connect();
 
 // Obtenha o ID do usuário da sessão.
-$usuario_id = $_SESSION['usuario_id'];
+$id_usuario = $_SESSION['id_usuario'];
 
 // 4. Obtenha os dados do usuário (necessários para a sidebar e header).
 // Busca o nome e perfil do usuário da tabela 'Usuario'.
 $stmtUsuario = $pdo->prepare("SELECT nome, perfil FROM Usuario WHERE id_usuario = :id_usuario");
-$stmtUsuario->execute([':id_usuario' => $usuario_id]);
+$stmtUsuario->execute([':id_usuario' => $id_usuario]);
 $dadosUsuario = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
 
 // Defina as variáveis $nome e $perfilUsuario com os dados do banco de dados,

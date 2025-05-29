@@ -29,7 +29,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             </li>
 
             <li class="side-item">
-                <a href="view/extrato_page/extrato_view.php">
+                <a href="../extrato/extrato.php">
                     <i class="fa-solid fa-file-invoice"></i>
                     <span class="item-description">Extrato</span>
                 </a>

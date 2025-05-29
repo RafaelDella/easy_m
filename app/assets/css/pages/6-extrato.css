@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilos para o main, que é o conteúdo principal do dashboard */
+main {
+    flex: 1; /* Permite que o main ocupe todo o espaço vertical restante dentro do content-wrapper */
+    padding: 20px; /* Padding interno para o conteúdo do main */
+    padding-top: 90px; /* Espaço para o cabeçalho fixo (se a altura do header for 80px) */
+    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
+    background-color: #1a1a1a; /* Cor de fundo escura do main, conforme suas imagens */
+    color: #e6e6e6; /* Cor padrão do texto no main */
+    font-family: 'Inter', sans-serif; /* Fonte para o dashboard */
+}
+
+h2,
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #e6e6e6;
+}
+
+.form-container {
+    background-color: #262626;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #37393b;
+    overflow-x: auto;
+}
+
+.saldo-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card-financeiro {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.card-financeiro h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #0ba18c;
+}
+
+.card-financeiro p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #ffffff;
+}
+
+.grafico-container {
+    margin: 30px auto 50px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    max-width: 700px;
+    border: 1px solid #333;
+}
+
+#graficoFinanceiro {
+    width: 100%;
+    height: 400px;
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.tabela-extrato {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #fff;
+}
+
+.tabela-extrato th,
+.tabela-extrato td {
+    padding: 12px;
+    border: 1px solid #444;
+    text-align: center;
+}
+
+.tabela-extrato th {
+    background-color: #0ba18c;
+    color: #fff;
+    font-weight: 500;
+}
+
+.tabela-extrato tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.tabela-extrato tr:hover {
+    background-color: #333;
+}
+
+.botoes-container {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.botao-link {
+    display: inline-block;
+    background-color: #3A8DFF;
+    color: #fff;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.botao-link:hover {
+    background-color: #559DFF;
+}
+
+@media screen and (max-width: 768px) {
+    .saldo-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grafico-container {
+        width: 100%;
+    }
+}

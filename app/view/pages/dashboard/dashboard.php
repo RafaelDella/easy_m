@@ -4,7 +4,7 @@
 session_start();
 
 // 1. Verificação de autenticação
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../forms_login/1-forms_login.html");
     exit;
 }
@@ -15,11 +15,11 @@ require_once __DIR__ . '../../../../db.php';
 $db = new DB();
 $pdo = $db->connect();
 
-$usuario_id = $_SESSION['usuario_id'];
+$id_usuario = $_SESSION['id_usuario'];
 
 // 3. Obtenção de dados do usuário
 $stmtUsuario = $pdo->prepare("SELECT nome, perfil FROM Usuario WHERE id_usuario = :id_usuario");
-$stmtUsuario->execute([':id_usuario' => $usuario_id]);
+$stmtUsuario->execute([':id_usuario' => $id_usuario]);
 $dadosUsuario = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
 
 $nome = $dadosUsuario['nome'] ?? 'Usuário';
@@ -27,29 +27,29 @@ $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
 
 // 4. Obtenção de dados específicos do Dashboard
 $stmtReceita = $pdo->prepare("SELECT SUM(valor) as total_receita FROM Entrada WHERE id_usuario = :id_usuario");
-$stmtReceita->execute([':id_usuario' => $usuario_id]);
+$stmtReceita->execute([':id_usuario' => $id_usuario]);
 $receita = $stmtReceita->fetchColumn() ?? 0;
 
 $stmtGastos = $pdo->prepare("SELECT SUM(valor_gasto) as total_gasto FROM Gasto WHERE id_usuario = :id_usuario");
-$stmtGastos->execute([':id_usuario' => $usuario_id]);
+$stmtGastos->execute([':id_usuario' => $id_usuario]);
 $gastos = $stmtGastos->fetchColumn() ?? 0;
 
 $saldo = $receita - $gastos;
 
 $stmtEntradas = $pdo->prepare("SELECT descricao, valor FROM Entrada WHERE id_usuario = :id_usuario ORDER BY data_entrada DESC LIMIT 5");
-$stmtEntradas->execute([':id_usuario' => $usuario_id]);
+$stmtEntradas->execute([':id_usuario' => $id_usuario]);
 $entradas = $stmtEntradas->fetchAll(PDO::FETCH_ASSOC);
 
 $stmtUltimosGastos = $pdo->prepare("SELECT nome_gasto, valor_gasto FROM Gasto WHERE id_usuario = :id_usuario ORDER BY data_gasto DESC LIMIT 5");
-$stmtUltimosGastos->execute([':id_usuario' => $usuario_id]);
+$stmtUltimosGastos->execute([':id_usuario' => $id_usuario]);
 $ultimosGastos = $stmtUltimosGastos->fetchAll(PDO::FETCH_ASSOC);
 
 $stmtDividas = $pdo->prepare("SELECT nome_divida, taxa_divida FROM Divida WHERE id_usuario = :id_usuario ORDER BY data_divida DESC LIMIT 5");
-$stmtDividas->execute([':id_usuario' => $usuario_id]);
+$stmtDividas->execute([':id_usuario' => $id_usuario]);
 $ultimasDividas = $stmtDividas->fetchAll(PDO::FETCH_ASSOC);
 
 $stmtMetas = $pdo->prepare("SELECT titulo, valor_meta, previsao_conclusao FROM Meta WHERE id_usuario = :id_usuario ORDER BY previsao_conclusao ASC LIMIT 5");
-$stmtMetas->execute([':id_usuario' => $usuario_id]);
+$stmtMetas->execute([':id_usuario' => $id_usuario]);
 $ultimasMetas = $stmtMetas->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
