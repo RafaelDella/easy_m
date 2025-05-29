@@ -57,7 +57,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             </li>
 
             <li class="side-item">
-                <a href="../forms_perfil/1-forms_perfil.php">
+                <a href="../forms_teste_perfil/1-forms_teste_perfil.php">
                     <i class="fa-solid fa-user"></i>
                     <span class="item-description">Teste de Perfil</span>
                 </a>
