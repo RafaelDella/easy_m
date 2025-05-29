@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    flex: 1; /* Permite que o main ocupe todo o espaço vertical restante dentro do content-wrapper */
+    padding: 20px; /* Padding interno para o conteúdo do main */
+    padding-top: 90px; /* Espaço para o cabeçalho fixo (se a altura do header for 80px) */
+    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
+    background-color: #1a1a1a; /* Cor de fundo escura do main, conforme suas imagens */
+    color: #e6e6e6; /* Cor padrão do texto no main */
+    font-family: 'Inter', sans-serif; /* Fonte para o dashboard */
+}
