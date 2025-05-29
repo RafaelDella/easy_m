@@ -1,0 +1,192 @@
+[
+  {
+    "tipo": "Endividado",
+    "titulo": "Como sair do vermelho",
+    "descricao": "Dicas práticas para equilibrar suas contas.",
+    "autor": "Equipe EasyM",
+    "conteudo": "Recuperar o controle financeiro é possível. Aqui, você encontra passos simples para reorganizar seu orçamento e começar a reverter o quadro de endividamento."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Organize suas dívidas",
+    "descricao": "Priorize e negocie com inteligência.",
+    "autor": "Carlos Silva",
+    "conteudo": "Entender suas dívidas e saber por onde começar é essencial. Aprenda a priorizar pagamentos, negociar com credores e criar um plano realista."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Entenda os juros",
+    "descricao": "Como os juros impactam sua vida financeira.",
+    "autor": "Mariana Rocha",
+    "conteudo": "Juros podem fazer sua dívida crescer rápido. Saber como funcionam e como reduzi-los é uma das chaves para sair do sufoco financeiro."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Controle seus gastos fixos",
+    "descricao": "Descubra onde pode economizar.",
+    "autor": "Roberto Dias",
+    "conteudo": "Gastos fixos consomem boa parte da renda. Revise contratos, renegocie serviços e encontre oportunidades reais de economia mês a mês."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Renegociação de dívidas",
+    "descricao": "Como conversar com credores e negociar melhor.",
+    "autor": "Isabela Martins",
+    "conteudo": "Negociar dívidas é possível. Saiba como abordar os credores com clareza e buscar acordos que caibam no seu bolso, sem comprometer o essencial."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Use planilhas para controle",
+    "descricao": "Organização é o primeiro passo para sair das dívidas.",
+    "autor": "João Neto",
+    "conteudo": "Controlar o que entra e sai é essencial. Com uma planilha simples, você enxerga melhor seus gastos e toma decisões com mais segurança."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Corte supérfluos temporariamente",
+    "descricao": "Momentos críticos exigem foco total.",
+    "autor": "Vanessa Luz",
+    "conteudo": "Reduzir gastos não essenciais, como assinaturas e delivery, pode aliviar o orçamento rapidamente. Depois, é possível reavaliar com calma."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Procure ajuda especializada",
+    "descricao": "Consultoria financeira pode fazer diferença.",
+    "autor": "Rafael Dias",
+    "conteudo": "Um profissional pode enxergar caminhos e soluções que você ainda não viu. Às vezes, uma orientação certeira muda todo o cenário."
+  },
+  {
+    "tipo": "Endividado",
+    "titulo": "Use o 13º com estratégia",
+    "descricao": "Pague dívidas prioritárias com entradas extras.",
+    "autor": "Equipe EasyM",
+    "conteudo": "Recebeu uma renda extra? Priorize dívidas com juros altos. É uma forma eficaz de reduzir o peso das parcelas futuras."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Como começar a investir",
+    "descricao": "Dicas para iniciantes no mundo dos investimentos.",
+    "autor": "Ana Souza",
+    "conteudo": "Investir não é complicado. Com passos simples, você pode sair da poupança e começar a fazer seu dinheiro render mais, com segurança."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Metas financeiras 101",
+    "descricao": "Como definir metas de curto e longo prazo.",
+    "autor": "Lucas Alves",
+    "conteudo": "Saber o que você quer conquistar ajuda a planejar melhor. Metas claras tornam suas decisões financeiras mais eficientes e motivadoras."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Reserva de emergência",
+    "descricao": "Por que e como construir uma.",
+    "autor": "Bruna Lima",
+    "conteudo": "Ter uma reserva é essencial para imprevistos. Ela traz segurança e evita que você precise recorrer a dívidas em momentos difíceis."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Evite armadilhas de consumo",
+    "descricao": "Como manter seu dinheiro seguro.",
+    "autor": "Felipe Dias",
+    "conteudo": "Ofertas, descontos e gatilhos emocionais podem sabotar seu planejamento. Aprenda a reconhecer e resistir a essas armadilhas."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Renda fixa para iniciantes",
+    "descricao": "Conheça CDB, LCI e outros investimentos seguros.",
+    "autor": "Carla Moura",
+    "conteudo": "Investimentos de renda fixa são ideais para quem está começando. Eles oferecem previsibilidade e protegem seu dinheiro contra a inflação."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Controle emocional nos investimentos",
+    "descricao": "Não tome decisões baseadas em medo.",
+    "autor": "Eduardo Vieira",
+    "conteudo": "O mercado oscila, mas seu plano deve ser firme. Saber lidar com emoções evita decisões precipitadas que podem gerar prejuízos."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Diversificação é chave",
+    "descricao": "Nunca coloque todos os ovos na mesma cesta.",
+    "autor": "Fernanda Azevedo",
+    "conteudo": "Diversificar reduz riscos. Ao distribuir seus investimentos, você protege seu patrimônio e aumenta as chances de bons resultados."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Entenda seu perfil de investidor",
+    "descricao": "Conheça seu apetite a risco antes de investir.",
+    "autor": "Matheus Teixeira",
+    "conteudo": "Seu perfil determina os investimentos ideais para você. Com autoconhecimento, é mais fácil tomar decisões alinhadas com seus objetivos."
+  },
+  {
+    "tipo": "Poupador",
+    "titulo": "Aproveite os juros compostos",
+    "descricao": "Tempo é o maior aliado do investidor.",
+    "autor": "Amanda Reis",
+    "conteudo": "Investir com frequência, mesmo valores baixos, faz diferença com o tempo. Os juros compostos ajudam seu dinheiro a crescer de forma acelerada."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Economize na conta de luz",
+    "descricao": "Dicas para reduzir o consumo energético.",
+    "autor": "Juliana Costa",
+    "conteudo": "Pequenas atitudes, como desligar aparelhos e usar a luz natural, ajudam a economizar energia e reduzem sua conta no final do mês."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Como planejar as compras do mês",
+    "descricao": "Evite desperdício e economize.",
+    "autor": "Ricardo Lopes",
+    "conteudo": "Fazer uma lista, comparar preços e comprar em atacado são estratégias simples para reduzir gastos e evitar desperdícios em casa."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Receitas econômicas e nutritivas",
+    "descricao": "Alimente-se bem sem gastar muito.",
+    "autor": "Camila Neves",
+    "conteudo": "Planejar as refeições da semana permite usar melhor os ingredientes e preparar pratos saudáveis e acessíveis para toda a família."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Produtos de limpeza caseiros",
+    "descricao": "Alternativas baratas e eficientes.",
+    "autor": "Eduarda Melo",
+    "conteudo": "Ingredientes como vinagre, bicarbonato e limão limpam bem, são baratos e fazem bem ao meio ambiente. Experimente substituições simples."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Dicas para reutilizar água",
+    "descricao": "Reduza o consumo com técnicas simples.",
+    "autor": "Cláudio Martins",
+    "conteudo": "A água da máquina de lavar, por exemplo, pode ser reutilizada para lavar pisos e calçadas. Pequenas mudanças têm grande impacto."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Organização de tarefas domésticas",
+    "descricao": "Divida responsabilidades e otimize tempo.",
+    "autor": "Sandra Ribeiro",
+    "conteudo": "Um cronograma semanal ajuda a distribuir melhor as tarefas e evita acúmulo. A casa fica em ordem com menos esforço."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Faça você mesmo: consertos simples",
+    "descricao": "Aprenda a resolver pequenos problemas.",
+    "autor": "Pedro Henrique",
+    "conteudo": "Trocar uma lâmpada, apertar um parafuso ou consertar uma torneira são tarefas simples que geram economia e autonomia."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Aproveite alimentos por completo",
+    "descricao": "Use cascas e talos em receitas.",
+    "autor": "Bianca Silva",
+    "conteudo": "Cascas, talos e folhas rendem receitas criativas e nutritivas. Além de economizar, você evita o desperdício e varia no cardápio."
+  },
+  {
+    "tipo": "Doméstico",
+    "titulo": "Crianças e finanças domésticas",
+    "descricao": "Inclua os pequenos na rotina de economia.",
+    "autor": "Luciana Tavares",
+    "conteudo": "Ensinar desde cedo o valor do dinheiro ajuda a formar adultos mais conscientes. Comece com tarefas simples e conversas naturais."
+  }
+
+]

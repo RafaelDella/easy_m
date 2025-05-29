@@ -56,7 +56,6 @@ $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
     <link rel="stylesheet" href="../../../assets/css/pages/5-forms_perfil.css">
 </head>
 
-<body>
     <?php include_once('../includes/sidebar.php'); ?>
     <?php include_once('../includes/header.php'); ?>
 
