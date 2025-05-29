@@ -1,0 +1,220 @@
+/* ===== GLOBAL STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
+
+/* ===== HEADER STYLES ===== */
+#top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #262626;
+  color: #0ba18c;
+  padding: 10px 20px;
+  height: 8vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-left: 270px;
+  border: 2px solid #37393b;
+  border-radius: 0px 0px 8px 0px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+/* ===== SIDEBAR STYLES ===== */
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #262626;
+  min-height: 100vh;
+  height: auto;
+  border-radius: 0px 18px 18px 0px;
+  position: relative;
+  transition: all 0.5s;
+  min-width: 82px;
+  z-index: 1001;
+  border-right: 2px solid #37393b;
+}
+
+#sidebar_content {
+  padding: 12px;
+}
+
+/* User Info Section */
+#user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+#user_avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0ba18c;
+}
+
+#user_infos {
+  display: flex;
+  flex-direction: column;
+}
+
+#user_infos span:last-child {
+  color: #a0a0a0;
+  font-size: 12px;
+}
+
+/* Sidebar Items */
+#side_items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.side-item {
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.side-item.active {
+  background-color: #2e2e2e;
+}
+
+.side-item:hover:not(.active) {
+  background-color: #0ba18c;
+  color: #2e2e2e;
+}
+
+.side-item a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0ba18c;
+  transition: color 0.3s;
+}
+
+.side-item.active a {
+  color: #0ba18c;
+}
+
+.side-item a i {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.side-item:hover a {
+  color: #2e2e2e;
+}
+
+.side-item:hover:not(.active) a i {
+  color: #2e2e2e;
+}
+
+.side-item:hover:not(.active) .item-description {
+  color: #2e2e2e !important;
+}
+
+/* Logout Section */
+#logout {
+  border-top: 1px solid #e3e9f7;
+  padding: 12px;
+}
+
+#logout_btn {
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border-radius: 8px;
+  text-align: start;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#logout_btn:hover {
+  background-color: #2e2e2e;
+}
+
+/* Sidebar Toggle Button */
+#open_btn {
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  color: #2e2e2e;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0ba18c;
+}
+
+#open_btn_icon {
+  transition: transform 0.3s ease;
+}
+
+/* Item Description */
+.item-description {
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  transition: width 0.6s, height 0.6s;
+  height: 0;
+  color: #0ba18c;
+}
+
+/* ===== OPEN SIDEBAR STATES ===== */
+.open-sidebar #open_btn_icon {
+  transform: rotate(180deg);
+}
+
+#sidebar.open-sidebar {
+  min-width: 240px;
+}
+
+#sidebar.open-sidebar .item-description {
+  width: 150px;
+  height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+  justify-content: flex-start;
+  gap: 14px;
+}

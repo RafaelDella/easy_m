@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
+main {
+    flex: 1;
+    padding: 20px;
+    padding-top: 90px;
+    overflow-y: auto;
+    background-color: #1a1a1a; /* Confirme esta cor para o fundo do main */
+    color: #e6e6e6;
+
+    /* PROPRIEDADES PARA CENTRALIZAÇÃO HORIZONTAL (Opção 2) */
+    display: flex;          /* Transforma 'main' em um contêiner flex */
+    flex-direction: column; /* Empilha os filhos (h1 e form) verticalmente */
+    align-items: center;    
+}
+
+form {
+    width: 100%;
+    max-width: 600px; /* Limita a largura máxima do formulário */
+    background-color: #262626;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+    border: 2px solid #37393b;
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #e6e6e6;
+    margin-bottom: 2rem;
+}
+
+form label {
+    display: flex; /* Garante que o input e o texto fiquem lado a lado dentro do label */
+    align-items: center; /* Alinha verticalmente */
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    color: #cccccc;
+    cursor: pointer;
+}
+
+form input[type="radio"] {
+    width: auto; /* Permite que o radio button tenha sua largura natural */
+    margin-right: 10px; /* Espaçamento entre o radio e o texto */
+    /* Remova qualquer 'width: 100%' que possa estar afetando os radios */
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    background-color: #1e1e1e;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #0ba18c;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 24px;
+    background-color: #0ba18c;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #13b39e;
+}
+
+.btn-excluir-conta {
+    background-color: #e63946;
+    margin-top: 14px;
+}
+
+.btn-excluir-conta:hover {
+    background-color: #b02e37;
+}
+
+.voltar-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #0ba18c;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: text-decoration 0.3s;
+}
+
+.voltar-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de preenchimento automático */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1e1e1e inset;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: white;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button, .btn-excluir-conta {
+        font-size: 0.95rem;
+    }
+}
+.form-step {
+    display: none; /* Esconde todas as etapas por padrão */
+}
+
+.form-step.active {
+    display: block; /* Mostra apenas a etapa com a classe 'active' */
+}

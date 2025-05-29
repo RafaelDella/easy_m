@@ -1,0 +1,187 @@
+/* public/assets/css/pages/1-dashboard.css */
+
+/* Importação da fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+/* Estilos para o main, que é o conteúdo principal do dashboard */
+main {
+    flex: 1; /* Permite que o main ocupe todo o espaço vertical restante dentro do content-wrapper */
+    padding: 20px; /* Padding interno para o conteúdo do main */
+    padding-top: 90px; /* Espaço para o cabeçalho fixo (se a altura do header for 80px) */
+    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
+    background-color: #1a1a1a; /* Cor de fundo escura do main, conforme suas imagens */
+    color: #e6e6e6; /* Cor padrão do texto no main */
+    font-family: 'Inter', sans-serif; /* Fonte para o dashboard */
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards se não ocuparem a linha toda */
+}
+
+.card {
+    background: #262626;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 240px; /* Largura mínima para o card */
+    max-width: 300px; /* Largura máxima para controlar o tamanho */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efeito sutil ao passar o mouse */
+}
+
+.card h3 {
+    color: #0ba18c; /* Cor para os títulos dos cards */
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.card p {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #e6e6e6;
+}
+
+/* --- Gráficos --- */
+.charts {
+    margin-top: 30px;
+    background-color: #262626;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #333;
+    height: 400px; /* Altura fixa para o gráfico */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.charts h2 {
+    color: #e6e6e6;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#financeChart {
+    max-width: 100%;
+    height: 300px; /* Altura do canvas dentro do container */
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 10px; /* Espaçamento interno para o gráfico */
+}
+
+/* --- Tabelas --- */
+.tables {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px; /* Espaçamento superior para esta seção */
+    justify-content: center; /* Centraliza as tabelas se não ocuparem a linha toda */
+}
+
+.table-box {
+    background: #262626;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 300px; /* Largura mínima para a tabela */
+    max-width: 45%; /* Para permitir duas colunas em telas maiores */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-box h3 {
+    color: #0ba18c; /* Cor para os títulos das tabelas */
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.table-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    color: #e6e6e6;
+}
+
+.table-box th,
+.table-box td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.table-box th {
+    background-color: #0ba18c;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.table-box tbody tr:last-child td {
+    border-bottom: none; /* Remove a borda da última linha */
+}
+
+.table-box tbody tr:hover {
+    background-color: #2e2e2e; /* Efeito de hover nas linhas da tabela */
+}
+
+/* --- Responsividade Básica --- */
+@media (max-width: 768px) {
+    #top-header {
+        flex-direction: column; /* Empilha itens do header em telas pequenas */
+        text-align: center;
+        padding-left: 20px !important; /* Reseta padding-left para dispositivos móveis */
+    }
+
+    #top-header .user-info-header {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    #top-header .profile-icon {
+        margin-left: 0; /* Centraliza o ícone do perfil */
+    }
+
+    main {
+        padding-left: 20px !important; /* Reseta padding-left para dispositivos móveis */
+        margin-left: 0 !important; /* Reseta margin-left para dispositivos móveis */
+        width: 100%;
+    }
+
+    #open_btn {
+        top: 20px; /* Ajusta a posição do botão em telas pequenas */
+        left: 10px; /* Posiciona o botão na esquerda */
+        right: auto;
+        z-index: 11; /* Acima da sidebar */
+    }
+
+    .cards, .tables {
+        flex-direction: column; /* Empilha cards e tabelas em telas pequenas */
+        align-items: center; /* Centraliza os itens empilhados */
+    }
+
+    .card, .table-box {
+        max-width: 95%; /* Ocupa quase toda a largura disponível */
+        min-width: unset;
+    }
+
+    .charts {
+        height: auto; /* Permite que o gráfico se ajuste */
+    }
+}
