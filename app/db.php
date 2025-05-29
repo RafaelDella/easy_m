@@ -3,7 +3,7 @@ class DB {
     private $host = 'localhost';
     private $dbname = 'easym';
     private $user = 'root';
-    private $password = '1234';
+    private $password = '';
     private $conn;
 
     public function connect() {

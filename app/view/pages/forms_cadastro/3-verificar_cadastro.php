@@ -31,7 +31,7 @@ try {
     }
 
     // Conecta ao banco
-    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '1234');
+    $db = new PDO('mysql:host=localhost;dbname=easym', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Consulta usando os campos disponíveis
