@@ -50,6 +50,13 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             </li>
 
             <li class="side-item">
+                <a href="../forms_despesa/1-forms_despesa.php">
+                    <i class="fa-solid fa-sack-xmark"></i>
+                    <span class="item-description">Nova Despesa</span>
+                </a>
+            </li>
+
+            <li class="side-item">
                 <a href="../forms_divida/1-forms_divida.php">
                     <i class="fa-solid fa-cash-register"></i>
                     <span class="item-description">Nova dívida</span>
