@@ -134,7 +134,7 @@ foreach ($meses as $mes) {
         </div>
 
         <div class="botoes-container">
-            <a href="../dashboard/dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
+            <a href="../dashboard/1-dashboard.php" class="botao-link">← Voltar para o Dashboard</a>
             <a href="../form_entrada/forms_entrada.html" class="botao-link">➕ Adicionar Entrada</a>
             <a href="../formulario_gasto/forms_gasto.html" class="botao-link">➖ Adicionar Gasto</a>
         </div>

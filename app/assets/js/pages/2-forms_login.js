@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dados = await resposta.json();
 
             if (dados.sucesso) {
-                window.location.href = "../dashboard/dashboard.php";
+                window.location.href = "../dashboard/1-dashboard.php";
             } else {
                 customAlert(dados.mensagem || "Erro ao fazer login.", "Erro", "error");
             }

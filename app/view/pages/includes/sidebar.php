@@ -2,7 +2,7 @@
 // includes/sidebar.php
 // Este arquivo contém a estrutura HTML da barra lateral.
 // Ele espera que $nome e $perfilUsuario (ou outras variáveis dinâmicas) já estejam definidas
-// na página que o inclui (ex: dashboard.php).
+// na página que o inclui (ex: 1-dashboard.php).
 
 // Se as variáveis não estiverem definidas, podemos usar um valor padrão para evitar erros.
 $nome = $nome ?? 'Usuário';
@@ -22,84 +22,84 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
 
         <ul id="side_items">
             <li class="side-item active">
-                <a href="dashboard.php">
+                <a href="../dashboard/1-dashboard.php">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="item-description">Painel</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="../extrato/extrato.php">
+                <a href="../extrato/1-extrato.php">
                     <i class="fa-solid fa-file-invoice"></i>
                     <span class="item-description">Extrato</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/form_entrada/formulario_entrada.php">
+                <a href="../forms_entrada/1-forms_entrada.php">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     <span class="item-description">Nova Entrada</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulario_gasto/forms_gasto.html">
+                <a href="../forms_gasto/1-forms_gasto.php">
                     <i class="fa-solid fa-sack-xmark"></i>
                     <span class="item-description">Novo Gasto</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulario_divida/index.php">
+                <a href="../forms_divida/1-forms_divida.php">
                     <i class="fa-solid fa-cash-register"></i>
                     <span class="item-description">Nova dívida</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="../forms_perfil/forms_perfil.php">
+                <a href="../forms_perfil/1-forms_perfil.php">
                     <i class="fa-solid fa-user"></i>
                     <span class="item-description">Teste de Perfil</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulário_perfil/forms_perfil.html">
+                <a href="../analisar_divida/1-analisar_divida.php">
                     <i class="fa-solid fa-user"></i>
                     <span class="item-description">Analisar dívida</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulário_perfil/forms_perfil.html">
+                <a href="../forms_teto_gasto/1-forms_teto_gasto.php">
                     <i class="fa-solid fa-circle-dollar-to-slot"></i>
                     <span class="item-description">Teto de gasto</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/calculo_quitacao_divida/calcular_quitacao.html">
+                <a href="../calculo_quitacao_divida/1-calculo_quitacao_divida.php">
                     <i class="fa-solid fa-calculator"></i>
                     <span class="item-description">Calculadora de quitação</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulário_perfil/forms_perfil.html">
+                <a href="../grafico_pizza/1-grafico_pizza.php">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span class="item-description">Gráfico de pizza</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulário_perfil/forms_perfil.html">
+                <a href="../forum/1-forum.php">
                     <i class="fa-solid fa-comments-dollar"></i>
                     <span class="item-description">Fórum</span>
                 </a>
             </li>
 
             <li class="side-item">
-                <a href="view/formulario_login/form_login.html">
+                <a href="../forms_login/1-forms_login.html">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="item-description">Logout</span>
                 </a>

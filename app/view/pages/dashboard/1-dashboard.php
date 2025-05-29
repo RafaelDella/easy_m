@@ -1,5 +1,5 @@
 <?php
-// public/dashboard.php
+// public/1-dashboard.php
 
 session_start();
 
