@@ -22,11 +22,13 @@ $email = $stmt->fetchColumn();
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Redefinir Senha</title>
     <link rel="stylesheet" href="../../../assets/css/pages/3-forms_login.css">
 </head>
+
 <body>
     <div class="form-container">
         <h2>Redefinir Senha</h2>
@@ -55,4 +57,5 @@ $email = $stmt->fetchColumn();
         }
     </script>
 </body>
+
 </html>

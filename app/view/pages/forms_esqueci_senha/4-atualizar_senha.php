@@ -42,4 +42,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "<p style='color:green;'>Senha atualizada com sucesso!</p><a href='../forms_login/1-forms_login.html'>Fazer login</a>";
 }
-?>
