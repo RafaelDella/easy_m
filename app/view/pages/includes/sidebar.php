@@ -11,7 +11,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
 <nav id="sidebar">
     <div id="sidebar_content">
         <div id="user">
-            <a href="perfil_usuario/perfil_usuario.html" title="Editar Perfil">
+            <a href="../forms_perfil_usuario/1-forms_perfil_usuario.php" title="Editar Perfil">
                 <img src="../../../assets/img/persona.jpg" id="user_avatar" alt="Avatar">
             </a>
             <p id="user_infos">
