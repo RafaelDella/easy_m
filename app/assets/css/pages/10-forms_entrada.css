@@ -13,3 +13,231 @@ main {
     color: #e6e6e6; /* Cor padrão do texto no main */
     font-family: 'Inter', sans-serif; /* Fonte para o dashboard */
 }
+
+h1 {
+    font-size: 26px;
+    color: #e6e6e6;
+    padding: 10px 0px 30px 0px;
+}
+
+.top-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.top-bar select,
+.top-bar input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    min-width: 160px;
+    background-color: #2e2e2e;
+    color: #e6e6e6;
+    margin-right: 16px;
+    font-size: 14px;
+}
+
+/* --- Botões e Tags --- */
+.btn {
+    padding: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s;
+}
+
+.top-bar button {
+    margin: 10px;
+}
+
+.btn.yellow {
+    background-color: #ffd43b;
+    color: rgb(5, 5, 85);
+    margin-left: 15px;
+    padding: 12px;
+}
+
+.btn.green {
+    background-color: #0ba18c;
+    color: #191919;
+}
+
+.btn.red {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 12px;
+}
+
+.btn.blue {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn.purple {
+    background-color: #8e44ad;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.session-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #262626;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    flex-wrap: wrap;
+}
+
+.session-header {
+    font-size: 18px;
+    font-weight: 500;
+    color: #e6e6e6;
+}
+
+.session-info {
+    margin-top: 4px;
+    color: #cfcfcf;
+    overflow-wrap: break-word;
+}
+
+.session-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+/* --- Estilos base para Modais --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #262626;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    color: #e6e6e6;
+    position: relative;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.modal-content h2 {
+    text-align: center;
+    padding-bottom: 16px;
+    font-size: 24px;
+    border-bottom: 1px solid #444;
+    margin-top: 0;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    background-color: #1e1e1e;
+    color: #e6e6e6;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+    box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+    -webkit-text-fill-color: #e6e6e6 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Botões dentro dos modais */
+.modal-buttons .btn-submit { /* Renomeado para não conflitar com .btn */
+    background-color: #0ba18c;
+    color: #191919;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.modal-buttons .btn-submit:hover {
+    background-color: #0e9d80;
+}
+
+.modal-buttons .btn-cancelar {
+    padding: 10px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.modal-buttons .btn-cancelar:hover {
+    background-color: #c82333;
+}
