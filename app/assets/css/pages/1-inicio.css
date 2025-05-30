@@ -1,66 +1,105 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/*===== VARIÁVEIS PERSONALIZADAS =====*/
+:root {
+    --font-semi: 600;
+
+    /* Cores personalizadas com base nas antigas */
+    --first-color: #00c277;
+    --second-color: #0f0f0f;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+
+    /* Tipografia */
+    --body-font: "Poppins", sans-serif;
+    --big-font-size: 2.5rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+
+    /* Espaçamento */
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+
+    --radius: 0.5rem;
+}
+
+/*===== RESET =====*/
+* {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #0f0f0f;
-    color: #ffffff;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--second-color);
+    color: var(--text-color);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    min-height: 100vh;
     overflow-x: hidden;
+    padding: 2rem;
 }
 
-.topo {
+/*===== CONTAINER PRINCIPAL =====*/
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
     width: 100%;
-    padding: 16px;
-    text-align: left;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
-.logo-icon {
-    width: 40px;
+/*===== TEXTO ESQUERDA =====*/
+.texto {
+    flex: 1;
+    max-width: 500px;
 }
 
-.conteudo {
-    text-align: center;
-    margin-top: 60px;
-    max-width: 600px;
-    padding: 0 20px;
-}
-
-.logo-principal {
-    width: 120px;
-    margin-bottom: 30px;
-}
-
-h1 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    color: #ffffff;
+.texto h1 {
+    font-size: var(--big-font-size);
+    font-weight: bold;
+    margin-bottom: var(--mb-1);
 }
 
 .subtitulo {
-    font-size: 1.1rem;
-    color: #aaaaaa;
-    margin-bottom: 30px;
+    font-size: var(--normal-font-size);
+    color: var(--text-muted);
+    margin-bottom: var(--mb-3);
 }
 
+/*===== BOTÕES =====*/
 .botoes {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .botao {
     text-decoration: none;
-    font-size: 1rem;
+    font-size: var(--normal-font-size);
     padding: 12px 24px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
+    border-radius: var(--radius);
     font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.botao:hover {
+    transform: scale(1.05);
 }
 
 .verde {
-    background-color: #00c277;
+    background-color: var(--first-color);
     color: #000;
 }
 
@@ -76,4 +115,54 @@ h1 {
 
 .escuro:hover {
     background-color: #333;
+}
+
+/*===== ILUSTRAÇÃO DIREITA =====*/
+.ilustracao {
+    flex: 1;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        0 0 30px rgba(0, 194, 119, 0.3),
+        0 0 10px rgba(0, 194, 119, 0.5) inset;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.ilustracao img {
+    max-width: 500px;
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+}
+
+/*===== ANIMAÇÃO DE BRILHO =====*/
+@keyframes glow {
+    from {
+        box-shadow:
+            0 0 10px rgba(0, 194, 119, 0.7),
+            0 0 20px rgba(0, 194, 119, 0.5);
+    }
+
+    to {
+        box-shadow:
+            0 0 20px rgba(0, 194, 119, 1),
+            0 0 30px rgba(0, 194, 119, 0.8);
+    }
+}
+
+/*===== RESPONSIVIDADE =====*/
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ilustracao {
+        margin-top: var(--mb-3);
+    }
 }
