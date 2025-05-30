@@ -1,67 +1,196 @@
 <?php
-// Este arquivo é a página do formulário de Perfil Financeiro.
-// Ele inclui a sidebar e o header, e contém a lógica do formulário.
-
-// 1. Inicie a sessão se você estiver usando sessões para autenticação ou dados do usuário.
 session_start();
 
-// 2. Lógica de verificação de autenticação.
-// Se o usuário não estiver autenticado, redirecione para a página de login.
-// O caminho deve ser ajustado conforme a localização do seu arquivo de login
-// em relação a este arquivo (perfil_financeiro.php).
-// Exemplo: se perfil_financeiro.php está em 'easy_m1/app/view/pages/forms_perfil/'
-// e o login está em 'easy_m1/forms_login/1-forms_login.html', o caminho seria '../../../../forms_login/1-forms_login.html'.
+// Redireciona se o usuário não estiver logado
 if (!isset($_SESSION['id_usuario'])) {
-    header("Location: ../../forms_login/1-forms_login.html"); // Ajuste este caminho se necessário!
+    header("Location: ../../forms_login/1-forms_login.html"); // Ajuste o caminho se necessário
     exit;
 }
 
-// 3. Inclua a conexão com o banco de dados.
-// O caminho abaixo assume que este arquivo está em 'easy_m1/app/view/pages/forms_perfil/'
-// e 'db.php' está na raiz do projeto 'easy_m1/'.
-require_once __DIR__ . '../../../../db.php';
+$id_usuario = $_SESSION['id_usuario'];
 
-// Crie uma instância da classe DB e conecte-se ao banco de dados.
+require_once __DIR__ . '../../../../db.php'; // Conexão com o banco de dados
+
 $db = new DB();
 $pdo = $db->connect();
 
-// Obtenha o ID do usuário da sessão.
-$id_usuario = $_SESSION['id_usuario'];
-
-// 4. Obtenha os dados do usuário (necessários para a sidebar e header).
-// Busca o nome e perfil do usuário da tabela 'Usuario'.
+// Obter dados do usuário para sidebar/header
 $stmtUsuario = $pdo->prepare("SELECT nome, perfil FROM Usuario WHERE id_usuario = :id_usuario");
 $stmtUsuario->execute([':id_usuario' => $id_usuario]);
 $dadosUsuario = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
-
-// Defina as variáveis $nome e $perfilUsuario com os dados do banco de dados,
-// ou use valores de fallback se os dados não forem encontrados.
 $nome = $dadosUsuario['nome'] ?? 'Usuário';
 $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
 
-// Nenhuma lógica de dados específica do dashboard é necessária aqui,
-// pois esta é a página do formulário de perfil.
+// Função para limitar o texto
+function limitarTexto($texto, $limite = 10) {
+    return strlen($texto) > $limite ? substr($texto, 0, $limite) . '...' : $texto;
+}
+
+// Filtros para despesas
+$categoria_id = $_GET['categoria'] ?? '';
+$mes          = $_GET['mes'] ?? '';
+$ano          = $_GET['ano'] ?? '';
+$busca        = trim($_GET['busca'] ?? '');
+
+// Montar SQL com filtros
+$sql = "SELECT d.*, cd.nome_categoria FROM Despesa d JOIN CategoriaDespesa cd ON d.id_categoria = cd.id_categoria WHERE d.id_usuario = :id_usuario";
+$params = ['id_usuario' => $id_usuario];
+
+if (!empty($categoria_id)) {
+    $sql .= " AND d.id_categoria = :id_categoria";
+    $params['id_categoria'] = $categoria_id;
+}
+if (!empty($mes)) {
+    $sql .= " AND MONTH(d.data_vencimento) = :mes";
+    $params['mes'] = $mes;
+}
+if (!empty($ano)) {
+    $sql .= " AND YEAR(d.data_vencimento) = :ano";
+    $params['ano'] = $ano;
+}
+if (!empty($busca)) {
+    $sql .= " AND (d.nome_despesa LIKE :busca OR d.descricao LIKE :busca OR cd.nome_categoria LIKE :busca)";
+    $params['busca'] = "%{$busca}%";
+}
+
+$sql .= " ORDER BY d.data_vencimento DESC";
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$despesas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Obter categorias de despesas para o filtro e modais
+$stmtCategorias = $pdo->query("SELECT id_categoria, nome_categoria FROM CategoriaDespesa ORDER BY nome_categoria");
+$categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil Financeiro - easy_m</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Despesas - easy_m</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../../assets/css/components/header.css">
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
-    <link rel="stylesheet" href="../../../assets/css/pages/5-forms_perfil.css">
-</head>
-    <body>
+    <link rel="stylesheet" href="../../../assets/css/pages/7-forms_despesa.css"> </head>
+<body>
     <?php include_once('../includes/sidebar.php'); ?>
     <?php include_once('../includes/header.php'); ?>
-        <main>
 
-        </main>
-        <script src="../../../assets/js/components/sidebar.js"></script>
-    </body>
+    <main>
+        <h1>Gerenciar Despesas</h1>
 
+        <div class="top-bar">
+            <form method="GET" action="" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <select name="categoria">
+                    <option value="">Selecione a Categoria</option>
+                    <?php foreach ($categoriasDespesa as $cat) : ?>
+                        <option value="<?= htmlspecialchars($cat['id_categoria']) ?>" <?= $categoria_id == $cat['id_categoria'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($cat['nome_categoria']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
+                <select name="mes">
+                    <option value="">Selecione o mês</option>
+                    <?php
+                    $meses = [
+                        "01" => "Janeiro", "02" => "Fevereiro", "03" => "Março",
+                        "04" => "Abril", "05" => "Maio", "06" => "Junho",
+                        "07" => "Julho", "08" => "Agosto", "09" => "Setembro",
+                        "10" => "Outubro", "11" => "Novembro", "12" => "Dezembro"
+                    ];
+                    foreach ($meses as $num => $nomeMes) {
+                        $sel = ($mes == $num) ? 'selected' : '';
+                        echo "<option value=\"$num\" $sel>$nomeMes</option>";
+                    }
+                    ?>
+                </select>
+
+                <select name="ano" id="ano">
+                    <option value="">Selecione o ano</option>
+                    <?php
+                    $anoAtual = date('Y');
+                    for ($i = $anoAtual; $i >= 2000; $i--) {
+                        $sel = ($ano == $i) ? 'selected' : '';
+                        echo "<option value=\"$i\" $sel>$i</option>";
+                    }
+                    ?>
+                </select>
+
+                <button type="submit" class="btn yellow">
+                    <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
+                </button>
+            </form>
+
+            <div id="confirmModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Tem certeza que deseja deletar TODAS as despesas?</h3>
+                    <p>Essa ação não pode ser desfeita.</p>
+                    <div class="modal-buttons">
+                        <button class="cancelar" onclick="fecharModalExcluir()">Cancelar</button>
+                        <form action="6-deletar_todas_despesas.php" method="POST">
+                            <button type="submit" class="confirmar">Confirmar exclusão</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn red" onclick="abrirModalExcluir()">
+                <i class="fa-solid fa-delete-left"></i> Excluir Todas as Despesas
+            </button>
+
+            <button class="btn green" onclick="abrirModal()">
+                <i class="fa-solid fa-square-plus"></i> Cadastrar Despesa
+            </button>
+        </div>
+
+        <?php include_once('../modais/modal_despesa.php'); ?>
+        <?php include_once('../modais/modal_editar_despesa.php'); ?>
+        <?php include_once('../modais/modal_visualizar_despesa.php'); ?>
+
+        <div class="container">
+            <?php if (empty($despesas)) : ?>
+                <p>Nenhuma despesa encontrada com os filtros aplicados.</p>
+            <?php else : ?>
+                <?php foreach ($despesas as $despesa) : ?>
+                    <div class="session-card">
+                        <div class="session-header">Despesa: <?= htmlspecialchars($despesa['id_despesa']) ?></div>
+                        <div class="session-info">Nome: <?= htmlspecialchars(limitarTexto($despesa['nome_despesa'], 20)) ?></div>
+                        <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($despesa['valor_despesa'], 2, ',', '.')) ?></div>
+                        <div class="session-info">Vencimento: <?= htmlspecialchars(date('d/m/Y', strtotime($despesa['data_vencimento']))) ?></div>
+                        <div class="session-info">Categoria: <?= htmlspecialchars($despesa['nome_categoria']) ?></div>
+
+                        <div class="session-actions">
+                            <button class="btn purple" onclick="visualizarDespesa(<?= $despesa['id_despesa'] ?>)">
+                                <i class="fa-solid fa-eye"></i> Visualizar
+                            </button>
+
+                            <button class="btn blue" onclick='editarDespesa(<?= json_encode([
+                                "id"           => $despesa["id_despesa"],
+                                "nome"         => $despesa["nome_despesa"],
+                                "descricao"    => $despesa["descricao"],
+                                "valor"        => $despesa["valor_despesa"],
+                                "data_vencimento" => $despesa["data_vencimento"],
+                                "id_categoria" => $despesa["id_categoria"]
+                            ]) ?>)'>
+                                <i class="fa-solid fa-pen-to-square"></i> Alterar
+                            </button>
+
+                            <form action="5-excluir_despesa.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta despesa?');">
+                                <input type="hidden" name="id" value="<?= $despesa['id_despesa'] ?>">
+                                <button class="btn red">
+                                    <i class="fa-solid fa-trash"></i> Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </main>
+
+    <script src="../../../assets/js/components/sidebar.js"></script>
+    <script src="../../../assets/js/pages/7-forms_despesa.js"></script> </body>
 </html>

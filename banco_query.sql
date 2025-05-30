@@ -48,7 +48,7 @@ CREATE TABLE
         desc_gasto VARCHAR(150),
         categoria_gasto VARCHAR(25) NOT NULL,
         valor_gasto DECIMAL(10, 2) NOT NULL,
-        is_imprevisto BOOLEAN NOT NULL DEFAULT FALSE,
+        is_imprevisto BOOLEAN NOT NULL DEFAULT FALSE,   
         data_gasto DATE NOT NULL,
         id_usuario INT NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE

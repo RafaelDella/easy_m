@@ -41,7 +41,7 @@ h1 {
     align-items: center;
 }
 
-.container {
+.container p {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
