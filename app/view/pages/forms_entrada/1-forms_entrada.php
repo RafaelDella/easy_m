@@ -128,31 +128,35 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php include '../includes/modal_confirmacao.php'; ?>
 
             <div class="container">
-                <?php foreach ($entradas as $entrada): ?>
-                    <div class="session-card">
-                        <div class="session-info">Descrição: <?= htmlspecialchars(limitarTexto($entrada['descricao'])) ?></div>
-                        <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($entrada['valor'], 2, ',', '.')) ?></div>
-                        <div class="session-info">Categoria: <?= htmlspecialchars(limitarTexto($entrada['categoria'])) ?></div>
-                        <div class="session-info">Data: <?= htmlspecialchars(date('d/m/Y', strtotime($entrada['data_entrada']))) ?></div>
+                <?php if (empty($entradas)): ?>
+                    <p>Nenhuma entrada encontrado para os filtros selecionados.</p>
+                <?php else: ?>
+                    <?php foreach ($entradas as $entrada): ?>
+                        <div class="session-card">
+                            <div class="session-info">Descrição: <?= htmlspecialchars(limitarTexto($entrada['descricao'])) ?></div>
+                            <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($entrada['valor'], 2, ',', '.')) ?></div>
+                            <div class="session-info">Categoria: <?= htmlspecialchars(limitarTexto($entrada['categoria'])) ?></div>
+                            <div class="session-info">Data: <?= htmlspecialchars(date('d/m/Y', strtotime($entrada['data_entrada']))) ?></div>
 
-                        <div class="session-actions">
-                            <button class="btn purple" onclick="visualizarEntrada(<?= $entrada['id_entrada'] ?>)"><i class="fa-solid fa-eye"></i> Visualizar</button>
+                            <div class="session-actions">
+                                <button class="btn purple" onclick="visualizarEntrada(<?= $entrada['id_entrada'] ?>)"><i class="fa-solid fa-eye"></i> Visualizar</button>
 
-                            <button class="btn blue" onclick='editarEntrada(<?= json_encode([
-                                "id" => $entrada["id_entrada"],
-                                "descricao" => $entrada["descricao"],
-                                "valor" => $entrada["valor"],
-                                "categoria" => $entrada["categoria"],
-                                "data_entrada" => $entrada["data_entrada"]
-                            ]) ?>)'><i class="fa-solid fa-pen-to-square"></i> Alterar</button>
+                                <button class="btn blue" onclick='editarEntrada(<?= json_encode([
+                                    "id" => $entrada["id_entrada"],
+                                    "descricao" => $entrada["descricao"],
+                                    "valor" => $entrada["valor"],
+                                    "categoria" => $entrada["categoria"],
+                                    "data_entrada" => $entrada["data_entrada"]
+                                ]) ?>)'><i class="fa-solid fa-pen-to-square"></i> Alterar</button>
 
-                            <form action="3-excluir_entrada.php" method="POST" style="display:inline;" onsubmit="event.preventDefault(); abrirModalConfirmacao('Confirmar Exclusão', 'Tem certeza que deseja excluir esta entrada?', function() { event.target.submit(); })">
-                                <input type="hidden" name="id" value="<?= $entrada['id_entrada'] ?>">
-                                <button class="btn red"><i class="fa-solid fa-trash"></i> Excluir</button>
-                            </form>
+                                <form action="3-excluir_entrada.php" method="POST" style="display:inline;" onsubmit="event.preventDefault(); abrirModalConfirmacao('Confirmar Exclusão', 'Tem certeza que deseja excluir esta entrada?', function() { event.target.submit(); })">
+                                    <input type="hidden" name="id" value="<?= $entrada['id_entrada'] ?>">
+                                    <button class="btn red"><i class="fa-solid fa-trash"></i> Excluir</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                 <?php endforeach; ?>
+            <?php endif; ?>
             </div>
         </main>
         <script src=""></script>
