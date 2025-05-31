@@ -1,4 +1,5 @@
-CREATE DATABASE easym;
+-- Criação do banco de dados
+CREATE DATABASE IF NOT EXISTS easym;
 
 USE easym;
 
@@ -22,11 +23,11 @@ CREATE TABLE
         id_categoria INT AUTO_INCREMENT PRIMARY KEY,
         nome_categoria VARCHAR(100) NOT NULL,
         id_usuario INT NOT NULL,
-        FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE,
-        UNIQUE (nome_categoria, id_usuario)
+        UNIQUE (nome_categoria, id_usuario),
+        FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
     );
 
--- Tabela de despesas referenciando categorias
+-- Tabela de despesas
 CREATE TABLE
     Despesa (
         id_despesa INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,25 +49,27 @@ CREATE TABLE
         desc_gasto VARCHAR(150),
         categoria_gasto VARCHAR(25) NOT NULL,
         valor_gasto DECIMAL(10, 2) NOT NULL,
-        is_imprevisto BOOLEAN NOT NULL DEFAULT FALSE,   
+        is_imprevisto BOOLEAN NOT NULL DEFAULT FALSE,
         data_gasto DATE NOT NULL,
         id_usuario INT NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
     );
 
--- Tabela de dívidas
+-- Tabela de dívidas (atualizada)
 CREATE TABLE
     Divida (
         id_divida INT AUTO_INCREMENT PRIMARY KEY,
         nome_divida VARCHAR(100) NOT NULL,
         taxa_divida DECIMAL(5, 2) NOT NULL,
         categoria_divida VARCHAR(50) NOT NULL,
-        data_divida DATE NOT NULL,
+        valor_total DECIMAL(10, 2) NOT NULL,
+        valor_pago DECIMAL(10, 2) NOT NULL,
+        data_vencimento DATE NOT NULL,
         id_usuario INT NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
     );
 
--- Tabela de metas
+-- Tabela de metas financeiras
 CREATE TABLE
     Meta (
         id_meta INT AUTO_INCREMENT PRIMARY KEY,
@@ -92,7 +95,7 @@ CREATE TABLE
         FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
     );
 
--- Tabela de entradas
+-- Tabela de entradas de receita
 CREATE TABLE
     Entrada (
         id_entrada INT AUTO_INCREMENT PRIMARY KEY,

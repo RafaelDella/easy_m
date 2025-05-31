@@ -51,14 +51,14 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
 
             <li class="side-item">
                 <a href="../forms_despesa/1-forms_despesa.php">
-                    <i class="fa-solid fa-sack-xmark"></i>
+                    <i class="fa-solid fa-cash-register"></i>
                     <span class="item-description">Nova Despesa</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../forms_divida/1-forms_divida.php">
-                    <i class="fa-solid fa-cash-register"></i>
+                    <i class="fa-solid fa-scale-unbalanced"></i>
                     <span class="item-description">Nova dívida</span>
                 </a>
             </li>
@@ -72,7 +72,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
 
             <li class="side-item">
                 <a href="../analisar_divida/1-analisar_divida.php">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-percent"></i>
                     <span class="item-description">Analisar dívida</span>
                 </a>
             </li>
