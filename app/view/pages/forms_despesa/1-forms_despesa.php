@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-// Redireciona se o usuário não estiver logado
 if (!isset($_SESSION['id_usuario'])) {
-    header("Location: ../../forms_login/1-forms_login.html"); // Ajuste o caminho se necessário
+    header("Location: ../../forms_login/1-forms_login.html");
     exit;
 }
 
 $id_usuario = $_SESSION['id_usuario'];
 
-require_once __DIR__ . '../../../../db.php'; // Conexão com o banco de dados
+require_once __DIR__ . '../../../../db.php';
 
 $db = new DB();
 $pdo = $db->connect();
@@ -33,6 +32,8 @@ $ano          = $_GET['ano'] ?? '';
 $busca        = trim($_GET['busca'] ?? '');
 
 // Montar SQL com filtros
+// Corrigido: Verifique se a coluna id_categoria existe na sua tabela Despesa.
+// O erro anterior "Unknown column 'd.id_categoria'" sugeria que ela poderia estar faltando.
 $sql = "SELECT d.*, cd.nome_categoria FROM Despesa d JOIN CategoriaDespesa cd ON d.id_categoria = cd.id_categoria WHERE d.id_usuario = :id_usuario";
 $params = ['id_usuario' => $id_usuario];
 
@@ -58,8 +59,9 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $despesas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Obter categorias de despesas para o filtro e modais
-$stmtCategorias = $pdo->query("SELECT id_categoria, nome_categoria FROM CategoriaDespesa ORDER BY nome_categoria");
+// Obter categorias de despesas para o filtro e modais (APENAS DO USUÁRIO LOGADO)
+$stmtCategorias = $pdo->prepare("SELECT id_categoria, nome_categoria FROM CategoriaDespesa WHERE id_usuario = :id_usuario ORDER BY nome_categoria");
+$stmtCategorias->execute([':id_usuario' => $id_usuario]);
 $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -69,11 +71,12 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Despesas - easy_m</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="/easy_m/assets/image/favicon.ico"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../../assets/css/components/header.css">
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
-    <link rel="stylesheet" href="../../../assets/css/pages/7-forms_despesa.css"> </head>
+    <link rel="stylesheet" href="../../../assets/css/pages/16-forms_despesa.css">
+</head>
 <body>
     <?php include_once('../includes/sidebar.php'); ?>
     <?php include_once('../includes/header.php'); ?>
@@ -122,7 +125,14 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                 <button type="submit" class="btn yellow">
                     <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
                 </button>
+
             </form>
+
+            
+            <button class="btn purple" onclick="abrirModalCategorias()">
+                <i class="fa-solid fa-tags"></i> Gerenciar Categorias
+            </button>
+
 
             <div id="confirmModal" class="modal" style="display: none;">
                 <div class="modal-content">
@@ -146,9 +156,32 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
             </button>
         </div>
 
-        <?php include_once('../modais/modal_despesa.php'); ?>
-        <?php include_once('../modais/modal_editar_despesa.php'); ?>
-        <?php include_once('../modais/modal_visualizar_despesa.php'); ?>
+        <?php include_once('../includes/modal_cadastro_despesa.php'); ?>
+        <?php include_once('../includes/modal_edicao_despesa.php'); ?>
+        <?php include_once('../includes/modal_visualizacao_despesa.php'); ?>
+
+        <div id="categoriasModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="fecharModalCategorias()">&times;</span>
+                <h2>Gerenciar Categorias de Despesas</h2>
+
+                <div class="categoria-form">
+                    <input type="text" id="nova_categoria_nome" placeholder="Nome da nova categoria" required>
+                    <button class="btn green" id="btn_adicionar_categoria"><i class="fa-solid fa-plus"></i> Adicionar Categoria</button>
+                </div>
+
+                <div class="categoria-lista">
+                    <h3>Categorias Cadastradas:</h3>
+                    <ul id="lista_categorias">
+                        </ul>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="button" class="btn blue" onclick="fecharModalCategorias()">Fechar</button>
+                </div>
+            </div>
+        </div>
+
 
         <div class="container">
             <?php if (empty($despesas)) : ?>
@@ -178,7 +211,7 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                                 <i class="fa-solid fa-pen-to-square"></i> Alterar
                             </button>
 
-                            <form action="5-excluir_despesa.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta despesa?');">
+                            <form action="3-excluir_despesa.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta despesa?');">
                                 <input type="hidden" name="id" value="<?= $despesa['id_despesa'] ?>">
                                 <button class="btn red">
                                     <i class="fa-solid fa-trash"></i> Excluir
@@ -192,5 +225,6 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
     </main>
 
     <script src="../../../assets/js/components/sidebar.js"></script>
-    <script src="../../../assets/js/pages/7-forms_despesa.js"></script> </body>
+    <script src="../../../assets/js/pages/7-forms_despesa.js"></script>
+</body>
 </html>
