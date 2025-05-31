@@ -44,7 +44,7 @@ $stmtUltimosGastos = $pdo->prepare("SELECT nome_gasto, valor_gasto FROM Gasto WH
 $stmtUltimosGastos->execute([':id_usuario' => $id_usuario]);
 $ultimosGastos = $stmtUltimosGastos->fetchAll(PDO::FETCH_ASSOC);
 
-$stmtDividas = $pdo->prepare("SELECT nome_divida, taxa_divida FROM Divida WHERE id_usuario = :id_usuario ORDER BY data_divida DESC LIMIT 5");
+$stmtDividas = $pdo->prepare("SELECT nome_divida, taxa_divida FROM Divida WHERE id_usuario = :id_usuario ORDER BY data_vencimento DESC LIMIT 5");
 $stmtDividas->execute([':id_usuario' => $id_usuario]);
 $ultimasDividas = $stmtDividas->fetchAll(PDO::FETCH_ASSOC);
 

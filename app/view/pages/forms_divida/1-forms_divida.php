@@ -1,67 +1,139 @@
 <?php
-// Este arquivo é a página do formulário de Perfil Financeiro.
-// Ele inclui a sidebar e o header, e contém a lógica do formulário.
-
-// 1. Inicie a sessão se você estiver usando sessões para autenticação ou dados do usuário.
 session_start();
 
-// 2. Lógica de verificação de autenticação.
-// Se o usuário não estiver autenticado, redirecione para a página de login.
-// O caminho deve ser ajustado conforme a localização do seu arquivo de login
-// em relação a este arquivo (perfil_financeiro.php).
-// Exemplo: se perfil_financeiro.php está em 'easy_m1/app/view/pages/forms_perfil/'
-// e o login está em 'easy_m1/forms_login/1-forms_login.html', o caminho seria '../../../../forms_login/1-forms_login.html'.
 if (!isset($_SESSION['id_usuario'])) {
-    header("Location: ../../forms_login/1-forms_login.html"); // Ajuste este caminho se necessário!
+    header("Location: ../../forms_login/1-forms_login.html");
     exit;
 }
 
-// 3. Inclua a conexão com o banco de dados.
-// O caminho abaixo assume que este arquivo está em 'easy_m1/app/view/pages/forms_perfil/'
-// e 'db.php' está na raiz do projeto 'easy_m1/'.
-require_once __DIR__ . '../../../../db.php';
-
-// Crie uma instância da classe DB e conecte-se ao banco de dados.
+require_once __DIR__ . '/../../../db.php';
 $db = new DB();
 $pdo = $db->connect();
 
-// Obtenha o ID do usuário da sessão.
 $id_usuario = $_SESSION['id_usuario'];
 
-// 4. Obtenha os dados do usuário (necessários para a sidebar e header).
-// Busca o nome e perfil do usuário da tabela 'Usuario'.
 $stmtUsuario = $pdo->prepare("SELECT nome, perfil FROM Usuario WHERE id_usuario = :id_usuario");
 $stmtUsuario->execute([':id_usuario' => $id_usuario]);
 $dadosUsuario = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
 
-// Defina as variáveis $nome e $perfilUsuario com os dados do banco de dados,
-// ou use valores de fallback se os dados não forem encontrados.
 $nome = $dadosUsuario['nome'] ?? 'Usuário';
 $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
 
-// Nenhuma lógica de dados específica do dashboard é necessária aqui,
-// pois esta é a página do formulário de perfil.
+function limitarTexto($texto, $limite = 10)
+{
+    return strlen($texto) > $limite ? substr($texto, 0, $limite) . '...' : $texto;
+}
+
+$categoria = $_GET['categoria'] ?? '';
+$busca     = trim($_GET['busca'] ?? '');
+
+$sql = "SELECT * FROM Divida WHERE id_usuario = :id_usuario";
+$params = ['id_usuario' => $id_usuario];
+
+if (!empty($categoria)) {
+    $sql .= " AND categoria_divida = :categoria";
+    $params['categoria'] = $categoria;
+}
+if (!empty($busca)) {
+    $sql .= " AND (nome_divida LIKE :busca OR categoria_divida LIKE :busca)";
+    $params['busca'] = "%{$busca}%";
+}
+
+$sql .= " ORDER BY data_vencimento ASC";
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$dividas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil Financeiro - easy_m</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Gerenciar Dívidas - easy_m</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../../assets/css/components/header.css">
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
-    <link rel="stylesheet" href="../../../assets/css/pages/5-forms_perfil.css">
+    <link rel="stylesheet" href="../../../assets/css/pages/11-forms_divida.css">
 </head>
-    <body>
+
+<body>
     <?php include_once('../includes/sidebar.php'); ?>
     <?php include_once('../includes/header.php'); ?>
-        <main>
 
-        </main>
-        <script src="../../../assets/js/components/sidebar.js"></script>
-    </body>
+    <main>
+        <h1>Gerenciar Dívidas</h1>
+
+        <div class="top-bar">
+            <form method="GET" action="" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <select name="categoria">
+                    <option value="">Categoria</option>
+                    <option value="Cartão" <?= $categoria == 'Cartão' ? 'selected' : '' ?>>Cartão</option>
+                    <option value="Empréstimo" <?= $categoria == 'Empréstimo' ? 'selected' : '' ?>>Empréstimo</option>
+                    <option value="Financiamento" <?= $categoria == 'Financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                    <option value="Outro" <?= $categoria == 'Outro' ? 'selected' : '' ?>>Outro</option>
+                </select>
+
+                <input type="text" name="busca" placeholder="Buscar dívida" value="<?= htmlspecialchars($busca) ?>">
+
+                <button type="submit" class="btn yellow">
+                    <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
+                </button>
+            </form>
+
+            <button type="button" class="btn red" onclick="abrirModalConfirmacao('Confirmar Exclusão', 'Tem certeza que deseja deletar TODAS as dívidas? Essa ação não pode ser desfeita.', function() { document.getElementById('form-excluir-todas').submit(); })">
+                <i class="fa-solid fa-delete-left"></i> Excluir Todas as Dívidas
+            </button>
+
+            <button class="btn green" onclick="abrirModal('modalCadastroDivida')">
+                <i class="fa-solid fa-square-plus"></i> Cadastrar Dívida
+            </button>
+        </div>
+
+        <form id="form-excluir-todas" action="6-deletar_todas_dividas.php" method="POST" style="display:none;"></form>
+
+        <?php include '../includes/modal_cadastro_divida.php'; ?>
+        <?php include '../includes/modal_edicao_divida.php'; ?>
+        <?php include '../includes/modal_visualizacao_divida.php'; ?>
+        <?php include '../includes/modal_confirmacao.php'; ?>
+
+        <div class="container">
+            <?php if (empty($dividas)): ?>
+                <p>Nenhuma dívida encontrada para os filtros selecionados.</p>
+            <?php else: ?>
+                <?php foreach ($dividas as $d): ?>
+                    <div class="session-card">
+                        <div class="session-info"><strong>Nome:</strong> <?= limitarTexto($d['nome_divida']) ?></div>
+                        <div class="session-info"><strong>Valor:</strong> R$ <?= number_format($d['valor_total'], 2, ',', '.') ?></div>
+                        <div class="session-info"><strong>Pago:</strong> R$ <?= number_format($d['valor_pago'], 2, ',', '.') ?></div>
+                        <div class="session-info"><strong>Categoria:</strong> <?= $d['categoria_divida'] ?></div>
+                        <div class="session-info"><strong>Vencimento:</strong> <?= date('d/m/Y', strtotime($d['data_vencimento'])) ?></div>
+
+                        <div class="session-actions">
+                            <button class="btn purple" onclick="visualizarDivida(<?= $d['id_divida'] ?>)">
+                                <i class="fa-solid fa-eye"></i> Visualizar
+                            </button>
+
+                            <button class="btn blue" onclick='editarDivida(<?= json_encode($d) ?>)'>
+                                <i class="fa-solid fa-pen-to-square"></i> Alterar
+                            </button>
+
+                            <form action="3-excluir_divida.php" method="POST" style="display:inline;" onsubmit="event.preventDefault(); abrirModalConfirmacao('Confirmar Exclusão', 'Tem certeza que deseja excluir esta dívida?', function() { event.target.submit(); })">
+                                <input type="hidden" name="id" value="<?= $d['id_divida'] ?>">
+                                <button class="btn red"><i class="fa-solid fa-trash"></i> Excluir</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </main>
+
+    <script src="../../../assets/js/components/sidebar.js"></script>
+    <script src="../../../assets/js/components/global.js"></script>
+    <script src="../../../assets/js/pages/8-forms_divida.js"></script>
+</body>
 
 </html>

@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../../forms_login/1-forms_login.html");
     exit;
-} 
+}
 
 require_once __DIR__ . '../../../../db.php';
 
@@ -52,4 +52,3 @@ try {
     // header("Location: formulario_entrada.php?erro=db_error");
     // exit;
 }
-?>
