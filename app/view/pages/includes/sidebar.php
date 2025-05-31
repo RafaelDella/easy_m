@@ -21,7 +21,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
         </div>
 
         <ul id="side_items">
-            <li class="side-item active">
+            <li class="side-item">
                 <a href="../dashboard/1-dashboard.php">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="item-description">Painel</span>
