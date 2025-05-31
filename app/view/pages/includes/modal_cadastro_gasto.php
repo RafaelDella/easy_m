@@ -7,7 +7,7 @@
             <input type="text" id="nome_gasto_cadastro" name="nome_gasto" required>
 
             <label for="desc_gasto_cadastro">Descrição:</label>
-            <textarea id="desc_gasto_cadastro" name="desc_gasto" rows="3" required></textarea>
+            <textarea id="desc_gasto_cadastro" style="padding: 5px; color:white; width: 100%;background-color: #1e1e1e;min-height: 150px;" name="desc_gasto" rows="3" required></textarea>
 
             <label for="categoria_gasto_cadastro">Categoria:</label>
             <select id="categoria_gasto_cadastro" name="categoria_gasto" required>
@@ -27,12 +27,12 @@
             <input type="number" id="valor_gasto_cadastro" name="valor_gasto" step="0.01" min="0.01" required>
 
             <label for="is_imprevisto_cadastro">Gasto Imprevisto:</label>
-            <input type="checkbox" id="is_imprevisto_cadastro" name="is_imprevisto" value="1">
+            <input type="checkbox" style="width:20px" id="is_imprevisto_cadastro" name="is_imprevisto" value="1">
 
             <label for="data_gasto_cadastro">Data do Gasto:</label>
             <input type="date" id="data_gasto_cadastro" name="data_gasto" required>
 
-            <button type="submit" class="btn green">Cadastrar Gasto</button>
+            <button type="submit" style="margin-top: 15px;" class="btn green">Cadastrar Gasto</button>
         </form>
     </div>
 </div>

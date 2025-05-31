@@ -9,7 +9,7 @@
             <input type="text" id="edit_nome_gasto" name="nome_gasto" required>
 
             <label for="edit_desc_gasto">Descrição:</label>
-            <textarea id="edit_desc_gasto" name="desc_gasto" rows="3" required></textarea>
+            <textarea id="edit_desc_gasto" style="padding: 5px; color:white; width: 100%;background-color: #1e1e1e;min-height: 150px;" name="desc_gasto" rows="3" required></textarea>
 
             <label for="edit_categoria_gasto">Categoria:</label>
             <select id="edit_categoria_gasto" name="categoria_gasto" required>
@@ -29,12 +29,12 @@
             <input type="number" id="edit_valor_gasto" name="valor_gasto" step="0.01" min="0.01" required>
 
             <label for="edit_is_imprevisto">Gasto Imprevisto:</label>
-            <input type="checkbox" id="edit_is_imprevisto" name="is_imprevisto" value="1">
+            <input type="checkbox" style="width:20px;" id="edit_is_imprevisto" name="is_imprevisto" value="1">
 
             <label for="edit_data_gasto">Data do Gasto:</label>
             <input type="date" id="edit_data_gasto" name="data_gasto" required>
 
-            <button type="submit" class="btn blue">Salvar Alterações</button>
+            <button type="submit" style="margin-top: 15px;background-color: #0BA18C;" class="btn blue">Salvar Alterações</button>
         </form>
     </div>
 </div>

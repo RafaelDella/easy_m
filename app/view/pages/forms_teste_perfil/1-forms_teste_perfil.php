@@ -134,7 +134,7 @@ $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
                 <label><input type="radio" name="melhorar" value="alcançar_metas" required> Utilizar meu dinheiro para alcançar minhas
                     metas.</label>
             </div>
-            <div class="buttons">
+            <div class="button-wrapper">
                 <button type="button" id="prevBtn">Voltar</button>
                 <button type="button" id="nextBtn">Próximo</button>
                 <button type="submit" id="submitBtn" style="display: none;">Enviar</button>

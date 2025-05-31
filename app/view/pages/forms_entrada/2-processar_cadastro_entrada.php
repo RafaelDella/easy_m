@@ -39,16 +39,45 @@ try {
         'id_usuario' => $id_usuario
     ]);
 
-    echo "<script>
-        alert('✅ Entrada registrada com sucesso!');
-        window.location.href='1-forms_entrada.php'; // Redireciona para a mesma página, onde a lista será atualizada
-    </script>";
+    // Use aspas simples para a string PHP para evitar conflito com aspas internas
+    echo '
+    <html>
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            color: #ffffff;
+        }
+        .swal2-styled{
+            background-color: #0BA18C;
+            width: 100px;
+        }
+
+        .swal2-show{
+            background-color: #;
+
+        }
+
+       .swal2-styled:hover{
+            background-color: #0a8171;
+        }
+    </style>
+    <script>
+      Swal.fire({
+        icon: "success",
+        title: "Entrada registrada com sucesso!",
+        confirmButtonText: "OK"
+      }).then(() => {
+        window.location.href = "1-forms_entrada.php";
+      });
+    </script>
+    </body>
+    </html>';
+
     exit;
 } catch (PDOException $e) {
-    // Em um ambiente de produção, logar o erro e mostrar uma mensagem genérica.
-    // Para desenvolvimento, pode-se mostrar o erro.
     echo "Erro ao registrar entrada: " . $e->getMessage();
-    // Você pode redirecionar para uma página de erro ou de volta ao formulário
-    // header("Location: formulario_entrada.php?erro=db_error");
-    // exit;
 }

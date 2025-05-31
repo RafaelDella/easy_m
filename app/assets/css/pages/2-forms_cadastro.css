@@ -1,5 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
+/*===== VARIÁVEIS PERSONALIZADAS =====*/
+:root {
+    --font-semi: 600;
+
+    /* Cores personalizadas com base nas antigas */
+    --first-color: #0BA18C;
+    --second-color: #0f0f0f;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+    --button-hover: #0a8171;
+
+    /* Tipografia */
+    --body-font: "Poppins", sans-serif;
+    --big-font-size: 2.5rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+
+    /* Espaçamento */
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+
+    --radius: 0.5rem;
+}
 * {
     padding: 0;
     margin: 0;
@@ -29,7 +54,7 @@ body {
 
 .form-image {
     width: 50%;
-    background-color: #0ba18c;
+    background-color: var(--first-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,14 +81,14 @@ body {
 }
 
 .form-container::-webkit-scrollbar-thumb {
-    background-color: #0ba18c;
+    background-color: var(--first-color);
     border-radius: 6px;
     border: 3px solid #1e1e1e;
 }
 
 .form-container {
     scrollbar-width: thin;
-    scrollbar-color: #13b39e6b #1e1e1e;
+    scrollbar-color: --button-hover #1e1e1e;
 }
 
 .form-container h2 {
@@ -101,13 +126,13 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    background-color: #3A8DFF;
+    background-color: var(--first-color);
     color: #dfdfdf;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #559DFF       ;
+    background-color: var(--button-hover)       ;
 }
 
 button.cancelar {

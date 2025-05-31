@@ -1,6 +1,23 @@
 <div id="modalVisualizacaoGasto" class="modal">
     <div class="modal-content">
         <span class="close" onclick="fecharModal('modalVisualizacaoGasto')">&times;</span>
+        <style>
+            p{
+                color: #0BA18C;
+                font-family: "Poppins";
+            }
+
+            span{
+                color: #fff;
+            }
+
+            button{
+                background-color: #0BA18C;
+                font-family: Poppins;
+                margin-top: 15px;
+                color: #fff;
+            }
+        </style>
         <h2>Detalhes do Gasto</h2>
         <p><strong>Nome:</strong> <span id="view_nome_gasto"></span></p>
         <p><strong>Descrição:</strong> <span id="view_desc_gasto"></span></p>

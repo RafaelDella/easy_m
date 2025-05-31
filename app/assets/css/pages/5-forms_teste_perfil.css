@@ -67,6 +67,19 @@ form select:focus {
     outline: none;
 }
 
+.button-wrapper{
+    & {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        gap: 20px;
+    }
+
+    & button{
+        width: 50%;
+    }
+}
+
 button {
     width: 100%;
     padding: 12px;

@@ -56,11 +56,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id_usuario' => $id_usuario
         ]);
 
-        // Redirecionamento direto sem modal
-        header("Location: ../dashboard/1-dashboard.php?perfil={$perfil}");
+        // Saída HTML para mostrar o modal e redirecionar após confirmação
+        $perfil_js = json_encode($perfil);
+        $redirect_url = json_encode("../dashboard/1-dashboard.php?perfil={$perfil}");
+
+        echo <<<HTML
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+            <head>
+            <meta charset="UTF-8">
+            <title>Perfil Definido</title>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="../../../assets/css/components/modal.css">
+            <style>
+                body {
+                    font-family: 'Poppins', sans-serif;
+                    text-align: center;
+                }
+
+                .modal-content{
+                    justify-content: center;
+                    display: flex;
+                    flex-direction: column
+                }
+
+                .modal-footer{
+                    display: flex;
+                    justify-content: center;
+                }
+            </style>
+        </head>
+        <body>
+            <script src="../../../assets/js/components/modal.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof window.customAlert === 'function') {
+                        customAlert(
+                            'Seu perfil financeiro foi definido como ' + $perfil_js + '!',
+                            'Sucesso!',
+                            'success',
+                            function () {
+                                window.location.href = $redirect_url;
+                            }
+                        );
+                    } else {
+                        alert('Seu perfil financeiro foi definido como ' + $perfil_js + '!');
+                        window.location.href = $redirect_url;
+                    }
+                });
+            </script>
+        </body>
+        </html>
+        HTML;
+
         exit;
     } catch (PDOException $e) {
-        echo "Erro ao atualizar perfil: " . $e->getMessage();
+        $erro = htmlspecialchars($e->getMessage());
+        echo <<<HTML
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <title>Erro</title>
+            <link rel="stylesheet" href="../../../assets/css/components/modal.css">
+        </head>
+        <body>
+            <script src="../../../assets/js/components/modal.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof window.customAlert === 'function') {
+                        customAlert("Erro ao atualizar perfil: {$erro}", "Erro!", "error");
+                    } else {
+                        alert("Erro ao atualizar perfil: {$erro}");
+                    }
+                });
+            </script>
+        </body>
+        </html>
+        HTML;
         exit;
     }
 } else {

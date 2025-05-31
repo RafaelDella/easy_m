@@ -17,16 +17,93 @@ $nome_gasto = $_POST['nome_gasto'] ?? '';
 $desc_gasto = $_POST['desc_gasto'] ?? '';
 $valor_gasto = filter_var($_POST['valor_gasto'] ?? 0, FILTER_VALIDATE_FLOAT);
 $categoria_gasto = $_POST['categoria_gasto'] ?? '';
-$is_imprevisto = isset($_POST['is_imprevisto']) ? 1 : 0; // 1 se marcado, 0 se não
+$is_imprevisto = isset($_POST['is_imprevisto']) ? 1 : 0;
 $data_gasto = $_POST['data_gasto'] ?? '';
 
-// Verificar se os dados obrigatórios estão preenchidos e são válidos
-if (empty($nome_gasto) || empty($desc_gasto) || $valor_gasto === false || $valor_gasto <= 0 || empty($categoria_gasto) || empty($data_gasto)) {
-    echo "<script>
-        alert('❌ Por favor, preencha todos os campos corretamente para cadastrar o gasto.');
-        window.location.href='1-forms_gasto.php'; // Redireciona de volta para a página de formulário
-    </script>";
+// Função para exibir alerta estilizado
+function mostrarAlerta($titulo, $mensagem, $redirect)
+{
+    echo "
+    <!DOCTYPE html>
+    <html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Alerta</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Poppins, sans-serif;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+            .modal-overlay {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+            .custom-alert {
+                background-color: #1e1e1e;
+                color: white;
+                padding: 30px;
+                border-radius: 10px;
+                width: 300px;
+                text-align: center;
+                box-shadow: 0 0 10px rgba(0,0,0,0.4);
+            }
+            .custom-alert h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            .custom-alert p {
+                margin: 10px 0 20px;
+                font-size: 14px;
+            }
+            .custom-alert button {
+                background-color: #00b386;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+            .custom-alert button:hover {
+                background-color: #009970;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='modal-overlay'>
+            <div class='custom-alert'>
+                <h2>$titulo</h2>
+                <p>$mensagem</p>
+                <button onclick=\"window.location.href='$redirect'\">Fechar</button>
+            </div>
+        </div>
+    </body>
+    </html>";
     exit;
+}
+
+// Validação dos campos obrigatórios
+if (
+    empty($nome_gasto) ||
+    empty($desc_gasto) ||
+    $valor_gasto === false ||
+    $valor_gasto <= 0 ||
+    empty($categoria_gasto) ||
+    empty($data_gasto)
+) {
+    mostrarAlerta("CAMPOS INVÁLIDOS", "❌ Por favor, preencha todos os campos corretamente para cadastrar o gasto.", "1-forms_gasto.php");
 }
 
 try {
@@ -43,15 +120,9 @@ try {
         'id_usuario' => $id_usuario
     ]);
 
-    echo "<script>
-        alert('✅ Gasto registrado com sucesso!');
-        window.location.href='1-forms_gasto.php'; // Redireciona para a mesma página, onde a lista será atualizada
-    </script>";
-    exit;
+    mostrarAlerta("SUCESSO", "✅ Gasto registrado com sucesso!", "1-forms_gasto.php");
+
 } catch (PDOException $e) {
-    echo "Erro ao registrar gasto: " . $e->getMessage();
-    // Você pode redirecionar para uma página de erro ou de volta ao formulário
-    // header("Location: 1-forms_gasto.php?erro=db_error");
-    // exit;
+    mostrarAlerta("ERRO", "❌ Erro ao registrar gasto. Tente novamente mais tarde.", "1-forms_gasto.php");
 }
-?> 
+?>

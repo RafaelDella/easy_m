@@ -5,10 +5,11 @@
     --font-semi: 600;
 
     /* Cores personalizadas com base nas antigas */
-    --first-color: #00c277;
+    --first-color: #0BA18C;
     --second-color: #0f0f0f;
     --text-color: #ffffff;
     --text-muted: #aaaaaa;
+    --button-hover: #0a8171;
 
     /* Tipografia */
     --body-font: "Poppins", sans-serif;

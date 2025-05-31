@@ -159,7 +159,6 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
             </div>
         </main>
-        <script src=""></script>
         <script src="../../../assets/js/components/global.js"></script> </body>
         <script src="../../../assets/js/components/sidebar.js"></script>
     </body>

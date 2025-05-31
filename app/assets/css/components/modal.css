@@ -1,3 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/*===== VARIÁVEIS PERSONALIZADAS =====*/
+:root {
+    --font-semi: 600;
+
+    /* Cores personalizadas com base nas antigas */
+    --first-color: #0BA18C;
+    --second-color: #0f0f0f;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+    --button-hover: #0a8171;
+
+    /* Tipografia */
+    --body-font: "Poppins", sans-serif;
+    --big-font-size: 2.5rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+
+    /* Espaçamento */
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+
+    --radius: 0.5rem;
+}
+
 /* Modal Styles */
 .modal-overlay {
     position: fixed;
@@ -78,7 +106,7 @@
 }
 
 .modal-icon-wrapper.info {
-    color: #2196F3;
+    color: var(--first-color);
 }
 
 .modal-title {
@@ -122,10 +150,11 @@
 }
 
 .modal-button-primary {
-    background-color: #3A8DFF;
+    background-color: var(--first-color);
     color: #dfdfdf;
 }
 
 .modal-button-primary:hover {
-    background-color: #559DFF;
+    background-color: var(--button-hover);
 }
+
