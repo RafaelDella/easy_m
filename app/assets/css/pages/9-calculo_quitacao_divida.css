@@ -1,15 +1,219 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
 
 * {
+    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+    min-height: 100vh;
 }
 
 main {
-    flex: 1; /* Permite que o main ocupe todo o espaço vertical restante dentro do content-wrapper */
-    padding: 20px; /* Padding interno para o conteúdo do main */
-    padding-top: 90px; /* Espaço para o cabeçalho fixo (se a altura do header for 80px) */
-    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
-    background-color: #1a1a1a; /* Cor de fundo escura do main, conforme suas imagens */
-    color: #e6e6e6; /* Cor padrão do texto no main */
-    font-family: 'Inter', sans-serif; /* Fonte para o dashboard */
+    flex: 1;
+    padding: 20px;
+    padding-top: 90px;
+    overflow-y: auto;
+}
+
+/* Container do formulário */
+.form-container {
+    background-color: #1f1f1f;
+    padding: 30px 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+}
+
+.form-container h2 {
+    margin-bottom: 24px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #cccccc;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2b2b2b;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+form input:focus,
+form select:focus {
+    outline: 2px solid #0ba18c;
+    background-color: #333333;
+}
+
+/* Botões */
+button[type="submit"],
+.btn-excluir-conta {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    background-color: #0ba18c;
+    color: #121212;
+}
+
+button[type="submit"]:hover {
+    background-color: #099b7d;
+}
+
+.btn-excluir-conta {
+    background-color: #e63946;
+    color: #ffffff;
+}
+
+.btn-excluir-conta:hover {
+    background-color: #c82b3b;
+}
+
+/* Link de voltar */
+.voltar-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #aaaaaa;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.voltar-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Esconde blocos */
+.hidden {
+    display: none !important;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #2b2b2b;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
+.popup-content h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #0ba18c;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.popup-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+#salvarBtn {
+    background-color: #0ba18c;
+    color: #121212;
+}
+
+#salvarBtn:hover {
+    background-color: #099b7d;
+}
+
+#recalcularBtn {
+    background-color: #444;
+    color: #ffffff;
+}
+
+#recalcularBtn:hover {
+    background-color: #666;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #bbbbbb;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        padding: 100px 20px 20px 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    form input,
+    form select,
+    button {
+        font-size: 0.95rem;
+    }
 }
