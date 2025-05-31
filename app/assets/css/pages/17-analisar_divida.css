@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
+main {
+    flex: 1;
+    padding: 20px;
+    padding-top: 90px;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #262626;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+    border: 2px solid #37393b;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #72ffb4;
+    margin-bottom: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    background-color: #1e1e1e;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus {
+    border-color: #0ba18c;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 24px;
+    background-color: #0ba18c;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #13b39e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th,
+table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.mensagem-vazia {
+    color: #ff7070;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#mensagemDica {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #ccc;
+    text-align: center;
+}
+
+canvas {
+    max-width: 500px;
+    margin: 2rem auto;
+    display: block;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 0.95rem;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    main,
+    main * {
+        visibility: visible;
+    }
+
+    main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        background-color: white;
+        /* fundo branco no PDF */
+        color: black;
+        /* texto escuro para impressão */
+    }
+
+    .container {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    #sidebar,
+    header,
+    .btn-expand,
+    .exportar {
+        display: none !important;
+    }
+
+    .dicas {
+        display: none !important;
+    }
+
+}
+
+.resumo {
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+    /* centraliza horizontalmente e adiciona margem inferior */
+    background-color: #262626;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.resumo p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #ddd;
+}
