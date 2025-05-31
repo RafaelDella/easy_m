@@ -62,6 +62,10 @@ body {
 }
 
 /*===== TEXTO ESQUERDA =====*/
+#markup{
+    text-decoration: underline var(--first-color);
+}
+
 .texto {
     flex: 1;
     max-width: 500px;
