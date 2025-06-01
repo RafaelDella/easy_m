@@ -347,7 +347,6 @@ textarea {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.7); /* Fundo escuro semi-transparente */
-    display: flex; /* Habilita flexbox para centralizar conteúdo */
     justify-content: center;
     align-items: center;
 }
