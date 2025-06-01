@@ -241,8 +241,8 @@ select:-webkit-autofill:focus {
 
 /* Botões dentro dos modais */
 .modal-buttons .btn-submit { /* Renomeado para não conflitar com .btn */
-    background-color: #0ba18c;
-    color: #191919;
+    background-color: #28a745;
+    color: #e6e6e6;
     padding: 10px 16px;
     border: none;
     border-radius: 6px;
@@ -252,27 +252,21 @@ select:-webkit-autofill:focus {
 }
 
 .modal-buttons .btn-submit:hover {
-    background-color: #0e9d80;
+    background-color: #218838;
 }
 
 .modal-buttons .btn-cancelar {
-    padding: 10px 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: background-color 0.2s;
-    font-weight: 500;
     background-color: #dc3545;
     color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
 }
 
 .modal-buttons .btn-cancelar:hover {
     background-color: #c82333;
 }
 
-p {
-    color: #e6e6e6;
-}
