@@ -16,13 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const valorPagoEl = document.getElementById('valorPago');
 
     let nomeDividaSelecionada = '';
-    let valorPago = 0;
 
+    // Alternar campos com base no modo de quitação
     modoQuitacao.addEventListener('change', function () {
         campoValorParcela.classList.toggle('hidden', this.value !== 'valor_parcela');
         campoTempo.classList.toggle('hidden', this.value !== 'tempo_quitacao');
     });
 
+    // Quando uma dívida é selecionada
     if (selectDivida) {
         selectDivida.addEventListener('change', () => {
             const dados = selectDivida.value;
@@ -33,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 valorTotalEl.value = '';
                 jurosEl.value = '';
                 valorPagoEl.value = '';
-                valorPago = 0;
 
                 tipoDividaEl.disabled = false;
                 valorTotalEl.readOnly = false;
@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 valorTotalEl.value = divida.valor_total || '';
                 jurosEl.value = divida.taxa_divida || '';
-                valorPago = parseFloat(divida.valor_pago || 0);
-                valorPagoEl.value = valorPago.toFixed(2);
+                valorPagoEl.value = parseFloat(divida.valor_pago || 0).toFixed(2);
                 nomeDividaSelecionada = divida.nome_divida?.trim() || 'Dívida sem nome';
 
+                // Se a categoria não estiver nas opções do select, adiciona
                 if (![...tipoDividaEl.options].some(opt => opt.value === categoria)) {
                     const novaOption = document.createElement('option');
                     novaOption.value = categoria;
@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 tipoDividaEl.disabled = true;
                 valorTotalEl.readOnly = true;
                 jurosEl.readOnly = false;
+                valorPagoEl.readOnly = false; // ✅ Permitir edição mesmo com dívida selecionada
             } catch (e) {
                 console.warn('Erro ao carregar dívida:', e);
             }
@@ -84,6 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const juros = parseFloat(jurosEl.value);
         const tipoJuros = document.getElementById('tipoJuros').value;
         const modo = modoQuitacao.value;
+
+        // Atualiza o valorPago com o valor do input (mesmo que editado manualmente)
+        const valorPago = parseFloat(valorPagoEl.value) || 0;
 
         if (isNaN(valorTotal) || isNaN(juros) || valorTotal <= 0 || juros < 0) {
             resultadoTexto.innerHTML = "Preencha corretamente o valor da dívida e os juros.";
