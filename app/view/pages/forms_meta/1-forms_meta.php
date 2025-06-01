@@ -62,6 +62,7 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
     <link rel="stylesheet" href="../../../assets/css/pages/11-dashboard_metas.css">
+    <link rel="stylesheet" href="../../../assets/css/pages/20-forms_meta.css">
 </head>
 <body>
 <?php include_once('../includes/sidebar.php'); ?>
