@@ -16,7 +16,7 @@ if (!$id_usuario) {
 }
 
 $hoje = new DateTime();
-$limite = (clone $hoje)->modify('+7 days')->format('Y-m-d');
+$limite = (clone $hoje)->modify('+1000 days')->format('Y-m-d');
 
 $notificacoes = [];
 
