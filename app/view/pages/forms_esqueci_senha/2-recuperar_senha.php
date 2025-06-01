@@ -1,13 +1,14 @@
 <?php
 require_once '../../../db.php';
-
-// Inclui PHPMailer manualmente
 require_once '../../../assets/src/PHPMailer.php';
 require_once '../../../assets/src/SMTP.php';
 require_once '../../../assets/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+$mensagemPopup = '';
+$tipoMensagem = 'info'; // info ou erro
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -33,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'brunokioshi01@gmail.com'; // 🔒 Substitua pelo seu Gmail
-            $mail->Password = 'bfjm joof axdq oifm';   // 🔒 Use a senha de app do Gmail
+            $mail->Username = 'brunokioshi01@gmail.com';
+            $mail->Password = 'bfjm joof axdq oifm';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
@@ -52,11 +53,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ";
 
             $mail->send();
-            echo "<p style='text-align:center'>Se o e-mail estiver cadastrado, você receberá um link de recuperação.</p>";
+            $mensagemPopup = "Um link de recuperação foi enviado para seu e-mail.";
         } catch (Exception $e) {
-            echo "<p style='color:red;'>Erro ao enviar o e-mail: {$mail->ErrorInfo}</p>";
+            $mensagemPopup = "Erro ao enviar o e-mail: {$mail->ErrorInfo}";
+            $tipoMensagem = 'erro';
         }
     } else {
-        echo "<p style='text-align:center'>Se o e-mail estiver cadastrado, você receberá um link de recuperação.</p>";
+        $mensagemPopup = "E-mail não encontrado. Verifique o endereço digitado.";
+        $tipoMensagem = 'erro';
     }
 }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Senha - EasyM</title>
+    <link rel="stylesheet" href="../../../assets/css/pages/3-forms_login.css">
+    <link rel="stylesheet" href="../../../assets/css/pages/18-recuperar_senha.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Recuperar Senha</h2>
+
+        <form action="2-recuperar_senha.php" method="POST">
+            <label for="email">Informe seu e-mail cadastrado:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Enviar link de recuperação</button>
+        </form>
+
+        <p class="link-cadastro">
+            Lembrou sua senha? <a href="../forms_login/1-forms_login.html">Voltar ao login</a>
+        </p>
+    </div>
+
+    <?php if (!empty($mensagemPopup)): ?>
+        <div class="popup" id="popup">
+            <div class="popup-content <?= $tipoMensagem === 'erro' ? 'erro' : '' ?>">
+                <p><?= htmlspecialchars($mensagemPopup) ?></p>
+                <button onclick="document.getElementById('popup').style.display='none'">OK</button>
+            </div>
+        </div>
+        <script>
+            window.onload = () => {
+                document.getElementById('popup').style.display = 'flex';
+            };
+        </script>
+    <?php endif; ?>
+
+</body>
+
+</html>

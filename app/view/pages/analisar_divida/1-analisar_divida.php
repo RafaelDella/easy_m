@@ -24,11 +24,6 @@ $stmt = $pdo->prepare("SELECT * FROM Divida WHERE id_usuario = :id_usuario ORDER
 $stmt->execute(['id_usuario' => $id_usuario]);
 $dividas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (count($dividas) === 0) {
-    echo "<p class='mensagem-vazia'>Não há dívidas para analisar.</p>";
-    exit;
-}
-
 // Resumo das dívidas
 $stmtResumo = $pdo->prepare("
     SELECT
@@ -69,55 +64,61 @@ $porcentagem = $totalReceitas > 0 ? ($resumo['saldo_restante'] / $totalReceitas)
     <?php include_once('../includes/header.php'); ?>
 
     <main>
-        <div class="container">
-            <section class="resumo">
-                <h2>Resumo das Dívidas</h2>
-                <p>Total: R$ <?= number_format($resumo['total'], 2, ',', '.') ?></p>
-                <p>Quantidade: <?= $resumo['quantidade'] ?></p>
-                <p>Média: R$ <?= number_format($resumo['media'], 2, ',', '.') ?></p>
-                <p>Porcentagem da renda comprometida: <?= number_format($porcentagem, 1, ',', '.') ?>%</p>
-            </section>
 
-            <section class="grafico-categorias">
-                <h2>Distribuição por Categoria</h2>
-                <canvas id="graficoCategorias"></canvas>
-            </section>
+        <?php if (count($dividas) === 0): ?>
+            <p class="mensagem-vazia">Não há dívidas para analisar.</p>
+            <a href="../forms_divida/1-forms_divida.php" class="botao-cadastrar">Cadastrar Dívida</a>
+        <?php else: ?>
+            <div class="container">
+                <section class="resumo">
+                    <h2>Resumo das Dívidas</h2>
+                    <p>Total: R$ <?= number_format($resumo['total'], 2, ',', '.') ?></p>
+                    <p>Quantidade: <?= $resumo['quantidade'] ?></p>
+                    <p>Média: R$ <?= number_format($resumo['media'], 2, ',', '.') ?></p>
+                    <p>Porcentagem da renda comprometida: <?= number_format($porcentagem, 1, ',', '.') ?>%</p>
+                </section>
 
-            <section class="lista-dividas">
-                <h2>Lista de Dívidas (por vencimento)</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Categoria</th>
-                            <th>Valor Total</th>
-                            <th>Vencimento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($dividas as $divida): ?>
+                <section class="grafico-categorias">
+                    <h2>Distribuição por Categoria</h2>
+                    <canvas id="graficoCategorias"></canvas>
+                </section>
+
+                <section class="lista-dividas">
+                    <h2>Lista de Dívidas (por vencimento)</h2>
+                    <table>
+                        <thead>
                             <tr>
-                                <td><?= htmlspecialchars($divida['nome_divida']) ?></td>
-                                <td><?= htmlspecialchars($divida['categoria_divida']) ?></td>
-                                <td>R$ <?= number_format($divida['valor_total'], 2, ',', '.') ?></td>
-                                <td><?= date('d/m/Y', strtotime($divida['data_vencimento'])) ?></td>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Valor Total</th>
+                                <th>Vencimento</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </section>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($dividas as $divida): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($divida['nome_divida']) ?></td>
+                                    <td><?= htmlspecialchars($divida['categoria_divida']) ?></td>
+                                    <td>R$ <?= number_format($divida['valor_total'], 2, ',', '.') ?></td>
+                                    <td><?= date('d/m/Y', strtotime($divida['data_vencimento'])) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </section>
 
-            <section class="dicas">
-                <h2>Dicas</h2>
-                <p id="mensagemDica"></p>
-            </section>
+                <section class="dicas">
+                    <h2>Dicas</h2>
+                    <p id="mensagemDica"></p>
+                </section>
 
-            <section class="exportar">
-                <button onclick="window.print()">Exportar Análise (PDF)</button>
-            </section>
-        </div>
+                <section class="exportar">
+                    <button onclick="window.print()">Exportar Análise (PDF)</button>
+                </section>
+            </div>
+        <?php endif; ?>
+
     </main>
-
 
     <script src="../../../assets/js/components/sidebar.js"></script>
     <script src="../../../assets/js/pages/10-analisar_divida.js"></script>

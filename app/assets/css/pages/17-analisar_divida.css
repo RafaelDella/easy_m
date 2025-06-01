@@ -174,3 +174,27 @@ canvas {
     font-size: 1rem;
     color: #ddd;
 }
+
+.mensagem-vazia {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.botao-cadastrar {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 12px 24px;
+    background-color: #0ba18c;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.botao-cadastrar:hover {
+    background-color: #13b39e;
+}
