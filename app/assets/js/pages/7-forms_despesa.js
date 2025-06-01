@@ -83,7 +83,7 @@ document.getElementById('formCadastroDespesa').addEventListener('submit', async 
 // 2. Visualizar Despesa
 async function visualizarDespesa(id) {
     try {
-        const response = await fetch(`../../../view/pages/forms_despesa/4-listar_categorias_despesa.php?id=${id}`);
+        const response = await fetch(`../../../view/pages/forms_despesa/5-buscar_despesa.php?id=${id}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

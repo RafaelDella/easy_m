@@ -272,3 +272,7 @@ select:-webkit-autofill:focus {
 .modal-buttons .btn-cancelar:hover {
     background-color: #c82333;
 }
+
+p {
+    color: #e6e6e6;
+}
