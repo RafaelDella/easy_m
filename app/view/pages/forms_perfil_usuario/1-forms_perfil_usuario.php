@@ -66,6 +66,18 @@ $perfilUsuario = $dadosUsuario['perfil'] ?? 'Não definido';
                 <label for="data_nascimento">Data de nascimento:</label>
                 <input type="date" id="data_nascimento" name="data_nascimento" required>
 
+                <h4 id="titulo-secao" style="font-weight: normal;">Redefinir Senha</h4>
+
+                <label for="senha_atual">Senha atual:</label>
+                <input type="password" style="background-color: #2B2B2B;" id="senha_atual" name="senha_atual">
+
+                <label for="nova_senha">Nova senha:</label>
+                <input type="password" style="background-color: #2B2B2B;" id="nova_senha" name="nova_senha">
+
+                <label for="confirmar_senha">Confirmar nova senha:</label>
+                <input type="password" style="background-color: #2B2B2B;" id="confirmar_senha" name="confirmar_senha">
+
+
                 <button type="submit">Salvar Alterações</button>
                 <button type="button" class="btn-excluir-conta" onclick="confirmarExclusao()">Excluir Conta</button>
                 <a href="../dashboard/1-dashboard.php" class="voltar-link">← Voltar para o Painel</a>

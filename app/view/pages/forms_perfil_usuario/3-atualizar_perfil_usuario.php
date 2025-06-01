@@ -17,10 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $escolaridade = $_POST['escolaridade'] ?? '';
     $data_nascimento = $_POST['data_nascimento'] ?? '';
 
+    // Campos de senha (opcional)
+    $senha_atual = $_POST['senha_atual'] ?? '';
+    $nova_senha = $_POST['nova_senha'] ?? '';
+    $confirmar_senha = $_POST['confirmar_senha'] ?? '';
+
     try {
         $db = new DB();
         $pdo = $db->connect();
 
+        // Atualização dos dados do perfil
         $stmt = $pdo->prepare("UPDATE Usuario SET 
             nome = :nome, 
             email = :email, 
@@ -40,13 +46,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $usuario_id
         ]);
 
-        if ($stmt->rowCount() > 0) {
-            echo "<script>alert('✅ Perfil atualizado com sucesso!'); window.location.href = '1-forms_perfil_usuario.php';</script>";
-        } else {
-            echo "<script>alert('⚠️ Nenhuma alteração foi feita.'); window.history.back();</script>";
+        // Tratamento da alteração de senha, se preenchida
+        if (!empty($senha_atual) || !empty($nova_senha) || !empty($confirmar_senha)) {
+            if (empty($senha_atual) || empty($nova_senha) || empty($confirmar_senha)) {
+                throw new Exception("Todos os campos de senha devem ser preenchidos.");
+            }
+
+            if ($nova_senha !== $confirmar_senha) {
+                throw new Exception("A nova senha e a confirmação não coincidem.");
+            }
+
+            // Verifica se a senha atual está correta
+            $stmtSenha = $pdo->prepare("SELECT senha FROM Usuario WHERE id_usuario = :id");
+            $stmtSenha->execute([':id' => $usuario_id]);
+            $senhaHash = $stmtSenha->fetchColumn();
+
+            if (!$senhaHash || !password_verify($senha_atual, $senhaHash)) {
+                throw new Exception("Senha atual incorreta.");
+            }
+
+            // Atualiza a nova senha
+            $novaSenhaHash = password_hash($nova_senha, PASSWORD_DEFAULT);
+            $stmtUpdateSenha = $pdo->prepare("UPDATE Usuario SET senha = :senha WHERE id_usuario = :id");
+            $stmtUpdateSenha->execute([
+                ':senha' => $novaSenhaHash,
+                ':id' => $usuario_id
+            ]);
         }
+
+        echo "<script>alert('✅ Perfil atualizado com sucesso!'); window.location.href = '1-forms_perfil_usuario.php';</script>";
+
+    } catch (Exception $e) {
+        echo "<script>alert('❌ Erro: " . $e->getMessage() . "'); window.history.back();</script>";
     } catch (PDOException $e) {
-        echo "<script>alert('❌ Erro ao atualizar perfil: " . $e->getMessage() . "'); window.history.back();</script>";
+        echo "<script>alert('❌ Erro no banco de dados: " . $e->getMessage() . "'); window.history.back();</script>";
     }
 } else {
     echo "<script>alert('❌ Método inválido.'); window.history.back();</script>";
