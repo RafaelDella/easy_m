@@ -107,11 +107,6 @@ $porcentagem = $totalReceitas > 0 ? ($resumo['saldo_restante'] / $totalReceitas)
                     </table>
                 </section>
 
-                <section class="dicas">
-                    <h2>Dicas</h2>
-                    <p id="mensagemDica"></p>
-                </section>
-
                 <section class="exportar">
                     <button onclick="window.print()">Exportar Análise (PDF)</button>
                 </section>
