@@ -19,7 +19,7 @@ try {
     $db = new DB();
     $pdo = $db->connect();
 
-    $stmt = $pdo->prepare("INSERT INTO Meta (titulo, descricao, categoria, valor_meta, previsao_conclusao, id_usuario) 
+    $stmt = $pdo->prepare("INSERT INTO meta (titulo, descricao, categoria, valor_meta, previsao_conclusao, id_usuario) 
                            VALUES (:titulo, :descricao, :categoria, :valor_meta, :previsao, :id_usuario)");
 
     $stmt->execute([
@@ -33,6 +33,5 @@ try {
 
     echo json_encode(['sucesso' => true]);
 } catch (PDOException $e) {
-    http_response_code(500);
     echo json_encode(['erro' => $e->getMessage()]);
 }

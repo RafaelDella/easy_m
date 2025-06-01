@@ -15,7 +15,7 @@ try {
     $db = new DB();
     $pdo = $db->connect();
 
-    $stmt = $pdo->prepare("SELECT * FROM Meta WHERE id_meta = :id AND id_usuario = :id_usuario");
+    $stmt = $pdo->prepare("SELECT * FROM meta WHERE id_meta = :id AND id_usuario = :id_usuario");
     $stmt->execute([
         ':id' => $id_meta,
         ':id_usuario' => $id_usuario

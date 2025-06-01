@@ -14,7 +14,7 @@ try {
     $db = new DB();
     $pdo = $db->connect();
 
-    $stmt = $pdo->prepare("DELETE FROM Meta WHERE id_meta = :id AND id_usuario = :id_usuario");
+    $stmt = $pdo->prepare("DELETE FROM meta WHERE id_meta = :id AND id_usuario = :id_usuario");
     $stmt->execute([
         ':id' => $id_meta,
         ':id_usuario' => $id_usuario

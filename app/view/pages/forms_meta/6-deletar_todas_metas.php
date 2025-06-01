@@ -13,7 +13,7 @@ try {
     $db = new DB();
     $pdo = $db->connect();
 
-    $stmt = $pdo->prepare("DELETE FROM Meta WHERE id_usuario = :id_usuario");
+    $stmt = $pdo->prepare("DELETE FROM meta WHERE id_usuario = :id_usuario");
     $stmt->execute([':id_usuario' => $id_usuario]);
 
     header("Location: 1-dashboard_metas.php");

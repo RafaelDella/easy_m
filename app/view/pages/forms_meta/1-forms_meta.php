@@ -30,7 +30,7 @@ $mes       = $_GET['mes'] ?? '';
 $ano       = $_GET['ano'] ?? '';
 
 // SQL com filtros
-$sql = "SELECT * FROM Meta WHERE id_usuario = :id_usuario";
+$sql = "SELECT * FROM meta WHERE id_usuario = :id_usuario";
 $params = ['id_usuario' => $id_usuario];
 
 if (!empty($categoria)) {
@@ -61,7 +61,6 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../../../assets/css/components/header.css">
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
-    <link rel="stylesheet" href="../../../assets/css/pages/11-dashboard_metas.css">
     <link rel="stylesheet" href="../../../assets/css/pages/20-forms_meta.css">
 </head>
 <body>

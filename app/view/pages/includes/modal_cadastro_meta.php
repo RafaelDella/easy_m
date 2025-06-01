@@ -25,3 +25,28 @@
         </form>
     </div>
 </div>
+<script>
+    document.getElementById("formCadastroMeta").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch("../../../view/pages/forms_meta/2-cadastrar_meta.php", {
+
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Resposta do servidor:", data);
+                alert("Meta cadastrada com sucesso!");
+                fecharModal("modalCadastroMeta");
+                this.reset();
+                location.reload();
+            })
+            .catch(error => {
+                console.error("Erro no cadastro:", error);
+                alert("Erro ao cadastrar a meta.");
+            });
+    });
+</script>
