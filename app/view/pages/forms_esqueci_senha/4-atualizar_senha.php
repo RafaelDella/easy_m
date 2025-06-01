@@ -40,5 +40,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Remove token
     $conn->prepare("DELETE FROM RecuperacaoSenha WHERE token = ?")->execute([$token]);
 
-    echo "<p style='color:green;'>Senha atualizada com sucesso!</p><a href='../forms_login/1-forms_login.html'>Fazer login</a>";
+    echo <<<HTML
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Senha Redefinida - EasyM</title>
+        <link rel="stylesheet" href="../../../assets/css/pages/19-popup_senha_sucesso.css">
+    </head>
+    <body>
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <p>Senha atualizada com sucesso!</p>
+                <a href="../forms_login/1-forms_login.html" class="botao">Fazer login</a>
+            </div>
+        </div>
+        <script>
+            document.getElementById('popup').style.display = 'flex';
+        </script>
+    </body>
+    </html>
+    HTML;
 }
