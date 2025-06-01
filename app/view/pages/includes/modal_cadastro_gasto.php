@@ -32,7 +32,10 @@
             <label for="data_gasto_cadastro">Data do Gasto:</label>
             <input type="date" id="data_gasto_cadastro" name="data_gasto" required>
 
-            <button type="submit" style="margin-top: 15px;" class="btn green">Cadastrar Gasto</button>
+            <div class="modal-buttons">
+                <button type="button" class="btn-cancelar" style="margin-top: 15px;" onclick="fecharModal('modalCadastroGasto')">Cancelar</button>
+                <button type="submit" style="margin-top: 15px;" class="btn green">Cadastrar Gasto</button>
+            </div>
         </form>
     </div>
 </div>

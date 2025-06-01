@@ -24,8 +24,8 @@
             </select>
 
             <div class="modal-buttons">
-                <button type="submit" class="btn green">Salvar Despesa</button>
                 <button type="button" class="btn red" onclick="fecharModal()">Cancelar</button>
+                <button type="submit" class="btn green">Cadastrar</button>
             </div>
         </form>
     </div>

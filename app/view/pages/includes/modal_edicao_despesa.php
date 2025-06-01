@@ -26,8 +26,8 @@
             </select>
 
             <div class="modal-buttons">
-                <button type="submit" class="btn green">Salvar Alterações</button>
                 <button type="button" class="btn red" onclick="fecharModalEdicao()">Cancelar</button>
+                <button type="submit" class="btn green">Salvar Alterações</button>
             </div>
         </form>
     </div>

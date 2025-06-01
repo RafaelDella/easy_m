@@ -34,7 +34,12 @@
             <label for="edit_data_gasto">Data do Gasto:</label>
             <input type="date" id="edit_data_gasto" name="data_gasto" required>
 
-            <button type="submit" style="margin-top: px;background-color: #0BA18C;" class="btn blue">Salvar Alterações</button>
+            
+            <div class="modal-buttons">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modalEdicaoGasto')">Cancelar</button>
+                <button type="submit" class="btn-submit">Salvar Alterações</button>
+            </div>
+
         </form>
     </div>
 </div>
