@@ -34,7 +34,7 @@
             <label for="edit_data_gasto">Data do Gasto:</label>
             <input type="date" id="edit_data_gasto" name="data_gasto" required>
 
-            <button type="submit" style="margin-top: 15px;background-color: #0BA18C;" class="btn blue">Salvar Alterações</button>
+            <button type="submit" style="margin-top: px;background-color: #0BA18C;" class="btn blue">Salvar Alterações</button>
         </form>
     </div>
 </div>

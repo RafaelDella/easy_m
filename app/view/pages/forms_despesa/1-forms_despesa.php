@@ -139,9 +139,9 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                     <h3>Tem certeza que deseja deletar TODAS as despesas?</h3>
                     <p>Essa ação não pode ser desfeita.</p>
                     <div class="modal-buttons">
-                        <button class="cancelar" onclick="fecharModalExcluir()">Cancelar</button>
+                        <button class="btn red" onclick="fecharModalExcluir()">Cancelar</button>
                         <form action="6-deletar_todas_despesas.php" method="POST">
-                            <button type="submit" class="confirmar">Confirmar exclusão</button>
+                            <button type="submit" class="btn green">Confirmar exclusão</button>
                         </form>
                     </div>
                 </div>

@@ -2,16 +2,8 @@
     <div class="modal-content">
         <span class="close" onclick="fecharModal('modalVisualizacaoGasto')">&times;</span>
         <style>
-            p{
-                color: #0BA18C;
-                font-family: "Poppins";
-            }
 
-            span{
-                color: #fff;
-            }
-
-            button{
+            #btn_modalVisualizacaoGasto{
                 background-color: #0BA18C;
                 font-family: Poppins;
                 margin-top: 15px;
@@ -25,6 +17,6 @@
         <p><strong>Valor:</strong> R$ <span id="view_valor_gasto"></span></p>
         <p><strong>Imprevisto:</strong> <span id="view_is_imprevisto"></span></p>
         <p><strong>Data:</strong> <span id="view_data_gasto"></span></p>
-        <button type="button" class="btn gray" onclick="fecharModal('modalVisualizacaoGasto')">Fechar</button>
+        <button type="button" id="btn_modalVisualizacaoGasto" class="btn gray" onclick="fecharModal('modalVisualizacaoGasto')">Fechar</button>
     </div>
 </div>
