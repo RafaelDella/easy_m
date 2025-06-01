@@ -113,7 +113,6 @@ $dividas = $stmtDividas->fetchAll(PDO::FETCH_ASSOC);
                 <h2>Resultado da Previsão</h2>
                 <p id="resultadoTexto"></p>
                 <div class="popup-buttons">
-                    <button id="salvarBtn">Salvar Previsão</button>
                     <button id="recalcularBtn">Recalcular Previsão</button>
                 </div>
             </div>

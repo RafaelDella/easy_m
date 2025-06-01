@@ -48,21 +48,27 @@ $dividas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include_once('../includes/header.php'); ?>
 
     <main>
-        <h1>Progresso das Dívidas</h1>
-        <div class="container-donuts">
-            <?php foreach ($dividas as $divida):
-                $restante = max(0, $divida['valor_total'] - $divida['valor_pago']);
-                $id_canvas = "graficoDoughnut" . $divida['id_divida'];
-            ?>
-                <div class="donut-card">
-                    <h3><?= htmlspecialchars($divida['nome_divida']) ?></h3>
-                    <canvas id="<?= $id_canvas ?>"></canvas>
-                    <p>Total: R$ <?= number_format($divida['valor_total'], 2, ',', '.') ?></p>
-                    <p>Pago: R$ <?= number_format($divida['valor_pago'], 2, ',', '.') ?></p>
-                    <p>Pendente: R$ <?= number_format($restante, 2, ',', '.') ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <?php if (count($dividas) === 0): ?>
+            <p class="mensagem-vazia">Você não possui dívidas cadastradas para exibir o progresso.</p>
+            <a href="../forms_divida/1-forms_divida.php" class="botao-cadastrar">Cadastrar Dívida</a>
+        <?php else: ?>
+
+            <h1>Progresso das Dívidas</h1>
+            <div class="container-donuts">
+                <?php foreach ($dividas as $divida):
+                    $restante = max(0, $divida['valor_total'] - $divida['valor_pago']);
+                    $id_canvas = "graficoDoughnut" . $divida['id_divida'];
+                ?>
+                    <div class="donut-card container">
+                        <h3><?= htmlspecialchars($divida['nome_divida']) ?></h3>
+                        <canvas id="<?= $id_canvas ?>"></canvas>
+                        <p>Total: R$ <?= number_format($divida['valor_total'], 2, ',', '.') ?></p>
+                        <p>Pago: R$ <?= number_format($divida['valor_pago'], 2, ',', '.') ?></p>
+                        <p>Pendente: R$ <?= number_format($restante, 2, ',', '.') ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </main>
 
     <script src="../../../assets/js/components/sidebar.js"></script>
