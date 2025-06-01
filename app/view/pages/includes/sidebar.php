@@ -85,6 +85,14 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             </li>
 
             <li class="side-item">
+                <a href="../forms_teto_gasto/1-forms_teto_gasto.php">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <span class="item-description">Metas</span>
+                </a>
+            </li>
+
+
+            <li class="side-item">
                 <a href="../calculo_quitacao_divida/1-calculo_quitacao_divida.php">
                     <i class="fa-solid fa-calculator"></i>
                     <span class="item-description">Calculadora de quitação</span>
