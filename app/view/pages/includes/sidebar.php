@@ -106,15 +106,16 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             </li>
 
             <li class="side-item">
-                <a href="../forms_login/1-forms_login.html">
+                <a href="../forms_login/3-logout_usuario.php">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="item-description">Logout</span>
                 </a>
             </li>
+
         </ul>
 
         <button id="open_btn">
-        <i id="open_btn_icon" class="fas fa-chevron-right"></i>
+            <i id="open_btn_icon" class="fas fa-chevron-right"></i>
         </button>
     </div>
 </nav>
