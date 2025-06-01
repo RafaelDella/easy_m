@@ -47,7 +47,7 @@ foreach ($tetos as $teto) {
     <link rel="stylesheet" href="../../../assets/css/components/header.css">
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
-    <link rel="stylesheet" href="../../../assets/css/pages/20-forms_teto_gasto.css" />
+    <link rel="stylesheet" href="../../../assets/css/pages/21-forms_teto_gasto.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
