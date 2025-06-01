@@ -24,42 +24,42 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             <li class="side-item">
                 <a href="../dashboard/1-dashboard.php">
                     <i class="fa-solid fa-chart-line"></i>
-                    <span class="item-description">Painel</span>
+                    <span class="item-description">Dashboard</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../extrato/1-extrato.php">
                     <i class="fa-solid fa-file-invoice"></i>
-                    <span class="item-description">Extrato</span>
+                    <span class="item-description">Extrato Financeiro</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../forms_entrada/1-forms_entrada.php">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
-                    <span class="item-description">Nova Entrada</span>
+                    <span class="item-description">Gerenciar Entrada</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../forms_gasto/1-forms_gasto.php">
                     <i class="fa-solid fa-sack-xmark"></i>
-                    <span class="item-description">Novo Gasto</span>
+                    <span class="item-description">Gerenciar Gasto</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../forms_despesa/1-forms_despesa.php">
                     <i class="fa-solid fa-cash-register"></i>
-                    <span class="item-description">Nova Despesa</span>
+                    <span class="item-description">Gerenciar Despesa</span>
                 </a>
             </li>
 
             <li class="side-item">
                 <a href="../forms_divida/1-forms_divida.php">
                     <i class="fa-solid fa-scale-unbalanced"></i>
-                    <span class="item-description">Nova dívida</span>
+                    <span class="item-description">Gerenciar Dívida</span>
                 </a>
             </li>
 
