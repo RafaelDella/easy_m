@@ -189,7 +189,6 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
             <?php else : ?>
                 <?php foreach ($despesas as $despesa) : ?>
                     <div class="session-card">
-                        <div class="session-header">Despesa: <?= htmlspecialchars($despesa['id_despesa']) ?></div>
                         <div class="session-info">Nome: <?= htmlspecialchars(limitarTexto($despesa['nome_despesa'], 20)) ?></div>
                         <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($despesa['valor_despesa'], 2, ',', '.')) ?></div>
                         <div class="session-info">Vencimento: <?= htmlspecialchars(date('d/m/Y', strtotime($despesa['data_vencimento']))) ?></div>

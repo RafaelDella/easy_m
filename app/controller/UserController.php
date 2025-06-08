@@ -37,3 +37,5 @@ class UsuarioController {
     }
 }
 ?>
+<!-- ALTER TABLE Clientes
+ADD COLUMN email VARCHAR(100) NOT NULL; -->

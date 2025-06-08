@@ -91,7 +91,6 @@ async function visualizarDespesa(id) {
 
         if (result.sucesso) {
             const despesa = result.despesa;
-            document.getElementById('view_id_despesa').textContent = despesa.id_despesa;
             document.getElementById('view_nome_despesa').textContent = despesa.nome_despesa;
             document.getElementById('view_descricao_despesa').textContent = despesa.descricao || 'N/A'; // N/A se vazio
             document.getElementById('view_valor_despesa').textContent = parseFloat(despesa.valor_despesa).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

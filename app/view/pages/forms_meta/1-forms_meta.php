@@ -102,7 +102,7 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </form>
 
         <button class="btn red" onclick="abrirModalConfirmacao('Confirmar Exclusão', 'Deseja excluir todas as metas?', () => document.getElementById('formExcluirTodas').submit())">
-            <i class="fa fa-trash"></i> Excluir Todas
+            <i class="fa fa-trash"></i> Excluir Todas as Metas
         </button>
 
         <button class="btn green" onclick="abrirModal('modalCadastroMeta')">

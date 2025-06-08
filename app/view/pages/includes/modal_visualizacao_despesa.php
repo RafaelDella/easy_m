@@ -3,7 +3,6 @@
         <span class="close-button" onclick="fecharModalVisualizacao()">&times;</span>
         <h2>Detalhes da Despesa</h2>
         <div id="detalhesDespesa">
-            <p><strong>ID:</strong> <span id="view_id_despesa"></span></p>
             <p><strong>Nome:</strong> <span id="view_nome_despesa"></span></p>
             <p><strong>Descrição:</strong> <span id="view_descricao_despesa"></span></p>
             <p><strong>Valor:</strong> R$ <span id="view_valor_despesa"></span></p>
