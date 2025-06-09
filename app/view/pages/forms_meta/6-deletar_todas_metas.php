@@ -16,7 +16,7 @@ try {
     $stmt = $pdo->prepare("DELETE FROM meta WHERE id_usuario = :id_usuario");
     $stmt->execute([':id_usuario' => $id_usuario]);
 
-    header("Location: 1-dashboard_metas.php");
+    header("Location: 1-forms_meta.php");
 } catch (PDOException $e) {
     echo "Erro ao excluir metas: " . $e->getMessage();
 }

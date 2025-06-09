@@ -20,7 +20,7 @@ try {
         ':id_usuario' => $id_usuario
     ]);
 
-    header("Location: 1-dashboard_metas.php");
+    header("Location: 1-forms_meta.php");
 } catch (PDOException $e) {
     echo "Erro ao excluir: " . $e->getMessage();
 }
