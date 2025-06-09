@@ -22,7 +22,7 @@
 
             <div class="modal-buttons">
                 <button type="button" class="btn red" onclick="fecharModal('modalEdicaoMeta')">Cancelar</button>
-                <button type="submit" class="btn blue">Salvar Alterações</button>
+                <button type="submit" class="btn-submit">Salvar Alterações</button>
             </div>
         </form>
     </div>

@@ -62,13 +62,15 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../../../assets/css/components/sidebar.css">
     <link rel="stylesheet" href="../../../assets/css/components/modal.css">
     <link rel="stylesheet" href="../../../assets/css/pages/20-forms_meta.css">
+    <script src="../../../assets/js/pages/11-forms_metas.js"></script> 
+
 </head>
 <body>
 <?php include_once('../includes/sidebar.php'); ?>
 <?php include_once('../includes/header.php'); ?>
 
 <main>
-    <h1>Minhas Metas Financeiras</h1>
+    <h1>Gerenciar Metas</h1>
 
     <div class="top-bar">
         <form method="GET" style="display:flex; flex-wrap:wrap; gap:10px;">
@@ -106,7 +108,7 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </button>
 
         <button class="btn green" onclick="abrirModal('modalCadastroMeta')">
-            <i class="fa fa-plus"></i> Nova Meta
+            <i class="fa fa-plus"></i> Cadastrar Meta
         </button>
     </div>
 
@@ -130,7 +132,7 @@ $metas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="session-actions">
                         <button class="btn purple" onclick="visualizarMeta(<?= $meta['id_meta'] ?>)">
-                            <i class="fa fa-eye"></i> Ver
+                            <i class="fa fa-eye"></i> Visualizar
                         </button>
 
                         <button class="btn blue" onclick='editarMeta(<?= json_encode([

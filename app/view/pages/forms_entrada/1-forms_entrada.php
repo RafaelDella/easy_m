@@ -107,7 +107,7 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </select>
 
                     <button type="submit" class="btn yellow">
-                        <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
+                        <i class="fa fa-filter"></i> Filtrar
                     </button>
                 </form>
 

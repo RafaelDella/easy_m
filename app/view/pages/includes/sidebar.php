@@ -87,7 +87,7 @@ $perfilUsuario = $perfilUsuario ?? 'Não Definido';
             <li class="side-item">
                 <a href="../forms_meta/1-forms_meta.php">
                     <i class="fa-solid fa-bullseye"></i>
-                    <span class="item-description">Metas</span>
+                    <span class="item-description">Gerenciar Metas</span>
                 </a>
             </li>
 

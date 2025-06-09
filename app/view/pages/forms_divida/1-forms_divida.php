@@ -79,7 +79,7 @@ $dividas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <input type="text" name="busca" placeholder="Buscar dívida" value="<?= htmlspecialchars($busca) ?>">
 
                 <button type="submit" class="btn yellow">
-                    <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
+                    <i class="fa fa-filter"></i> Filtrar
                 </button>
             </form>
 
