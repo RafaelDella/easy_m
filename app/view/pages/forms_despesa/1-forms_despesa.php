@@ -193,6 +193,7 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                         <div class="session-info">Valor: R$ <?= htmlspecialchars(number_format($despesa['valor_despesa'], 2, ',', '.')) ?></div>
                         <div class="session-info">Vencimento: <?= htmlspecialchars(date('d/m/Y', strtotime($despesa['data_vencimento']))) ?></div>
                         <div class="session-info">Categoria: <?= htmlspecialchars($despesa['nome_categoria']) ?></div>
+                    
 
                         <div class="session-actions">
                             <button class="btn purple" onclick="visualizarDespesa(<?= $despesa['id_despesa'] ?>)">
@@ -224,6 +225,7 @@ $categoriasDespesa = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
     </main>
 
     <script src="../../../assets/js/components/sidebar.js"></script>
+    <script src="../../../assets/js/components/modal.js"></script>
     <script src="../../../assets/js/pages/7-forms_despesa.js"></script>
 </body>
 </html>

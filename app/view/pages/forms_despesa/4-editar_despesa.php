@@ -46,6 +46,7 @@ try {
     } else {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Despesa não encontrada ou nenhuma alteração realizada.']);
     }
+    exit;
 
 } catch (PDOException $e) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao atualizar despesa: ' . $e->getMessage()]);

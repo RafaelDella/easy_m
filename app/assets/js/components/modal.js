@@ -148,3 +148,4 @@ if (document.readyState === 'loading') {
 } else {
     initModal(); // Se o DOM já estiver carregado (ex: script no final do body)
 }
+

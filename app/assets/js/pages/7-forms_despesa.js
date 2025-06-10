@@ -69,14 +69,20 @@ document.getElementById('formCadastroDespesa').addEventListener('submit', async 
         }
 
         const result = await response.json();
-        alert(result.mensagem);
         if (result.sucesso) {
-            fecharModal();
-            location.reload(); // Recarrega a página para mostrar a nova despesa
+            // Se a operação for um sucesso, mostre o modal de sucesso e, no callback, feche o modal do formulário e recarregue a página.
+            customAlert(result.mensagem, 'Sucesso!', 'success', () => {
+                fecharModal(); // Fecha o modal HTML de cadastro
+                location.reload(); // Recarrega a página para mostrar a nova despesa
+            });
+        } else {
+            // Se houver um erro (indicado por result.sucesso = false), mostre o modal de erro.
+            customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao cadastrar despesa:', error);
-        alert('Erro ao cadastrar despesa.');
+        // Em caso de erro na requisição (e.g., problema de rede), use o customAlert para avisar o usuário.
+        customAlert('Ocorreu um erro inesperado ao cadastrar a despesa. Tente novamente.', 'Erro!', 'error');
     }
 });
 
@@ -99,12 +105,13 @@ async function visualizarDespesa(id) {
 
             abrirModalVisualizacao();
         } else {
-            alert(result.mensagem);
+           customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro na requisição AJAX para visualizarDespesa:', error);
-        alert('Erro ao carregar detalhes da despesa.');
+        customAlert('Erro ao carregar detalhes da despesa. Verifique sua conexão.', 'Erro!', 'error');
     }
+
 }
 
 // 3. Editar Despesa (preencher modal de edição)
@@ -135,14 +142,17 @@ document.getElementById('formEdicaoDespesa').addEventListener('submit', async fu
         }
 
         const result = await response.json();
-        alert(result.mensagem);
-        if (result.sucesso) {
-            fecharModalEdicao();
-            location.reload(); // Recarrega a página para mostrar as alterações
+       if (result.sucesso) {
+            customAlert(result.mensagem, 'Sucesso!', 'success', () => {
+                fecharModalEdicao(); // Fecha o modal de edição HTML
+                location.reload(); // Recarrega a página para mostrar as alterações
+            });
+        } else {
+            customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao editar despesa:', error);
-        alert('Erro ao editar despesa.');
+        customAlert('Ocorreu um erro inesperado ao editar a despesa. Tente novamente.', 'Erro!', 'error');
     }
 });
 
@@ -205,11 +215,11 @@ async function carregarCategoriasParaGerenciamento() {
                 listaCategoriasUl.appendChild(li);
             });
         } else {
-            alert('Erro ao carregar categorias: ' + result.mensagem);
+           customAlert('Erro ao carregar categorias: ' + result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao carregar categorias:', error);
-        alert('Erro ao carregar categorias.');
+        customAlert('Erro ao carregar categorias. Verifique sua conexão.', 'Erro!', 'error');
     }
 }
 
@@ -217,7 +227,7 @@ async function carregarCategoriasParaGerenciamento() {
 btnAdicionarCategoria.addEventListener('click', async function() {
     const nome = novaCategoriaInput.value.trim();
     if (nome === '') {
-        alert('O nome da categoria não pode ser vazio.');
+       customAlert('O nome da categoria não pode ser vazio.', 'Atenção!', 'warning');
         return;
     }
 
@@ -235,15 +245,18 @@ btnAdicionarCategoria.addEventListener('click', async function() {
         }
 
         const result = await response.json();
-        alert(result.mensagem);
         if (result.sucesso) {
-            novaCategoriaInput.value = ''; // Limpa o campo
-            carregarCategoriasParaGerenciamento(); // Recarrega a lista no modal
-            // Não recarrega a página toda, só atualiza os selects depois de fechar o modal
+            customAlert(result.mensagem, 'Sucesso!', 'success', () => {
+                novaCategoriaInput.value = ''; // Limpa o campo
+                carregarCategoriasParaGerenciamento(); // Recarrega a lista no modal
+                // Não recarrega a página toda, só atualiza os selects depois de fechar o modal
+            });
+        }else {
+            customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao adicionar categoria:', error);
-        alert('Erro ao adicionar categoria.');
+        customAlert('Ocorreu um erro inesperado ao adicionar a categoria. Tente novamente.', 'Erro!', 'error');
     }
 });
 
@@ -252,7 +265,7 @@ async function editarCategoria(id, nomeAtual) {
     const novoNome = prompt('Digite o novo nome para a categoria:', nomeAtual);
     if (novoNome === null || novoNome.trim() === '') {
         if (novoNome === null) return; // Usuário cancelou
-        alert('O nome da categoria não pode ser vazio.');
+       customAlert('O nome da categoria não pode ser vazio.', 'Atenção!', 'warning');
         return;
     }
 
@@ -271,15 +284,23 @@ async function editarCategoria(id, nomeAtual) {
         }
 
         const result = await response.json();
-        alert(result.mensagem);
         if (result.sucesso) {
-            // Atualiza o nome diretamente na lista sem recarregar tudo
-            document.getElementById(`cat_nome_${id}`).textContent = result.nome_categoria;
-            // Não recarrega a página toda, só atualiza os selects depois de fechar o modal
+            customAlert(result.mensagem, 'Sucesso!', 'success', () => {
+                // Atualiza o nome diretamente na lista sem recarregar tudo
+                // (Isso é uma otimização, se der erro, você pode recarregar carregarCategoriasParaGerenciamento())
+                const spanNome = document.getElementById(`cat_nome_${id}`);
+                if (spanNome) {
+                    spanNome.textContent = result.nome_categoria; // Use o nome_categoria do retorno PHP, se disponível
+                } else {
+                     carregarCategoriasParaGerenciamento(); // Fallback se o elemento não for encontrado
+                }
+            });
+        } else {
+            customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao editar categoria:', error);
-        alert('Erro ao editar categoria.');
+        customAlert('Ocorreu um erro inesperado ao editar a categoria. Tente novamente.', 'Erro!', 'error');
     }
 }
 
@@ -303,14 +324,16 @@ async function excluirCategoria(id, nome) {
         }
 
         const result = await response.json();
-        alert(result.mensagem);
         if (result.sucesso) {
-            carregarCategoriasParaGerenciamento(); // Recarrega a lista
-            // Não recarrega a página toda, só atualiza os selects depois de fechar o modal
+            customAlert(result.mensagem, 'Sucesso!', 'success', () => {
+                carregarCategoriasParaGerenciamento(); // Recarrega a lista
+            });
+        }else {
+            customAlert(result.mensagem, 'Erro!', 'error');
         }
     } catch (error) {
         console.error('Erro ao excluir categoria:', error);
-        alert('Erro ao excluir categoria.');
+        customAlert('Ocorreu um erro inesperado ao excluir a categoria. Tente novamente.', 'Erro!', 'error');
     }
 }
 
@@ -352,3 +375,4 @@ async function atualizarSelectsCategorias() {
         console.error('Erro na requisição AJAX para atualizar selects de categoria:', error);
     }
 }
+
